@@ -16,6 +16,10 @@ knitr::opts_chunk$set(
 # pkgskills
 
 <!-- badges: start -->
+[![Lifecycle: experimental](https://img.shields.io/badge/lifecycle-experimental-orange.svg)](https://lifecycle.r-lib.org/articles/stages.html#experimental)
+[![CRAN status](https://www.r-pkg.org/badges/version/pkgskills)](https://CRAN.R-project.org/package=pkgskills)
+[![Codecov test coverage](https://codecov.io/gh/api2r/pkgskills/graph/badge.svg)](https://app.codecov.io/gh/api2r/pkgskills)
+[![R-CMD-check](https://github.com/api2r/pkgskills/actions/workflows/R-CMD-check.yaml/badge.svg)](https://github.com/api2r/pkgskills/actions/workflows/R-CMD-check.yaml)
 <!-- badges: end -->
 
 A collection of curated, opinionated skills and agent instructions to improve agentic coding of R packages.

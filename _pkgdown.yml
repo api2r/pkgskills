@@ -1,0 +1,6 @@
+url: https://api2r.github.io/pkgskills/
+template:
+  bootstrap: 5
+lang: en-US
+development:
+  mode: auto
