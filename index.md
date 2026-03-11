@@ -1,0 +1,25 @@
+# pkgskills
+
+A collection of curated, opinionated skills and agent instructions to
+improve agentic coding of R packages.
+
+## Installation
+
+You can install the development version of pkgskills from
+[GitHub](https://github.com/) with:
+
+``` r
+# install.packages("remotes")
+remotes::install_github("api2r/pkgskills")
+```
+
+## Usage
+
+Add usage information and examples here.
+
+## Code of Conduct
+
+Please note that the pkgskills project is released with a [Contributor
+Code of
+Conduct](https://api2r.github.io/pkgskills/CODE_OF_CONDUCT.html). By
+contributing to this project, you agree to abide by its terms.
