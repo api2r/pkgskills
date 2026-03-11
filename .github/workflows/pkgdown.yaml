@@ -4,13 +4,12 @@ on:
   push:
     branches: [main, master]
   pull_request:
+    branches: [main, master]
   release:
     types: [published]
   workflow_dispatch:
 
-name: pkgdown.yaml
-
-permissions: read-all
+name: pkgdown
 
 jobs:
   pkgdown:
@@ -18,23 +17,17 @@ jobs:
     # Only restrict concurrency for non-PR jobs
     concurrency:
       group: pkgdown-${{ github.event_name != 'pull_request' || github.run_id }}
-    env:
-      GITHUB_PAT: ${{ secrets.GITHUB_TOKEN }}
     permissions:
       contents: write
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
 
-      - uses: r-lib/actions/setup-pandoc@v2
-
-      - uses: r-lib/actions/setup-r@v2
+      - uses: ./.github/workflows/install
         with:
-          use-public-rspm: true
-
-      - uses: r-lib/actions/setup-r-dependencies@v2
-        with:
-          extra-packages: any::pkgdown, local::.
+          token: ${{ secrets.GITHUB_TOKEN }}
           needs: website
+          extra-packages: any::pkgdown local::.
+          cache-version: "1"
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
@@ -42,7 +35,7 @@ jobs:
 
       - name: Deploy to GitHub pages 🚀
         if: github.event_name != 'pull_request'
-        uses: JamesIves/github-pages-deploy-action@v4.5.0
+        uses: JamesIves/github-pages-deploy-action@v4.4.1
         with:
           clean: false
           branch: gh-pages

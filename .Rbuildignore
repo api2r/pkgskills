@@ -8,3 +8,8 @@
 ^_pkgdown\.yml$
 ^docs$
 ^pkgdown$
+^\.positai$
+^\.claude$
+^[.]?air[.]toml$
+^\.vscode$
+^AGENTS\.md$
