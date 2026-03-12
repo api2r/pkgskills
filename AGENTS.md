@@ -2,8 +2,13 @@
 
 ## Repository overview
 
-**pkgskills** — an R package of curated, opinionated skills and agent
-instructions for agentic coding of R packages.
+**pkgskills** — AI Skills for R Package Development
+
+A collection of curated, opinionated skills and agent instructions to
+improve agentic coding of R packages.
+
+<https://github.com/api2r/pkgskills>,
+<https://api2r.github.io/pkgskills/>
 
 ### Key files
 
@@ -13,6 +18,7 @@ instructions for agentic coding of R packages.
 | `R/pkgskills-package.R` | Auto-generated package docs; do not edit |
 | `R/aaa-shared.R`        | Shared `@inheritParams` definitions      |
 | `R/aaa-conditions.R`    | Abort helper & condition class helpers   |
+| `R/utils.R`             | Shared internal helpers                  |
 | `tests/testthat/`       | Test suite; mirrors `R/` structure       |
 | `man/`                  | Generated docs; do not edit              |
 | `.github/skills/`       | Agent skill files                        |
