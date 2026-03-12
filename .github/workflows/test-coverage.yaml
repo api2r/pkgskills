@@ -18,7 +18,7 @@ jobs:
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           needs: coverage
-          extra-packages: any::covr, any::xml2
+          extra-packages: any::covr any::xml2
           cache-version: "1"
 
       - name: Test coverage
