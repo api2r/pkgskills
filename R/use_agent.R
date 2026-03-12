@@ -12,7 +12,10 @@
 use_agent <- function(save_as = "AGENTS.md", open = rlang::is_interactive()) {
   save_as <- .to_string(save_as)
   data <- as.list(stats::na.omit(
-    desc::desc_get(c("Package", "Title", "Description", "URL"))
+    desc::desc_get(
+      c("Package", "Title", "Description", "URL"),
+      file = usethis::proj_path("DESCRIPTION")
+    )
   ))
   path <- usethis::proj_path(save_as)
   fs::dir_create(fs::path_dir(path))
