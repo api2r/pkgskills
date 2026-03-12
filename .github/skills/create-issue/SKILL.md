@@ -53,6 +53,7 @@ Which sections to include depends on the issue type:
 | `## Details` | optional | optional | optional | optional |
 | `## Proposed signature` | ✓ | — | — | — |
 | `## Behavior` | ✓ | ✓ | — | — |
+| `## Requirements` | optional | optional | optional | optional |
 | `## References` | optional | optional | optional | optional |
 
 ### `## Summary` (all types)
@@ -98,6 +99,10 @@ function_name(arg1, arg2)
 
 - **Feature**: bullet points describing expected behavior, edge cases, and any internal helpers to implement as part of this issue.
 - **Bug**: describe the current (broken) behavior, the expected behavior, and steps to reproduce if known.
+
+### `## Requirements` (optional, all types)
+
+Bullet points describing additional details about implementation of the feature, such as packages to add to `Imports` in `DESCRIPTION` or files to add to `inst`.
 
 ### `## References` (optional, all types)
 
