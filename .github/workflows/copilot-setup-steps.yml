@@ -28,7 +28,13 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           cache-version: copilot
           needs: build, check, website
-          extra-packages: any::rcmdcheck any::roxygen2 any::pkgdown local::.
+          extra-packages: >-
+            any::rcmdcheck
+            any::roxygen2
+            any::pkgdown
+            any::usethis
+            any::devtools
+            local::.
 
       - name: Install air
         uses: posit-dev/setup-air@v1
