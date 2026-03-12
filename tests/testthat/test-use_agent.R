@@ -67,6 +67,42 @@ test_that("use_agent() emits an informational message after writing (#2)", {
   })
 })
 
+test_that("use_agent() errors on non-scalar save_as (#2)", {
+  local_mocked_bindings(.use_template = function(...) {
+    fail(".use_template should not be called.")
+  })
+  stbl::expect_pkg_error_classes(
+    use_agent(save_as = c("AGENTS.md", "other.md")),
+    "stbl",
+    "non_scalar"
+  )
+})
+
+test_that("use_agent() errors on NULL save_as (#2)", {
+  local_mocked_bindings(.use_template = function(...) {
+    fail(".use_template should not be called.")
+  })
+  stbl::expect_pkg_error_classes(
+    use_agent(save_as = NULL),
+    "stbl",
+    "bad_null"
+  )
+})
+
+test_that(".use_template() errors on non-logical open (#2)", {
+  proj_dir <- withr::local_tempdir()
+  writeLines(
+    "Package: testpkg\nVersion: 0.1.0",
+    fs::path(proj_dir, "DESCRIPTION")
+  )
+  usethis::local_project(proj_dir, quiet = TRUE)
+  stbl::expect_pkg_error_classes(
+    .use_template("AGENTS.md", "AGENTS.md", list(), open = "yes"),
+    "stbl",
+    "incompatible_type"
+  )
+})
+
 test_that("use_agent() respects a custom save_as path (#2)", {
   proj_dir <- withr::local_tempdir()
   writeLines(

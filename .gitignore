@@ -6,3 +6,4 @@
 .quarto
 docs
 .positai
+conversation-export.json

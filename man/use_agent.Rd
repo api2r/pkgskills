@@ -7,17 +7,20 @@
 use_agent(save_as = "AGENTS.md", open = rlang::is_interactive())
 }
 \arguments{
-\item{save_as}{(\code{character(1)}) File path (relative to the project root)
-where \code{AGENTS.md} will be written. Defaults to \code{"AGENTS.md"}.}
+\item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
 
-\item{open}{(\code{logical(1)}) Whether to open the file in the editor after
-creation. Defaults to \code{rlang::is_interactive()}.}
+\item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 }
 \value{
 The path to the created file, invisibly.
 }
 \description{
 Writes a structured \code{AGENTS.md} file to help AI agents understand your
-project. The repository overview is populated from your \code{DESCRIPTION} file;
-everything else is generic boilerplate that your agent can then tailor.
+project. The repository overview is populated from your \code{DESCRIPTION} file.
+}
+\examples{
+\dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
+
+  use_agent()
+\dontshow{\}) # examplesIf}
 }

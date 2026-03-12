@@ -13,11 +13,13 @@ BugReports: https://github.com/api2r/pkgskills/issues
 Imports:
     cli,
     desc,
+    fs,
     rlang,
-    usethis
-Suggests: 
     stbl,
-    testthat (>= 3.0.0)
+    usethis
+Suggests:
+    testthat (>= 3.0.0),
+    withr
 Remotes:
     stbl=wranglezone/stbl
 Config/testthat/edition: 3
