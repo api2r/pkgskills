@@ -7,9 +7,11 @@
       
       ## Repository overview
       
-      **coolpkg** — A Cool Package
+      **mypkg** — My Test Package
       
-      Does cool things.
+      A package for testing.
+      
+      https://example.com
       
       ### Key files
       
