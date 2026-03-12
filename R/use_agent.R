@@ -28,7 +28,7 @@ use_agent <- function(
   # Replace NA with NULL so whisker sections are skipped for missing fields
   data <- lapply(raw, function(x) if (is.na(x)) NULL else x)
 
-  .use_template(save_as, data, open)
+  .use_template("AGENTS.md", save_as, data, open)
 
   path <- .proj_path(save_as)
 
@@ -44,9 +44,9 @@ use_agent <- function(
   invisible(path)
 }
 
-.use_template <- function(save_as, data, open) {
+.use_template <- function(template, save_as, data, open) {
   usethis::use_template(
-    "AGENTS.md",
+    template,
     save_as = save_as,
     data = data,
     open = open,
@@ -54,6 +54,6 @@ use_agent <- function(
   )
 }
 
-.proj_path <- function(save_as) {
-  usethis::proj_path(save_as)
+.proj_path <- function(...) {
+  usethis::proj_path(...)
 }
