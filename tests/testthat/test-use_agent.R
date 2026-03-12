@@ -13,7 +13,10 @@ test_that("use_agent() writes AGENTS.md and returns the path invisibly (#2)", {
   usethis::local_project(proj_dir, quiet = TRUE)
   result <- suppressMessages(use_agent(open = FALSE))
   expect_true(fs::file_exists(result))
-  expect_equal(result, fs::path(proj_dir, "AGENTS.md"))
+  expect_equal(
+    fs::path_real(result),
+    fs::path_real(fs::path(proj_dir, "AGENTS.md"))
+  )
 })
 
 test_that("use_agent() substitutes Package and Title into the template (#2)", {
@@ -119,5 +122,8 @@ test_that("use_agent() respects a custom save_as path (#2)", {
     open = FALSE
   ))
   expect_true(fs::file_exists(result))
-  expect_equal(result, fs::path(proj_dir, "docs/AGENTS.md"))
+  expect_equal(
+    fs::path_real(result),
+    fs::path_real(fs::path(proj_dir, "docs/AGENTS.md"))
+  )
 })
