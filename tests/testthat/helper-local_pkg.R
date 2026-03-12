@@ -10,9 +10,9 @@ local_pkg <- function(
   .local_envir = parent.frame()
 ) {
   extra <- list(...)
-  if (length(which(names(extra) == "")) > 0L) {
+  if (length(extra) && !rlang::is_named(extra)) {
     cli::cli_abort(
-      "All {.arg ...} arguments must be named file paths.",
+      "All {.arg ...} arguments must have file paths as names.",
       call = .local_envir
     )
   }
