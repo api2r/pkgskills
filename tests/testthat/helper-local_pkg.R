@@ -10,14 +10,11 @@ local_pkg <- function(
   .local_envir = parent.frame()
 ) {
   extra <- list(...)
-  if (length(extra) > 0L) {
-    unnamed <- which(names(extra) == "" | is.na(names(extra)))
-    if (length(unnamed) > 0L) {
-      cli::cli_abort(
-        "All {.arg ...} arguments must be named file paths.",
-        call = .local_envir
-      )
-    }
+  if (length(which(names(extra) == "")) > 0L) {
+    cli::cli_abort(
+      "All {.arg ...} arguments must be named file paths.",
+      call = .local_envir
+    )
   }
   files <- c(list(DESCRIPTION = DESCRIPTION), extra)
   proj_dir <- withr::local_tempdir(.local_envir = .local_envir)
