@@ -11,7 +11,10 @@ URL: https://github.com/api2r/pkgskills,
     https://api2r.github.io/pkgskills/
 BugReports: https://github.com/api2r/pkgskills/issues
 Suggests: 
+    stbl,
     testthat (>= 3.0.0)
+Remotes:
+    stbl=wranglezone/stbl
 Config/testthat/edition: 3
 Encoding: UTF-8
 Language: en-US
