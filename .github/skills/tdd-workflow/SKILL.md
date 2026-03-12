@@ -212,6 +212,34 @@ withr::local_envvar(MY_VAR = "value")
 withr::local_tempfile(lines = c("a", "b"))
 ```
 
+### Package project helper
+
+Use `local_pkg()` (defined in `tests/testthat/helper-local_pkg.R`) whenever a test needs a temporary package project. It comes with a default `DESCRIPTION` (Package: mypkg, with Title, Description, Version, and URL); override it only when the test requires specific field values. Pass additional named `...` arguments to create other files, where each name is a relative path and each value is a character vector of lines to write:
+
+```r
+# Use the default DESCRIPTION when field values don't matter
+test_that("my_fn() works (#42)", {
+  proj_dir <- local_pkg()
+  result <- my_fn()
+  expect_true(fs::file_exists(fs::path(proj_dir, "output.md")))
+})
+
+# Override DESCRIPTION when specific field values matter
+test_that("my_fn() substitutes Title correctly (#42)", {
+  proj_dir <- local_pkg(
+    DESCRIPTION = c(
+      "Package: coolpkg",
+      "Title: A Cool Package",
+      "Version: 0.1.0"
+    )
+  )
+  result <- my_fn()
+  expect_snapshot(writeLines(readLines(fs::path(proj_dir, "output.md"))))
+})
+```
+
+`local_pkg()` creates a temp directory, writes the specified files, and sets the active usethis project — all scoped to the test via `.local_envir`. Assign the return value when you need `proj_dir` for path assertions; omit it otherwise.
+
 ## Fixtures
 
 Store static test data in `tests/testthat/fixtures/` and access via:

@@ -13,3 +13,4 @@
 ^[.]?air[.]toml$
 ^\.vscode$
 ^AGENTS\.md$
+^conversation-export\.json$
