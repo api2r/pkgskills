@@ -1,5 +1,6 @@
 ---
 name: document
+trigger: document functions
 description: Document package functions. Use when asked to document functions.
 ---
 

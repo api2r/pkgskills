@@ -6,9 +6,21 @@
 \arguments{
 \item{call}{(\code{environment}) The caller environment for error messages.}
 
+\item{data}{(\code{list}) Named list of whisker template variables for rendering.}
+
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing skill file.
+Defaults to \code{TRUE}.}
+
 \item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
+
+\item{target_dir}{(\code{character(1)}) Directory where the skill will be
+installed, relative to the project root. Defaults to \code{".github"}.}
+
+\item{use_skills_subdir}{(\code{logical(1)}) Whether to place the skill folder
+under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE},
+producing \code{.github/skills/{skill}/SKILL.md}.}
 
 \item{x_arg}{(\code{character(1)}) Argument name for \code{x}, used in error messages.}
 }

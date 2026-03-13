@@ -13,14 +13,14 @@ If `gh` is not authenticated, stop and ask the user to authenticate before conti
 
 ## Looking up IDs
 
-The hardcoded IDs below are correct for this repo as of 2026-03-11. If they ever change, or if you're working in a fork, re-run these queries to get fresh values:
+The hardcoded IDs below are correct for this repo as of {{{update_time}}}. If they ever change, or if you're working in a fork, re-run these queries to get fresh values:
 
 ```bash
 # Repository node ID
-gh api graphql -f query='{ repository(owner: "api2r", name: "pkgskills") { id } }'
+gh api graphql -f query='{ repository(owner: "{{{owner}}}", name: "{{{repo}}}") { id } }'
 
 # Available issue type IDs
-gh api graphql -f query='{ repository(owner: "api2r", name: "pkgskills") { issueTypes(first: 20) { nodes { id name description } } } }'
+gh api graphql -f query='{ repository(owner: "{{{owner}}}", name: "{{{repo}}}") { issueTypes(first: 20) { nodes { id name description } } } }'
 ```
 
 ## Issue type
@@ -29,11 +29,9 @@ Choose the type that best fits the issue:
 
 | Type | ID | Use for |
 |---|---|---|
-| Feature | `IT_kwDOCPuMJs4BPtRe` | New exported functions or capabilities |
-| Bug | `IT_kwDOCPuMJs4BPtRc` | Something broken or incorrect |
-| Documentation | `IT_kwDOCPuMJs4B5OL_` | Docs-only changes |
-| Task | `IT_kwDOCPuMJs4BPtRZ` | Maintenance, refactoring, chores |
-| Infrastructure | `IT_kwDOCPuMJs4B5OMn` | CI, tooling, repo configuration |
+{{#issue_types}}
+| {{{name}}} | `{{{id}}}` | {{{description}}} |
+{{/issue_types}}
 
 ## Issue title
 
@@ -115,7 +113,7 @@ gh api graphql \
       issue { url }
     }
   }' \
-  -f repoId="R_kgDORkNSGw" \
+  -f repoId="{{{repo_id}}}" \
   -f title="feat: my_function()" \
   -f body="$(cat /tmp/issue_body.md)" \
   -f typeId="{typeId}"
