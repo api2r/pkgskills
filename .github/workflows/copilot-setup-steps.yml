@@ -34,6 +34,7 @@ jobs:
             any::pkgdown
             any::usethis
             any::devtools
+            any::covr
             local::.
 
       - name: Install air

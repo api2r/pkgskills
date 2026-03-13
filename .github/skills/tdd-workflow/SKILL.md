@@ -36,7 +36,7 @@ which(purrr::map_int(covr_res, "value") == 0)
 
 Files excluded from the coverage requirement:
 - `R/*-package.R`
-- `R/aaa-shared.R`
+- `R/aaa-shared_params.R`
 - Files matching `R/import-standalone-*.R`
 
 ## Test types
