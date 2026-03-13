@@ -1,19 +1,8 @@
 #' Install a skill into a project
 #'
-#' Internal helper that renders and writes a skill template, and upserts the
-#' `## Skills` table in `AGENTS.md` when it exists.
-#'
 #' @param skill (`character(1)`) Skill name — folder name under
 #'   `inst/templates/skills/`, e.g. `"create-issue"`. Determines the template
 #'   path and the install subdirectory.
-#' @param data (`list`) Named list of whisker template variables.
-#' @param target_dir (`character(1)`) Directory where the skill will be
-#'   installed, relative to the project root. Defaults to `".github"`.
-#' @param use_skills_subdir (`logical(1)`) Whether to place the skill folder
-#'   under a `skills` subdirectory of `target_dir`. Defaults to `TRUE`,
-#'   producing `.github/skills/{skill}/SKILL.md`.
-#' @param overwrite (`logical(1)`) Whether to overwrite an existing skill file.
-#'   Defaults to `TRUE`.
 #' @inheritParams .shared-params
 #' @returns The path to the installed skill file, invisibly.
 #' @keywords internal
@@ -28,42 +17,25 @@
   skill <- .to_string(skill)
   data <- stbl::to_list(data)
   target_dir <- .to_string(target_dir)
-  use_skills_subdir <- stbl::to_lgl_scalar(
-    use_skills_subdir,
-    allow_null = FALSE
-  )
-  overwrite <- stbl::to_lgl_scalar(overwrite, allow_null = FALSE)
+  use_skills_subdir <- .to_boolean(use_skills_subdir)
+  overwrite <- .to_boolean(overwrite)
 
   if (use_skills_subdir) {
-    save_as <- fs::path(target_dir, "skills", skill, "SKILL.md")
-  } else {
-    save_as <- fs::path(target_dir, skill, "SKILL.md")
+    target_dir <- fs::path(target_dir, "skills")
   }
+  save_as <- fs::path(target_dir, skill, "SKILL.md")
 
-  template_path <- system.file(
-    "templates",
-    "skills",
-    skill,
-    "SKILL.md",
-    package = "pkgskills"
-  )
+  .check_file_exists(save_as, overwrite)
+
+  skill_subpath <- fs::path("skills", skill, "SKILL.md")
+  template_path <- .path_template(skill_subpath)
   trigger <- .read_skill_trigger(template_path)
 
   path <- usethis::proj_path(save_as)
-  if (overwrite && fs::file_exists(path)) {
-    fs::file_delete(path)
-  } else if (!overwrite && fs::file_exists(path)) {
-    cli::cli_inform("Skill {.file {save_as}} already exists. Skipping.")
-    return(invisible(path))
-  }
-
   fs::dir_create(fs::path_dir(path))
-  .use_template(paste0("skills/", skill, "/SKILL.md"), save_as, data, open)
+  .use_template(skill_subpath, save_as, data, open)
 
-  agents_path <- usethis::proj_path("AGENTS.md")
-  if (fs::file_exists(agents_path)) {
-    .upsert_agents_skills_row(agents_path, trigger, save_as)
-  }
+  .upsert_agents_skills_row(trigger, save_as)
 
   cli::cli_inform("Skill {.file {save_as}} installed.")
   invisible(path)
@@ -107,15 +79,19 @@
 
 #' Upsert a skill row in the ## Skills table of AGENTS.md
 #'
-#' @param agents_path (`character(1)`) Path to the `AGENTS.md` file.
 #' @param trigger (`character(1)`) Trigger phrase for the skill.
 #' @param save_as (`character(1)`) Relative path to the installed skill file.
-#' @returns The path to `AGENTS.md`, invisibly.
+#' @returns The path to `AGENTS.md`, invisibly, or `NULL` invisibly if
+#'   `AGENTS.md` does not exist.
 #' @keywords internal
-.upsert_agents_skills_row <- function(agents_path, trigger, save_as) {
-  agents_path <- .to_string(agents_path)
+.upsert_agents_skills_row <- function(trigger, save_as) {
   trigger <- .to_string(trigger)
   save_as <- .to_string(save_as)
+
+  agents_path <- usethis::proj_path("AGENTS.md")
+  if (!fs::file_exists(agents_path)) {
+    return(invisible(NULL))
+  }
 
   lines <- readLines(agents_path, warn = FALSE)
   save_as_escaped <- gsub("([.|*+?^${}()\\[\\]\\\\])", "\\\\\\1", save_as)

@@ -118,6 +118,11 @@ test_that("use_skill_create_issue() passes correct data to .use_skill() (#3)", {
   expect_equal(captured_data$repo, "mypkg")
   expect_equal(captured_data$repo_id, "R_myid")
   expect_equal(captured_data$issue_types[[1]]$name, "Feature")
+  expect_true(grepl("UTC$", captured_data$update_time))
+  expect_match(
+    captured_data$update_time,
+    "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} UTC$"
+  )
 })
 
 test_that("use_skill_create_issue() returns path invisibly (#3)", {

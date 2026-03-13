@@ -18,7 +18,7 @@
 \verb{inst/templates/skills/}, e.g. \code{"create-issue"}. Determines the template
 path and the install subdirectory.}
 
-\item{data}{(\code{list}) Named list of whisker template variables.}
+\item{data}{(\code{list}) Named list of whisker template variables for rendering.}
 
 \item{target_dir}{(\code{character(1)}) Directory where the skill will be
 installed, relative to the project root. Defaults to \code{".github"}.}
@@ -36,7 +36,6 @@ Defaults to \code{TRUE}.}
 The path to the installed skill file, invisibly.
 }
 \description{
-Internal helper that renders and writes a skill template, and upserts the
-\verb{## Skills} table in \code{AGENTS.md} when it exists.
+Install a skill into a project
 }
 \keyword{internal}

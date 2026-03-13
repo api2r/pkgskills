@@ -215,23 +215,27 @@ test_that(".use_skill() does not touch AGENTS.md when it does not exist (#3)", {
   expect_false(fs::file_exists(fs::path(proj_dir, "AGENTS.md")))
 })
 
-test_that(".use_skill() skips file when overwrite = FALSE and file exists (#3)", {
+test_that(".use_skill() errors when overwrite = FALSE and file exists (#3)", {
   proj_dir <- local_pkg()
   existing_path <- fs::path(proj_dir, ".github/skills/create-issue/SKILL.md")
   fs::dir_create(fs::path_dir(existing_path))
   writeLines("original content", existing_path)
-  suppressMessages(
-    .use_skill(
-      "create-issue",
-      data = list(
-        owner = "o",
-        repo = "r",
-        repo_id = "id",
-        issue_types = list()
-      ),
-      overwrite = FALSE,
-      open = FALSE
-    )
+  stbl::expect_pkg_error_classes(
+    suppressMessages(
+      .use_skill(
+        "create-issue",
+        data = list(
+          owner = "o",
+          repo = "r",
+          repo_id = "id",
+          issue_types = list()
+        ),
+        overwrite = FALSE,
+        open = FALSE
+      )
+    ),
+    "pkgskills",
+    "file_exists"
   )
   expect_equal(readLines(existing_path), "original content")
 })
@@ -319,18 +323,18 @@ test_that(".read_skill_trigger() errors when trigger field is absent (#3)", {
 })
 
 test_that(".upsert_agents_skills_row() creates table when ## Skills has no table (#3)", {
-  tmp <- withr::local_tempfile(fileext = ".md")
-  writeLines(c("# Project", "", "## Skills", "", "No table here."), tmp)
-  .upsert_agents_skills_row(tmp, "my trigger", ".github/skills/test/SKILL.md")
-  content <- readLines(tmp)
+  proj_dir <- local_pkg(
+    "AGENTS.md" = c("# Project", "", "## Skills", "", "No table here.")
+  )
+  .upsert_agents_skills_row("my trigger", ".github/skills/test/SKILL.md")
+  content <- readLines(fs::path(proj_dir, "AGENTS.md"))
   expect_true(any(grepl("\\| Triggers \\| Path \\|", content)))
   expect_true(any(grepl("my trigger", content)))
 })
 
 test_that(".upsert_agents_skills_row() appends row after non-terminal table (#3)", {
-  tmp <- withr::local_tempfile(fileext = ".md")
-  writeLines(
-    c(
+  proj_dir <- local_pkg(
+    "AGENTS.md" = c(
       "## Skills",
       "",
       "| Triggers | Path |",
@@ -338,11 +342,19 @@ test_that(".upsert_agents_skills_row() appends row after non-terminal table (#3)
       "| existing skill | @.github/skills/other/SKILL.md |",
       "",
       "## Other section"
-    ),
-    tmp
+    )
   )
-  .upsert_agents_skills_row(tmp, "new skill", ".github/skills/new/SKILL.md")
-  content <- readLines(tmp)
+  .upsert_agents_skills_row("new skill", ".github/skills/new/SKILL.md")
+  content <- readLines(fs::path(proj_dir, "AGENTS.md"))
   expect_true(any(grepl("new skill", content)))
   expect_true(any(grepl("existing skill", content)))
+})
+
+test_that(".upsert_agents_skills_row() returns NULL invisibly when AGENTS.md absent (#3)", {
+  proj_dir <- local_pkg()
+  result <- withVisible(
+    .upsert_agents_skills_row("my trigger", ".github/skills/test/SKILL.md")
+  )
+  expect_false(result$visible)
+  expect_null(result$value)
 })

@@ -27,11 +27,8 @@ use_skill_create_issue <- function(
   gh_token = gh::gh_token()
 ) {
   target_dir <- .to_string(target_dir)
-  use_skills_subdir <- stbl::to_lgl_scalar(
-    use_skills_subdir,
-    allow_null = FALSE
-  )
-  overwrite <- stbl::to_lgl_scalar(overwrite, allow_null = FALSE)
+  use_skills_subdir <- .to_boolean(use_skills_subdir)
+  overwrite <- .to_boolean(overwrite)
   gh_token <- .to_string(gh_token)
 
   bug_reports <- desc::desc_get(
@@ -88,11 +85,18 @@ use_skill_create_issue <- function(
   )
   issue_types <- types_result$data$repository$issueTypes$nodes
 
+  update_time <- format(
+    Sys.time(),
+    tz = "UTC",
+    format = "%Y-%m-%d %H:%M:%S UTC"
+  )
+
   data <- list(
     owner = owner,
     repo = repo,
     repo_id = repo_id,
-    issue_types = issue_types
+    issue_types = issue_types,
+    update_time = update_time
   )
 
   .use_skill(

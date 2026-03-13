@@ -34,7 +34,6 @@ use_agent <- function(save_as = "AGENTS.md", open = rlang::is_interactive()) {
 #' Wrapper around [usethis::use_template()]
 #'
 #' @param template (`character(1)`) Template name within `inst/templates/`.
-#' @param data (`list`) Named list of values for whisker rendering.
 #' @inheritParams .shared-params
 #' @returns Called for side effects.
 #' @keywords internal

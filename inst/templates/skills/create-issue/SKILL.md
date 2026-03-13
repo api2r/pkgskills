@@ -13,7 +13,7 @@ If `gh` is not authenticated, stop and ask the user to authenticate before conti
 
 ## Looking up IDs
 
-The hardcoded IDs below are correct for this repo as of the time of install. If they ever change, or if you're working in a fork, re-run these queries to get fresh values:
+The hardcoded IDs below are correct for this repo as of {{{update_time}}}. If they ever change, or if you're working in a fork, re-run these queries to get fresh values:
 
 ```bash
 # Repository node ID
@@ -52,7 +52,6 @@ Which sections to include depends on the issue type:
 | `## Details` | optional | optional | optional | optional |
 | `## Proposed signature` | ✓ | — | — | — |
 | `## Behavior` | ✓ | ✓ | — | — |
-| `## Implementation` | optional | optional | optional | optional |
 | `## References` | optional | optional | optional | optional |
 
 ### `## Summary` (all types)
@@ -73,7 +72,7 @@ Example:
 
 ### `## Details` (optional, all types)
 
-For information that's important to capture but doesn't fit naturally into any other section. Use sparingly — if the content belongs in `## Behavior`, `## Proposed signature`, or `## References`, put it there instead.
+For information that's important to capture but doesn't fit naturally into any other section, including implementation details such as packages to add to `Imports` in `DESCRIPTION` or files to add to `inst`. Use sparingly — if the content belongs in `## Behavior`, `## Proposed signature`, or `## References`, put it there instead.
 
 ### `## Proposed signature` (Feature only)
 
@@ -98,10 +97,6 @@ function_name(arg1, arg2)
 
 - **Feature**: bullet points describing expected behavior, edge cases, and any internal helpers to implement as part of this issue.
 - **Bug**: describe the current (broken) behavior, the expected behavior, and steps to reproduce if known.
-
-### `## Implementation` (optional, all types)
-
-Bullet points describing additional details about implementation of the feature, such as packages to add to `Imports` in `DESCRIPTION` or files to add to `inst`.
 
 ### `## References` (optional, all types)
 

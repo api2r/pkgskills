@@ -4,17 +4,16 @@
 \alias{.upsert_agents_skills_row}
 \title{Upsert a skill row in the ## Skills table of AGENTS.md}
 \usage{
-.upsert_agents_skills_row(agents_path, trigger, save_as)
+.upsert_agents_skills_row(trigger, save_as)
 }
 \arguments{
-\item{agents_path}{(\code{character(1)}) Path to the \code{AGENTS.md} file.}
-
 \item{trigger}{(\code{character(1)}) Trigger phrase for the skill.}
 
 \item{save_as}{(\code{character(1)}) Relative path to the installed skill file.}
 }
 \value{
-The path to \code{AGENTS.md}, invisibly.
+The path to \code{AGENTS.md}, invisibly, or \code{NULL} invisibly if
+\code{AGENTS.md} does not exist.
 }
 \description{
 Upsert a skill row in the ## Skills table of AGENTS.md
