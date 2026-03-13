@@ -8,20 +8,29 @@ A collection of curated, opinionated skills and agent instructions to improve ag
 
 https://github.com/api2r/pkgskills, https://api2r.github.io/pkgskills/
 
-### Key files
+### Overall structure
 
-| Path | Purpose |
-|------|---------|
-| `R/` | Exported functions & internal helpers |
-| `R/pkgskills-package.R` | Auto-generated package docs; do not edit |
-| `R/aaa-shared.R` | Shared `@inheritParams` definitions |
-| `R/aaa-conditions.R` | Abort helper & condition class helpers |
-| `R/utils.R` | Shared internal helpers |
-| `tests/testthat/` | Test suite; mirrors `R/` structure |
-| `man/` | Generated docs; do not edit |
-| `.github/skills/` | Agent skill files |
-| `DESCRIPTION` | Package metadata & dependencies |
-| `NAMESPACE` | Auto-generated; do not edit |
+The project follows standard R package conventions with these key directories:
+
+pkgskills/
+├── R/                          # R source code
+│   ├── pkgskills-package.R     # Auto-generated package docs
+│   ├── aaa-shared_params.R     # Shared `@inheritParams` definitions
+│   ├── aaa-conditions.R        # Auto-generated package docs
+│   ├── utils.R                 # Shared internal helpers
+│   └── *.R                     # Function definitions, 1 file ~= 1 exported function
+├── inst/templates/             # Templates for agent setup
+├── .github/
+│   ├── ISSUE_TEMPLATE/         # GitHub issue templates
+│   ├── skills/                 # Agent skill definitions
+│   └── workflows/              # CI/CD configurations
+├── tests/testthat/             # Test suite
+├── man/                        # Generated documentation
+├── AGENTS.md                   # Main agent setup file
+├── DESCRIPTION                 # Package metadata
+├── NAMESPACE                   # Auto-generated export information
+├── NEWS.md                     # Changelog
+└── Various config files        # .gitignore, codecov.yml, etc.
 
 ---
 

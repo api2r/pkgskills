@@ -19,7 +19,7 @@ The hardcoded IDs below are correct for this repo as of 2026-03-11. If they ever
 gh api graphql -f query='{ repository(owner: "api2r", name: "pkgskills") { id } }'
 
 # Available issue type IDs
-gh api graphql -f query='{ repository(owner: "api2r", name: "pkgskills") { issueTypes(first: 20) { nodes { id name } } } }'
+gh api graphql -f query='{ repository(owner: "api2r", name: "pkgskills") { issueTypes(first: 20) { nodes { id name description } } } }'
 ```
 
 ## Issue type
@@ -53,7 +53,7 @@ Which sections to include depends on the issue type:
 | `## Details` | optional | optional | optional | optional |
 | `## Proposed signature` | ✓ | — | — | — |
 | `## Behavior` | ✓ | ✓ | — | — |
-| `## Requirements` | optional | optional | optional | optional |
+| `## Implementation` | optional | optional | optional | optional |
 | `## References` | optional | optional | optional | optional |
 
 ### `## Summary` (all types)
@@ -100,7 +100,7 @@ function_name(arg1, arg2)
 - **Feature**: bullet points describing expected behavior, edge cases, and any internal helpers to implement as part of this issue.
 - **Bug**: describe the current (broken) behavior, the expected behavior, and steps to reproduce if known.
 
-### `## Requirements` (optional, all types)
+### `## Implementation` (optional, all types)
 
 Bullet points describing additional details about implementation of the feature, such as packages to add to `Imports` in `DESCRIPTION` or files to add to `inst`.
 
