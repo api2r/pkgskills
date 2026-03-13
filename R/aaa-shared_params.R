@@ -5,9 +5,13 @@
 #'
 #' @param call (`environment`) The caller environment for error messages.
 #' @param data (`list`) Named list of whisker template variables for rendering.
+#' @param gh_token (`character(1)`) A GitHub personal access token. Defaults to
+#'   `gh::gh_token()`.
 #' @param open (`logical(1)`) Whether to open the file after creation.
-#' @param overwrite (`logical(1)`) Whether to overwrite an existing skill file.
+#' @param overwrite (`logical(1)`) Whether to overwrite an existing file.
 #'   Defaults to `TRUE`.
+#' @param owner (`character(1)`) GitHub repository owner (user or organization).
+#' @param repo (`character(1)`) GitHub repository name.
 #' @param save_as (`character(1)`) Output file path, relative to project root.
 #' @param target_dir (`character(1)`) Directory where the skill will be
 #'   installed, relative to the project root. Defaults to `".github"`.

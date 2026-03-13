@@ -4,12 +4,10 @@
 \alias{.check_file_exists}
 \title{Check whether a file exists and act on it}
 \usage{
-.check_file_exists(save_as, overwrite, call = rlang::caller_env())
+.check_file_exists(path, overwrite, call = rlang::caller_env())
 }
 \arguments{
-\item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
-
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing skill file.
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
 Defaults to \code{TRUE}.}
 
 \item{call}{(\code{environment}) The caller environment for error messages.}

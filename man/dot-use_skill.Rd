@@ -10,11 +10,12 @@
   target_dir = ".github",
   use_skills_subdir = TRUE,
   overwrite = TRUE,
-  open = rlang::is_interactive()
+  open = rlang::is_interactive(),
+  call = caller_env()
 )
 }
 \arguments{
-\item{skill}{(\code{character(1)}) Skill name — folder name under
+\item{skill}{(\code{character(1)}) Skill name. A folder name under
 \verb{inst/templates/skills/}, e.g. \code{"create-issue"}. Determines the template
 path and the install subdirectory.}
 
@@ -27,10 +28,12 @@ installed, relative to the project root. Defaults to \code{".github"}.}
 under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE},
 producing \code{.github/skills/{skill}/SKILL.md}.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing skill file.
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
 Defaults to \code{TRUE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
+
+\item{call}{(\code{environment}) The caller environment for error messages.}
 }
 \value{
 The path to the installed skill file, invisibly.

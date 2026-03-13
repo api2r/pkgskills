@@ -51,16 +51,15 @@
 #' @inheritParams .shared-params
 #' @returns `NULL`, invisibly.
 #' @keywords internal
-.check_file_exists <- function(save_as, overwrite, call = rlang::caller_env()) {
-  save_as <- .to_string(save_as, call = call)
+.check_file_exists <- function(path, overwrite, call = rlang::caller_env()) {
+  path <- .to_string(path, call = call)
   overwrite <- .to_boolean(overwrite, call = call)
-  path <- usethis::proj_path(save_as)
   if (fs::file_exists(path)) {
     if (overwrite) {
       fs::file_delete(path)
     } else {
       .pkg_abort(
-        "File {.file {save_as}} already exists.",
+        "File {.file {path}} already exists.",
         "file_exists",
         call = call
       )

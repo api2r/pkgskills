@@ -1,4 +1,4 @@
-test_that(".use_skill() returns path invisibly (#3)", {
+test_that(".use_skill() returns path invisibly (#6)", {
   proj_dir <- local_pkg()
   result <- withVisible(
     suppressMessages(
@@ -25,7 +25,7 @@ test_that(".use_skill() returns path invisibly (#3)", {
   )
 })
 
-test_that(".use_skill() creates file at correct path with use_skills_subdir = TRUE (#3)", {
+test_that(".use_skill() creates file at correct path with use_skills_subdir = TRUE (#6)", {
   proj_dir <- local_pkg()
   suppressMessages(
     .use_skill(
@@ -48,7 +48,7 @@ test_that(".use_skill() creates file at correct path with use_skills_subdir = TR
   )
 })
 
-test_that(".use_skill() creates file at correct path with use_skills_subdir = FALSE (#3)", {
+test_that(".use_skill() creates file at correct path with use_skills_subdir = FALSE (#6)", {
   proj_dir <- local_pkg()
   suppressMessages(
     .use_skill(
@@ -72,7 +72,7 @@ test_that(".use_skill() creates file at correct path with use_skills_subdir = FA
   )
 })
 
-test_that(".use_skill() renders template variables into skill file (#3)", {
+test_that(".use_skill() renders template variables into skill file (#6)", {
   proj_dir <- local_pkg()
   suppressMessages(
     .use_skill(
@@ -100,7 +100,7 @@ test_that(".use_skill() renders template variables into skill file (#3)", {
   expect_true(any(grepl("IT_bug", content)))
 })
 
-test_that(".use_skill() emits a cli_inform message (#3)", {
+test_that(".use_skill() emits a cli_inform message (#6)", {
   local_pkg()
   expect_snapshot(
     .use_skill(
@@ -116,7 +116,7 @@ test_that(".use_skill() emits a cli_inform message (#3)", {
   )
 })
 
-test_that(".use_skill() upserts into AGENTS.md when it exists (#3)", {
+test_that(".use_skill() upserts into AGENTS.md when it exists (#6)", {
   proj_dir <- local_pkg(
     "AGENTS.md" = c(
       "## Skills",
@@ -146,7 +146,7 @@ test_that(".use_skill() upserts into AGENTS.md when it exists (#3)", {
   )))
 })
 
-test_that(".use_skill() creates ## Skills section in AGENTS.md if missing (#3)", {
+test_that(".use_skill() creates ## Skills section in AGENTS.md if missing (#6)", {
   proj_dir <- local_pkg(
     "AGENTS.md" = c(
       "# My Project",
@@ -171,7 +171,7 @@ test_that(".use_skill() creates ## Skills section in AGENTS.md if missing (#3)",
   expect_true(any(grepl("create GitHub issues", content)))
 })
 
-test_that(".use_skill() updates trigger for existing row in AGENTS.md (#3)", {
+test_that(".use_skill() updates trigger for existing row in AGENTS.md (#6)", {
   proj_dir <- local_pkg(
     "AGENTS.md" = c(
       "## Skills",
@@ -198,7 +198,7 @@ test_that(".use_skill() updates trigger for existing row in AGENTS.md (#3)", {
   expect_true(any(grepl("create GitHub issues", content)))
 })
 
-test_that(".use_skill() does not touch AGENTS.md when it does not exist (#3)", {
+test_that(".use_skill() does not touch AGENTS.md when it does not exist (#6)", {
   proj_dir <- local_pkg()
   suppressMessages(
     .use_skill(
@@ -215,7 +215,7 @@ test_that(".use_skill() does not touch AGENTS.md when it does not exist (#3)", {
   expect_false(fs::file_exists(fs::path(proj_dir, "AGENTS.md")))
 })
 
-test_that(".use_skill() errors when overwrite = FALSE and file exists (#3)", {
+test_that(".use_skill() errors when overwrite = FALSE and file exists (#6)", {
   proj_dir <- local_pkg()
   existing_path <- fs::path(proj_dir, ".github/skills/create-issue/SKILL.md")
   fs::dir_create(fs::path_dir(existing_path))
@@ -240,7 +240,7 @@ test_that(".use_skill() errors when overwrite = FALSE and file exists (#3)", {
   expect_equal(readLines(existing_path), "original content")
 })
 
-test_that(".use_skill() overwrites file when overwrite = TRUE and file exists (#3)", {
+test_that(".use_skill() overwrites file when overwrite = TRUE and file exists (#6)", {
   proj_dir <- local_pkg()
   existing_path <- fs::path(proj_dir, ".github/skills/create-issue/SKILL.md")
   fs::dir_create(fs::path_dir(existing_path))
@@ -263,7 +263,7 @@ test_that(".use_skill() overwrites file when overwrite = TRUE and file exists (#
   expect_true(any(grepl("Create a GitHub issue", content)))
 })
 
-test_that(".use_skill() errors on non-scalar skill (#3)", {
+test_that(".use_skill() errors on non-scalar skill (#6)", {
   stbl::expect_pkg_error_classes(
     .use_skill(c("a", "b"), data = list(), open = FALSE),
     "stbl",
@@ -271,7 +271,7 @@ test_that(".use_skill() errors on non-scalar skill (#3)", {
   )
 })
 
-test_that(".use_skill() errors on non-logical use_skills_subdir (#3)", {
+test_that(".use_skill() errors on non-logical use_skills_subdir (#6)", {
   local_pkg()
   stbl::expect_pkg_error_classes(
     .use_skill(
@@ -285,7 +285,7 @@ test_that(".use_skill() errors on non-logical use_skills_subdir (#3)", {
   )
 })
 
-test_that(".use_skill() errors on non-logical overwrite (#3)", {
+test_that(".use_skill() errors on non-logical overwrite (#6)", {
   local_pkg()
   stbl::expect_pkg_error_classes(
     .use_skill("create-issue", data = list(), overwrite = "yes", open = FALSE),
@@ -294,7 +294,7 @@ test_that(".use_skill() errors on non-logical overwrite (#3)", {
   )
 })
 
-test_that(".read_skill_trigger() errors when template file not found (#3)", {
+test_that(".read_skill_trigger() errors when template file not found (#6)", {
   stbl::expect_pkg_error_classes(
     .read_skill_trigger("/tmp/nonexistent/SKILL.md"),
     "pkgskills",
@@ -302,7 +302,7 @@ test_that(".read_skill_trigger() errors when template file not found (#3)", {
   )
 })
 
-test_that(".read_skill_trigger() errors when front matter is missing (#3)", {
+test_that(".read_skill_trigger() errors when front matter is missing (#6)", {
   tmp <- withr::local_tempfile(fileext = ".md")
   writeLines(c("# No front matter here", "Just content."), tmp)
   stbl::expect_pkg_error_classes(
@@ -312,7 +312,7 @@ test_that(".read_skill_trigger() errors when front matter is missing (#3)", {
   )
 })
 
-test_that(".read_skill_trigger() errors when trigger field is absent (#3)", {
+test_that(".read_skill_trigger() errors when trigger field is absent (#6)", {
   tmp <- withr::local_tempfile(fileext = ".md")
   writeLines(c("---", "name: my-skill", "---", "# Content"), tmp)
   stbl::expect_pkg_error_classes(
@@ -322,17 +322,17 @@ test_that(".read_skill_trigger() errors when trigger field is absent (#3)", {
   )
 })
 
-test_that(".upsert_agents_skills_row() creates table when ## Skills has no table (#3)", {
+test_that(".upsert_agents_skill() creates table when ## Skills has no table (#6)", {
   proj_dir <- local_pkg(
     "AGENTS.md" = c("# Project", "", "## Skills", "", "No table here.")
   )
-  .upsert_agents_skills_row("my trigger", ".github/skills/test/SKILL.md")
+  .upsert_agents_skill("my trigger", ".github/skills/test/SKILL.md")
   content <- readLines(fs::path(proj_dir, "AGENTS.md"))
   expect_true(any(grepl("\\| Triggers \\| Path \\|", content)))
   expect_true(any(grepl("my trigger", content)))
 })
 
-test_that(".upsert_agents_skills_row() appends row after non-terminal table (#3)", {
+test_that(".upsert_agents_skill() appends row after non-terminal table (#6)", {
   proj_dir <- local_pkg(
     "AGENTS.md" = c(
       "## Skills",
@@ -344,16 +344,16 @@ test_that(".upsert_agents_skills_row() appends row after non-terminal table (#3)
       "## Other section"
     )
   )
-  .upsert_agents_skills_row("new skill", ".github/skills/new/SKILL.md")
+  .upsert_agents_skill("new skill", ".github/skills/new/SKILL.md")
   content <- readLines(fs::path(proj_dir, "AGENTS.md"))
   expect_true(any(grepl("new skill", content)))
   expect_true(any(grepl("existing skill", content)))
 })
 
-test_that(".upsert_agents_skills_row() returns NULL invisibly when AGENTS.md absent (#3)", {
+test_that(".upsert_agents_skill() returns NULL invisibly when AGENTS.md absent (#6)", {
   proj_dir <- local_pkg()
   result <- withVisible(
-    .upsert_agents_skills_row("my trigger", ".github/skills/test/SKILL.md")
+    .upsert_agents_skill("my trigger", ".github/skills/test/SKILL.md")
   )
   expect_false(result$visible)
   expect_null(result$value)

@@ -4,14 +4,19 @@
 \alias{.pkg_abort}
 \title{Raise a package-scoped error}
 \usage{
-.pkg_abort(message, subclass, call = rlang::caller_env())
+.pkg_abort(message, subclass, call = caller_env(), message_env = caller_env())
 }
 \arguments{
-\item{message}{(\code{character(1)}) A \code{{cli}} message string.}
+\item{message}{(\code{character}) The message for the new error. Messages will be
+formatted with \code{\link[cli:cli_bullets]{cli::cli_bullets()}}.}
 
-\item{subclass}{(\code{character(1)}) Error subclass.}
+\item{subclass}{(\code{character}) Class(es) to assign to the error. Will be
+prefixed by "\{package\}-error-".}
 
 \item{call}{(\code{environment}) The caller environment for error messages.}
+
+\item{message_env}{(\code{environment}) The execution environment to use to
+evaluate variables in error messages.}
 }
 \value{
 Does not return.

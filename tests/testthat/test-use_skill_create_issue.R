@@ -1,4 +1,4 @@
-test_that("use_skill_create_issue() errors when BugReports is absent (#3)", {
+test_that("use_skill_create_issue() errors when BugReports is absent (#6)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -14,7 +14,7 @@ test_that("use_skill_create_issue() errors when BugReports is absent (#3)", {
   )
 })
 
-test_that("use_skill_create_issue() errors when BugReports is not a GitHub URL (#3)", {
+test_that("use_skill_create_issue() errors when BugReports is not a GitHub URL (#6)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -31,7 +31,7 @@ test_that("use_skill_create_issue() errors when BugReports is not a GitHub URL (
   )
 })
 
-test_that("use_skill_create_issue() calls gh::gh() with correct queries (#3)", {
+test_that("use_skill_create_issue() calls gh::gh() with correct queries (#6)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -72,7 +72,7 @@ test_that("use_skill_create_issue() calls gh::gh() with correct queries (#3)", {
   )))
 })
 
-test_that("use_skill_create_issue() passes correct data to .use_skill() (#3)", {
+test_that("use_skill_create_issue() passes correct data to .use_skill() (#6)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -125,7 +125,7 @@ test_that("use_skill_create_issue() passes correct data to .use_skill() (#3)", {
   )
 })
 
-test_that("use_skill_create_issue() returns path invisibly (#3)", {
+test_that("use_skill_create_issue() returns path invisibly (#6)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -149,7 +149,7 @@ test_that("use_skill_create_issue() returns path invisibly (#3)", {
   expect_false(result$visible)
 })
 
-test_that("use_skill_create_issue() errors on non-scalar target_dir (#3)", {
+test_that("use_skill_create_issue() errors on non-scalar target_dir (#6)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -165,7 +165,7 @@ test_that("use_skill_create_issue() errors on non-scalar target_dir (#3)", {
   )
 })
 
-test_that("use_skill_create_issue() errors on non-logical overwrite (#3)", {
+test_that("use_skill_create_issue() errors on non-logical overwrite (#6)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",

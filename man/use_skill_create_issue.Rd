@@ -16,11 +16,11 @@ use_skill_create_issue(
 \item{target_dir}{(\code{character(1)}) Directory where the skill will be
 installed, relative to the project root. Defaults to \code{".github"}.}
 
-\item{use_skills_subdir}{(\code{logical(1)}) Whether to place the \code{create-issue}
-folder under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE},
-producing \code{.github/skills/create-issue/SKILL.md}.}
+\item{use_skills_subdir}{(\code{logical(1)}) Whether to place the skill folder
+under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE},
+producing \code{.github/skills/{skill}/SKILL.md}.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing skill file.
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
 Defaults to \code{TRUE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}

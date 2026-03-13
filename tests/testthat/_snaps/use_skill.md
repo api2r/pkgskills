@@ -1,4 +1,4 @@
-# .use_skill() emits a cli_inform message (#3)
+# .use_skill() emits a cli_inform message (#6)
 
     Code
       .use_skill("create-issue", data = list(owner = "testowner", repo = "testrepo",

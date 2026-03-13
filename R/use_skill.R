@@ -1,6 +1,6 @@
 #' Install a skill into a project
 #'
-#' @param skill (`character(1)`) Skill name — folder name under
+#' @param skill (`character(1)`) Skill name. A folder name under
 #'   `inst/templates/skills/`, e.g. `"create-issue"`. Determines the template
 #'   path and the install subdirectory.
 #' @inheritParams .shared-params
@@ -12,33 +12,44 @@
   target_dir = ".github",
   use_skills_subdir = TRUE,
   overwrite = TRUE,
-  open = rlang::is_interactive()
+  open = rlang::is_interactive(),
+  call = caller_env()
 ) {
-  skill <- .to_string(skill)
-  data <- stbl::to_list(data)
-  target_dir <- .to_string(target_dir)
-  use_skills_subdir <- .to_boolean(use_skills_subdir)
-  overwrite <- .to_boolean(overwrite)
+  # Validate inputs.
+  skill <- .to_string(skill, call = call)
+  target_dir <- .to_string(target_dir, call = call)
+  use_skills_subdir <- .to_boolean(use_skills_subdir, call = call)
 
+  # Set up path vars.
   if (use_skills_subdir) {
     target_dir <- fs::path(target_dir, "skills")
   }
   save_as <- fs::path(target_dir, skill, "SKILL.md")
-
-  .check_file_exists(save_as, overwrite)
-
-  skill_subpath <- fs::path("skills", skill, "SKILL.md")
-  template_path <- .path_template(skill_subpath)
-  trigger <- .read_skill_trigger(template_path)
-
   path <- usethis::proj_path(save_as)
-  fs::dir_create(fs::path_dir(path))
-  .use_template(skill_subpath, save_as, data, open)
+  .check_file_exists(path, overwrite, call = call)
+  skill_subpath <- fs::path("skills", skill, "SKILL.md")
 
-  .upsert_agents_skills_row(trigger, save_as)
-
+  .use_template(skill_subpath, save_as, data, open, call = call)
+  .upsert_agents_skill_from_template(skill_subpath, save_as, call = call)
   cli::cli_inform("Skill {.file {save_as}} installed.")
   invisible(path)
+}
+
+#' Upsert a template skill row in the ## Skills table of AGENTS.md
+#'
+#' @param skill_subpath (`character(1)`) The relative path to the `SKILL.md`
+#'   file.
+#' @inheritParams .shared-params
+#' @inherit .upsert_agents_skill return
+#' @keywords internal
+.upsert_agents_skill_from_template <- function(
+  skill_subpath,
+  save_as,
+  call = caller_env()
+) {
+  template_path <- .path_template(skill_subpath)
+  trigger <- .read_skill_trigger(template_path, call = call)
+  .upsert_agents_skill(trigger, save_as)
 }
 
 #' Read the trigger field from a skill template's YAML front matter
@@ -67,7 +78,7 @@
   }
   front_matter <- lines[(delim_idx[[1L]] + 1L):(delim_idx[[2L]] - 1L)]
   trigger_line <- grep("^trigger:", front_matter, value = TRUE)
-  if (length(trigger_line) == 0L) {
+  if (!length(trigger_line)) {
     .pkg_abort(
       "No {.field trigger} field in front matter of {.file {path}}.",
       "no_trigger",
@@ -84,9 +95,11 @@
 #' @returns The path to `AGENTS.md`, invisibly, or `NULL` invisibly if
 #'   `AGENTS.md` does not exist.
 #' @keywords internal
-.upsert_agents_skills_row <- function(trigger, save_as) {
-  trigger <- .to_string(trigger)
-  save_as <- .to_string(save_as)
+.upsert_agents_skill <- function(trigger, save_as, call = caller_env) {
+  # TODO: Clean this code and make sure it's stable. Consider using a dedicated
+  # MD package.
+  trigger <- .to_string(trigger, call = call)
+  save_as <- .to_string(save_as, call = call)
 
   agents_path <- usethis::proj_path("AGENTS.md")
   if (!fs::file_exists(agents_path)) {

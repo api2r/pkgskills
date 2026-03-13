@@ -8,10 +8,17 @@
 
 \item{data}{(\code{list}) Named list of whisker template variables for rendering.}
 
+\item{gh_token}{(\code{character(1)}) A GitHub personal access token. Defaults to
+\code{gh::gh_token()}.}
+
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing skill file.
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
 Defaults to \code{TRUE}.}
+
+\item{owner}{(\code{character(1)}) GitHub repository owner (user or organization).}
+
+\item{repo}{(\code{character(1)}) GitHub repository name.}
 
 \item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
 
