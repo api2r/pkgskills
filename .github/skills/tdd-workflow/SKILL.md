@@ -1,5 +1,6 @@
 ---
 name: tdd-workflow
+trigger: writing or reviewing tests
 description: Test-driven development workflow. Use when writing any R code (writing new features, fixing bugs, refactoring, or reviewing tests).
 ---
 

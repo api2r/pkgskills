@@ -1,5 +1,6 @@
 ---
 name: implement-issue
+trigger: implement issue / work on #NNN
 description: Implements a GitHub issue end-to-end. Use when asked to implement, work on, or fix a specific issue number.
 compatibility: Requires the `gh` CLI and an authenticated GitHub session.
 ---

@@ -1,5 +1,6 @@
 ---
 name: search-code
+trigger: search / rewrite code
 description: Search and rewrite R source code by syntax using astgrepr. Use when asked to find patterns in code, search for function calls, identify usage of specific arguments, locate structural patterns across R files, or perform find-and-replace on code structure.
 ---
 

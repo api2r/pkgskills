@@ -1,5 +1,6 @@
 ---
 name: github
+trigger: github workflows
 description: GitHub workflows using the `gh` CLI, including viewing issues/PRs and commit message conventions. Use when interacting with GitHub in any way, such as viewing, creating, or editing issues and pull requests, making commits, or running any `gh` command.
 compatibility: Requires the `gh` CLI and an authenticated GitHub session.
 ---

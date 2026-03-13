@@ -14,11 +14,11 @@ Imports:
     cli,
     desc,
     fs,
+    gh,
     rlang,
     stbl,
     usethis
 Suggests:
-    gh,
     testthat (>= 3.0.0),
     withr,
     yaml
