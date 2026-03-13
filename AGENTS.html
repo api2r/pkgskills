@@ -40,30 +40,10 @@
 <p>A collection of curated, opinionated skills and agent instructions to improve agentic coding of R packages.</p>
 <p><a href="https://github.com/api2r/pkgskills" class="external-link uri">https://github.com/api2r/pkgskills</a>, <a href="https://api2r.github.io/pkgskills/" class="uri">https://api2r.github.io/pkgskills/</a></p>
 <div class="section level3">
-<h3 id="key-files">Key files<a class="anchor" aria-label="anchor" href="#key-files"></a></h3>
-<table class="table"><thead><tr class="header"><th>Path</th>
-<th>Purpose</th>
-</tr></thead><tbody><tr class="odd"><td><code>R/</code></td>
-<td>Exported functions &amp; internal helpers</td>
-</tr><tr class="even"><td><code>R/pkgskills-package.R</code></td>
-<td>Auto-generated package docs; do not edit</td>
-</tr><tr class="odd"><td><code>R/aaa-shared.R</code></td>
-<td>Shared <code>@inheritParams</code> definitions</td>
-</tr><tr class="even"><td><code>R/aaa-conditions.R</code></td>
-<td>Abort helper &amp; condition class helpers</td>
-</tr><tr class="odd"><td><code>R/utils.R</code></td>
-<td>Shared internal helpers</td>
-</tr><tr class="even"><td><code>tests/testthat/</code></td>
-<td>Test suite; mirrors <code>R/</code> structure</td>
-</tr><tr class="odd"><td><code>man/</code></td>
-<td>Generated docs; do not edit</td>
-</tr><tr class="even"><td><code>.github/skills/</code></td>
-<td>Agent skill files</td>
-</tr><tr class="odd"><td><code>DESCRIPTION</code></td>
-<td>Package metadata &amp; dependencies</td>
-</tr><tr class="even"><td><code>NAMESPACE</code></td>
-<td>Auto-generated; do not edit</td>
-</tr></tbody></table><hr></div>
+<h3 id="overall-structure">Overall structure<a class="anchor" aria-label="anchor" href="#overall-structure"></a></h3>
+<p>The project follows standard R package conventions with these key directories:</p>
+<p>pkgskills/ ├── R/ # R source code │ ├── pkgskills-package.R # Auto-generated package docs │ ├── aaa-shared_params.R # Shared <code>@inheritParams</code> definitions │ ├── aaa-conditions.R # Auto-generated package docs │ ├── utils.R # Shared internal helpers │ └── *.R # Function definitions, 1 file ~= 1 exported function ├── inst/templates/ # Templates for agent setup ├── .github/ │ ├── ISSUE_TEMPLATE/ # GitHub issue templates │ ├── skills/ # Agent skill definitions │ └── workflows/ # CI/CD configurations ├── tests/testthat/ # Test suite ├── man/ # Generated documentation ├── AGENTS.md # Main agent setup file ├── DESCRIPTION # Package metadata ├── NAMESPACE # Auto-generated export information ├── NEWS.md # Changelog └── Various config files # .gitignore, codecov.yml, etc.</p>
+<hr></div>
 </div>
 <div class="section level2">
 <h2 id="standard-workflow">Standard workflow<a class="anchor" aria-label="anchor" href="#standard-workflow"></a></h2>
