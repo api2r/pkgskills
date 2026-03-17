@@ -13,13 +13,19 @@ test_that(".path_template() returns a path under the templates directory (#noiss
 test_that(".path_proj_save_as() returns the project-relative path (#noissue)", {
   proj_dir <- local_pkg()
   result <- .path_proj_save_as("output.md", overwrite = TRUE)
-  expect_identical(result, fs::path(proj_dir, "output.md"))
+  # Write so path_real() works.
+  writeLines("sample", result)
+  expect_identical(
+    fs::path_real(result),
+    fs::path_real(fs::path(proj_dir, "output.md"))
+  )
 })
 
 test_that(".path_proj_save_as() errors when file exists and overwrite = FALSE (#noissue)", {
   proj_dir <- local_pkg()
   output_path <- fs::path(proj_dir, "output.md")
   writeLines("content", output_path)
+  output_path <- fs::path_real(output_path)
   expect_pkg_error_snapshot(
     .path_proj_save_as("output.md", overwrite = FALSE),
     "file_exists",

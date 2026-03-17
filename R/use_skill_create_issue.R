@@ -128,4 +128,3 @@ use_skill_create_issue <- function(
   )
   types_result$data$repository$issueTypes$nodes
 }
-

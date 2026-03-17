@@ -220,6 +220,7 @@ test_that(".use_skill() errors when overwrite = FALSE and file exists (#6)", {
   existing_path <- fs::path(proj_dir, ".github/skills/create-issue/SKILL.md")
   fs::dir_create(fs::path_dir(existing_path))
   writeLines("original content", existing_path)
+  existing_path <- fs::path_real(existing_path)
   expect_pkg_error_snapshot(
     {
       suppressMessages(
