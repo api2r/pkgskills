@@ -5,17 +5,74 @@ to make them easier to import and to find.
 
 ## Arguments
 
+- agents_lines:
+
+  (`character`) Lines of `AGENTS.md`.
+
 - call:
 
   (`environment`) The caller environment for error messages.
+
+- data:
+
+  (`list`) Named list of whisker template variables for rendering.
+
+- gh_token:
+
+  (`character(1)`) A GitHub personal access token. Defaults to
+  [`gh::gh_token()`](https://gh.r-lib.org/reference/gh_token.html).
+
+- lines:
+
+  (`character`) Lines of a file, as returned by
+  [`readLines()`](https://rdrr.io/r/base/readLines.html).
+
+- new_row:
+
+  (`character(1)`) A pre-built skill row string, as produced by
+  [`.make_skill_row()`](https://api2r.github.io/pkgskills/reference/dot-make_skill_row.md).
 
 - open:
 
   (`logical(1)`) Whether to open the file after creation.
 
+- overwrite:
+
+  (`logical(1)`) Whether to overwrite an existing file. Defaults to
+  `TRUE`.
+
+- owner:
+
+  (`character(1)`) GitHub repository owner (user or organization).
+
+- repo:
+
+  (`character(1)`) GitHub repository name.
+
 - save_as:
 
-  (`character(1)`) Output file path, relative to project root.
+  (`character(1)`) Output file path, relative to the project root.
+
+- skill:
+
+  (`character(1)`) Skill name. A folder name under
+  `inst/templates/skills/`, e.g. `"create-issue"`. Determines the
+  template path and the install subdirectory.
+
+- target_dir:
+
+  (`character(1)`) Directory where the skill will be installed, relative
+  to the project root. Defaults to `".github"`.
+
+- trigger:
+
+  (`character(1)`) Trigger phrase for the skill.
+
+- use_skills_subdir:
+
+  (`logical(1)`) Whether to place the skill folder under a `skills`
+  subdirectory of `target_dir`. Defaults to `TRUE`, producing
+  `.github/skills/{skill}/SKILL.md`.
 
 - x_arg:
 

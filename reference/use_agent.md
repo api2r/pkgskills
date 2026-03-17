@@ -14,7 +14,7 @@ use_agent(save_as = "AGENTS.md", open = rlang::is_interactive())
 
 - save_as:
 
-  (`character(1)`) Output file path, relative to project root.
+  (`character(1)`) Output file path, relative to the project root.
 
 - open:
 

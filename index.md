@@ -9,8 +9,8 @@ You can install the development version of pkgskills from
 [GitHub](https://github.com/) with:
 
 ``` r
-# install.packages("remotes")
-remotes::install_github("api2r/pkgskills")
+# install.packages("pak")
+pak::pak("api2r/pkgskills")
 ```
 
 ## Usage

@@ -17,11 +17,11 @@ Wrapper around
 
 - save_as:
 
-  (`character(1)`) Output file path, relative to project root.
+  (`character(1)`) Output file path, relative to the project root.
 
 - data:
 
-  (`list`) Named list of values for whisker rendering.
+  (`list`) Named list of whisker template variables for rendering.
 
 - open:
 
