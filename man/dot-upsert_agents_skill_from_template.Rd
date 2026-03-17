@@ -4,13 +4,18 @@
 \alias{.upsert_agents_skill_from_template}
 \title{Upsert a template skill row in the ## Skills table of AGENTS.md}
 \usage{
-.upsert_agents_skill_from_template(skill_subpath, save_as, call = caller_env())
+.upsert_agents_skill_from_template(
+  skill_path_relative,
+  save_as,
+  call = caller_env()
+)
 }
 \arguments{
-\item{skill_subpath}{(\code{character(1)}) The relative path to the \code{SKILL.md}
-file.}
+\item{skill_path_relative}{(\code{character(1)}) The relative path to the
+\code{SKILL.md} file, relative to the template dir.}
 
-\item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
+\item{save_as}{(\code{character(1)}) Output file path, relative to the project
+root.}
 
 \item{call}{(\code{environment}) The caller environment for error messages.}
 }

@@ -4,7 +4,7 @@
 \alias{.read_skill_trigger}
 \title{Read the trigger field from a skill template's YAML front matter}
 \usage{
-.read_skill_trigger(path, call = rlang::caller_env())
+.read_skill_trigger(path, call = caller_env())
 }
 \arguments{
 \item{path}{(\code{character(1)}) Path to the skill template file.}

@@ -10,6 +10,8 @@ License: MIT + file LICENSE
 URL: https://github.com/api2r/pkgskills,
     https://api2r.github.io/pkgskills/
 BugReports: https://github.com/api2r/pkgskills/issues
+Depends: 
+    R (>= 4.1.0)
 Imports:
     cli,
     desc,
@@ -17,6 +19,7 @@ Imports:
     gh,
     rlang,
     stbl,
+    stringr,
     usethis
 Suggests:
     testthat (>= 3.0.0),

@@ -79,7 +79,7 @@ use_skill_create_issue <- function(
         "{.field BugReports} in {.file DESCRIPTION} must be a GitHub issues URL.",
         "i" = "Run {.run usethis::use_github()} to set one up."
       ),
-      "invalid_bug_reports",
+      "unsupported_bug_reports",
       call = call
     )
   }
@@ -95,7 +95,7 @@ use_skill_create_issue <- function(
 #' @returns (`character(1)`) The repository's GraphQL node ID.
 #' @keywords internal
 .fetch_repo_id <- function(owner, repo, gh_token) {
-  repo_result <- gh::gh(
+  repo_result <- .call_gh(
     "POST /graphql",
     query = sprintf(
       '{ repository(owner: "%s", name: "%s") { id } }',
@@ -114,7 +114,7 @@ use_skill_create_issue <- function(
 #'   `description` fields.
 #' @keywords internal
 .fetch_repo_issue_types <- function(owner, repo, gh_token) {
-  types_result <- gh::gh(
+  types_result <- .call_gh(
     "POST /graphql",
     query = sprintf(
       paste0(
@@ -129,15 +129,3 @@ use_skill_create_issue <- function(
   types_result$data$repository$issueTypes$nodes
 }
 
-#' Format the current time as a UTC timestamp string
-#'
-#' @returns (`character(1)`) Current time formatted as `"YYYY-MM-DD HH:MM:SS
-#'   UTC"`.
-#' @keywords internal
-.format_now_utc <- function() {
-  format(
-    Sys.time(),
-    tz = "UTC",
-    format = "%Y-%m-%d %H:%M:%S UTC"
-  )
-}

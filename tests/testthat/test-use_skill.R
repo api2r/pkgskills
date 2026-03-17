@@ -220,22 +220,24 @@ test_that(".use_skill() errors when overwrite = FALSE and file exists (#6)", {
   existing_path <- fs::path(proj_dir, ".github/skills/create-issue/SKILL.md")
   fs::dir_create(fs::path_dir(existing_path))
   writeLines("original content", existing_path)
-  stbl::expect_pkg_error_classes(
-    suppressMessages(
-      .use_skill(
-        "create-issue",
-        data = list(
-          owner = "o",
-          repo = "r",
-          repo_id = "id",
-          issue_types = list()
-        ),
-        overwrite = FALSE,
-        open = FALSE
+  expect_pkg_error_snapshot(
+    {
+      suppressMessages(
+        .use_skill(
+          "create-issue",
+          data = list(
+            owner = "o",
+            repo = "r",
+            repo_id = "id",
+            issue_types = list()
+          ),
+          overwrite = FALSE,
+          open = FALSE
+        )
       )
-    ),
-    "pkgskills",
-    "file_exists"
+    },
+    "file_exists",
+    transform = .transform_path(existing_path)
   )
   expect_equal(readLines(existing_path), "original content")
 })
@@ -295,9 +297,8 @@ test_that(".use_skill() errors on non-logical overwrite (#6)", {
 })
 
 test_that(".read_skill_trigger() errors when template file not found (#6)", {
-  stbl::expect_pkg_error_classes(
+  expect_pkg_error_snapshot(
     .read_skill_trigger("/tmp/nonexistent/SKILL.md"),
-    "pkgskills",
     "template_not_found"
   )
 })
@@ -305,20 +306,20 @@ test_that(".read_skill_trigger() errors when template file not found (#6)", {
 test_that(".read_skill_trigger() errors when front matter is missing (#6)", {
   tmp <- withr::local_tempfile(fileext = ".md")
   writeLines(c("# No front matter here", "Just content."), tmp)
-  stbl::expect_pkg_error_classes(
+  expect_pkg_error_snapshot(
     .read_skill_trigger(tmp),
-    "pkgskills",
-    "no_front_matter"
+    "no_front_matter",
+    transform = .transform_path(tmp)
   )
 })
 
 test_that(".read_skill_trigger() errors when trigger field is absent (#6)", {
   tmp <- withr::local_tempfile(fileext = ".md")
   writeLines(c("---", "name: my-skill", "---", "# Content"), tmp)
-  stbl::expect_pkg_error_classes(
+  expect_pkg_error_snapshot(
     .read_skill_trigger(tmp),
-    "pkgskills",
-    "no_trigger"
+    "no_trigger",
+    transform = .transform_path(tmp)
   )
 })
 

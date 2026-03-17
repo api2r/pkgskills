@@ -1,3 +1,23 @@
+local_gh_mock <- function(
+  issue_types = list(),
+  repo_id = "R_testid",
+  .local_envir = parent.frame()
+) {
+  local_mocked_bindings(
+    .call_gh = function(...) {
+      args <- list(...)
+      if (grepl("issueTypes", args$query)) {
+        list(
+          data = list(repository = list(issueTypes = list(nodes = issue_types)))
+        )
+      } else {
+        list(data = list(repository = list(id = repo_id)))
+      }
+    },
+    .env = .local_envir
+  )
+}
+
 local_pkg <- function(
   ...,
   DESCRIPTION = c(
@@ -5,7 +25,8 @@ local_pkg <- function(
     "Title: My Test Package",
     "Description: A package for testing.",
     "Version: 0.1.0",
-    "URL: https://example.com"
+    "URL: https://example.com",
+    "BugReports: https://github.com/myorg/mypkg/issues"
   ),
   .local_envir = parent.frame()
 ) {

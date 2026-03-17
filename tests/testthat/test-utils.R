@@ -1,4 +1,6 @@
-test_that(".to_string() tests for non-NULL character scalar (#noissue)", {
-  expect_identical(.to_string("hello"), "hello")
-  stbl::expect_pkg_error_classes(.to_string(NULL), "stbl", "bad_null")
+test_that(".format_now_utc() returns a correctly formatted UTC timestamp", {
+  result <- .format_now_utc()
+  expect_type(result, "character")
+  expect_length(result, 1L)
+  expect_match(result, "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} UTC$")
 })
