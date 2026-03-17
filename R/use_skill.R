@@ -62,7 +62,7 @@
 ) {
   template_path <- .path_template(skill_path_relative)
   trigger <- .read_skill_trigger(template_path, call = call)
-  .upsert_agents_skill(trigger, save_as)
+  .upsert_agents_skill(trigger, save_as, call = call)
 }
 
 #' Read the trigger field from a skill template's YAML front matter
@@ -121,7 +121,7 @@
 ) {
   save_as <- .to_string(save_as, call = call)
   lines <- readLines(path, warn = FALSE)
-  new_row <- .make_skill_row(trigger, save_as)
+  new_row <- .make_skill_row(trigger, save_as, call = call)
 
   existing_idx <- .find_skill_row_idx(lines, save_as)
   if (length(existing_idx)) {

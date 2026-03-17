@@ -47,6 +47,12 @@ test_that(".parse_yaml_front_matter() errors when no delimiters found (#noissue)
   )
 })
 
+test_that(".parse_yaml_front_matter() returns character(0) for empty front matter (#noissue)", {
+  lines <- c("---", "---", "# Content")
+  result <- .parse_yaml_front_matter(lines, "test.md")
+  expect_identical(result, character(0))
+})
+
 test_that(".parse_yaml_front_matter() errors when only one delimiter found (#noissue)", {
   lines <- c("---", "name: test", "# No closing delimiter")
   expect_pkg_error_snapshot(

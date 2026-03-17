@@ -18,7 +18,10 @@
 #'   once a gap is encountered.
 #' @keywords internal
 .is_first_run <- function(x) {
-  !cumsum(c(FALSE, diff(x) > 1L))
+  if (length(x)) {
+    return(!cumsum(c(FALSE, diff(x) > 1L)))
+  }
+  integer()
 }
 
 #' Find the index of the last markdown table row after a given position
@@ -35,9 +38,6 @@
 .find_table_last_row_idx <- function(lines, from) {
   idx <- which(stringr::str_starts(lines, stringr::fixed("|")))
   idx <- idx[idx > from]
-  if (!length(idx)) {
-    return(integer(0))
-  }
   utils::tail(idx[.is_first_run(idx)], 1L)
 }
 
@@ -57,7 +57,8 @@
       call = call
     )
   }
-  lines[(delim_idx[[1L]] + 1L):(delim_idx[[2L]] - 1L)]
+  front_matter_lines <- rlang::seq2(delim_idx[[1L]] + 1L, delim_idx[[2L]] - 1L)
+  lines[front_matter_lines]
 }
 
 #' Extract a scalar value from YAML front matter lines
