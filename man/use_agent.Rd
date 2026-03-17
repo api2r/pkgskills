@@ -7,7 +7,8 @@
 use_agent(save_as = "AGENTS.md", open = rlang::is_interactive())
 }
 \arguments{
-\item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
+\item{save_as}{(\code{character(1)}) Output file path, relative to the project
+root.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 }

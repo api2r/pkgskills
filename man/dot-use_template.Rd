@@ -9,9 +9,10 @@
 \arguments{
 \item{template}{(\code{character(1)}) Template name within \verb{inst/templates/}.}
 
-\item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
+\item{save_as}{(\code{character(1)}) Output file path, relative to the project
+root.}
 
-\item{data}{(\code{list}) Named list of values for whisker rendering.}
+\item{data}{(\code{list}) Named list of whisker template variables for rendering.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 

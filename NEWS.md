@@ -1,5 +1,8 @@
 # pkgskills (development version)
 
+* `use_skill_create_issue()` installs the `create-issue` skill, fetching
+  repository metadata from GitHub and rendering a tailored skill template into
+  the project (#3).
 * `use_agent()` installs a structured `AGENTS.md` file, populating the
   repository overview from the project's `DESCRIPTION` (#2).
 

@@ -1,15 +1,25 @@
-#' Coerce to a non-null, non-empty character scalar
+#' Call the GitHub API
 #'
-#' @param x (`any`) The value to coerce.
-#' @inheritParams .shared-params
-#' @returns (`character(1)`) `x` coerced to a character scalar.
+#' Thin wrapper around [gh::gh()] to facilitate mocking in tests.
+#'
+#' @param ... Arguments passed to [gh::gh()].
+#' @returns The API response.
 #' @keywords internal
-.to_string <- function(x, x_arg = caller_arg(x), call = caller_env()) {
-  stbl::to_character_scalar(
-    x,
-    allow_null = FALSE,
-    allow_zero_length = FALSE,
-    x_arg = x_arg,
-    call = call
+.call_gh <- function(...) {
+  # nocov start
+  gh::gh(...)
+  # nocov end
+}
+
+#' Format the current time as a UTC timestamp string
+#'
+#' @returns (`character(1)`) Current time formatted as `"YYYY-MM-DD HH:MM:SS
+#'   UTC"`.
+#' @keywords internal
+.format_now_utc <- function() {
+  format(
+    Sys.time(),
+    tz = "UTC",
+    format = "%Y-%m-%d %H:%M:%S UTC"
   )
 }

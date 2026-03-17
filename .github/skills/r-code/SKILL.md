@@ -1,5 +1,6 @@
 ---
 name: r-code
+trigger: writing R functions / API design / error handling
 description: Guide for writing R code. Use when writing new functions, designing APIs, or reviewing/modifying existing R code.
 ---
 

@@ -1,5 +1,6 @@
 ---
 name: tdd-workflow
+trigger: writing or reviewing tests
 description: Test-driven development workflow. Use when writing any R code (writing new features, fixing bugs, refactoring, or reviewing tests).
 ---
 
@@ -72,9 +73,12 @@ For complex outputs that are hard to specify with equality assertions:
 test_that("build_summary print method is stable (#123)", {
   expect_snapshot(print(build_summary(sample_data)))
 })
+```
 
-# For errors, wrap expect_error() inside expect_snapshot() so both the error
-# class and the message text are captured in the snapshot:
+For errors, wrap expect_error() inside expect_snapshot() so both the error
+class and the message text are captured in the snapshot:
+
+```r
 test_that("fetch_records errors on invalid input (#456)", {
   expect_snapshot(
     (expect_error(
@@ -84,15 +88,15 @@ test_that("fetch_records errors on invalid input (#456)", {
   )
 })
 ```
+(see also "Testing errors with `stbl::expect_pkg_error_classes()`" below)
 
-When snapshots change intentionally:
+When snapshots change intentionally, check the content of the file corresponding to the edited test file, then accept:
 
 ```r
-testthat::snapshot_review("test_name")
 testthat::snapshot_accept("test_name")
 ```
 
-Snapshots are stored in `tests/testthat/_snaps/`.
+Snapshots are stored in `tests/testthat/_snaps/`. The filename corresponds to the R file being tested, ending with `.md`.
 
 ## Test design principles
 
@@ -195,11 +199,11 @@ Combine with `expect_snapshot()` to lock down both the class hierarchy and the u
 ```r
 test_that("process_data() error message is stable (#42)", {
   expect_snapshot(
-    stbl::expect_pkg_error_classes(
+    (stbl::expect_pkg_error_classes(
       process_data(data.frame()),
       "mypkg",
       "empty_input"
-    )
+    ))
   )
 })
 ```

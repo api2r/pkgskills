@@ -1,5 +1,6 @@
 ---
 name: document
+trigger: document functions
 description: Document package functions. Use when asked to document functions.
 ---
 
@@ -10,6 +11,7 @@ description: Document package functions. Use when asked to document functions.
 - Run `air format .` then `devtools::document()` after changing any roxygen2 docs.
 - Use sentence case for all headings.
 - Files matching `R/import-standalone-*.R` are imported from other packages and have their own conventions. Do not modify their documentation.
+- After documenting functions, run `devtools::document(roclets = c('rd', 'collate', 'namespace'))`.
 
 ## Shared parameters
 
@@ -113,7 +115,7 @@ Internal helpers (identified by a dot prefix, e.g. `.parse_response()`) use abbr
 #' @keywords internal
 ```
 
-No description paragraph, fewer blank `#'` lines, and no `@examples`.
+Description paragraph is optional (only include when usage isn't obvious), fewer blank `#'` lines, and no `@examples`.
 
 ## S3 methods and `@rdname` grouping
 

@@ -4,11 +4,44 @@
 \alias{.shared-params}
 \title{Shared parameters}
 \arguments{
+\item{agents_lines}{(\code{character}) Lines of \code{AGENTS.md}.}
+
 \item{call}{(\code{environment}) The caller environment for error messages.}
+
+\item{data}{(\code{list}) Named list of whisker template variables for rendering.}
+
+\item{gh_token}{(\code{character(1)}) A GitHub personal access token. Defaults to
+\code{gh::gh_token()}.}
+
+\item{lines}{(\code{character}) Lines of a file, as returned by \code{\link[=readLines]{readLines()}}.}
+
+\item{new_row}{(\code{character(1)}) A pre-built skill row string, as produced by
+\code{.make_skill_row()}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 
-\item{save_as}{(\code{character(1)}) Output file path, relative to project root.}
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
+Defaults to \code{TRUE}.}
+
+\item{owner}{(\code{character(1)}) GitHub repository owner (user or organization).}
+
+\item{repo}{(\code{character(1)}) GitHub repository name.}
+
+\item{save_as}{(\code{character(1)}) Output file path, relative to the project
+root.}
+
+\item{skill}{(\code{character(1)}) Skill name. A folder name under
+\verb{inst/templates/skills/}, e.g. \code{"create-issue"}. Determines the template
+path and the install subdirectory.}
+
+\item{target_dir}{(\code{character(1)}) Directory where the skill will be
+installed, relative to the project root. Defaults to \code{".github"}.}
+
+\item{trigger}{(\code{character(1)}) Trigger phrase for the skill.}
+
+\item{use_skills_subdir}{(\code{logical(1)}) Whether to place the skill folder
+under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE},
+producing \code{.github/skills/{skill}/SKILL.md}.}
 
 \item{x_arg}{(\code{character(1)}) Argument name for \code{x}, used in error messages.}
 }

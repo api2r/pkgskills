@@ -1,5 +1,6 @@
 ---
 name: create-issue
+trigger: create GitHub issues
 description: Creates GitHub issues for the package repository. Use when asked to create, file, or open a GitHub issue, or when planning new features or functions that need to be tracked.
 compatibility: Requires the `gh` CLI and an authenticated GitHub session.
 ---
@@ -53,7 +54,6 @@ Which sections to include depends on the issue type:
 | `## Details` | optional | optional | optional | optional |
 | `## Proposed signature` | ✓ | — | — | — |
 | `## Behavior` | ✓ | ✓ | — | — |
-| `## Implementation` | optional | optional | optional | optional |
 | `## References` | optional | optional | optional | optional |
 
 ### `## Summary` (all types)
@@ -74,7 +74,7 @@ Example:
 
 ### `## Details` (optional, all types)
 
-For information that's important to capture but doesn't fit naturally into any other section. Use sparingly — if the content belongs in `## Behavior`, `## Proposed signature`, or `## References`, put it there instead.
+For information that's important to capture but doesn't fit naturally into any other section, including implementation details such as packages to add to `Imports` in `DESCRIPTION` or files to add to `inst`. Use sparingly — if the content belongs in `## Behavior`, `## Proposed signature`, or `## References`, put it there instead.
 
 ### `## Proposed signature` (Feature only)
 
@@ -99,10 +99,6 @@ function_name(arg1, arg2)
 
 - **Feature**: bullet points describing expected behavior, edge cases, and any internal helpers to implement as part of this issue.
 - **Bug**: describe the current (broken) behavior, the expected behavior, and steps to reproduce if known.
-
-### `## Implementation` (optional, all types)
-
-Bullet points describing additional details about implementation of the feature, such as packages to add to `Imports` in `DESCRIPTION` or files to add to `inst`.
 
 ### `## References` (optional, all types)
 
