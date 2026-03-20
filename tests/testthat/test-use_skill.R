@@ -267,11 +267,15 @@ test_that(".use_skill() overwrites file when overwrite = TRUE and file exists (#
 })
 
 test_that(".use_skill() uses empty list as default data (#15)", {
-  proj_dir <- local_pkg()
-  suppressMessages(.use_skill("document", open = FALSE))
-  expect_true(
-    fs::file_exists(fs::path(proj_dir, ".github/skills/document/SKILL.md"))
+  local_mocked_bindings(
+    .path_skill_save_as = function(skill, ...) skill,
+    .path_proj_save_as = function(save_as, ...) save_as,
+    .use_template = function(skill_path_relative, save_as, data, open, call) {
+      expect_identical(data, list())
+    },
+    .upsert_agents_skill_from_template = function(...) list()
   )
+  expect_no_error(suppressMessages(.use_skill("skill")))
 })
 
 test_that(".use_skill() errors on non-scalar skill (#6)", {

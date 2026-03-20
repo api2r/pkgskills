@@ -6,7 +6,7 @@
 \usage{
 .use_skill(
   skill,
-  data,
+  data = list(),
   target_dir = ".github",
   use_skills_subdir = TRUE,
   overwrite = TRUE,
