@@ -266,6 +266,14 @@ test_that(".use_skill() overwrites file when overwrite = TRUE and file exists (#
   expect_true(any(grepl("Create a GitHub issue", content)))
 })
 
+test_that(".use_skill() uses empty list as default data (#6)", {
+  proj_dir <- local_pkg()
+  suppressMessages(.use_skill("document", open = FALSE))
+  expect_true(
+    fs::file_exists(fs::path(proj_dir, ".github/skills/document/SKILL.md"))
+  )
+})
+
 test_that(".use_skill() errors on non-scalar skill (#6)", {
   stbl::expect_pkg_error_classes(
     .use_skill(c("a", "b"), data = list(), open = FALSE),
