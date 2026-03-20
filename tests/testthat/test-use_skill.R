@@ -266,6 +266,18 @@ test_that(".use_skill() overwrites file when overwrite = TRUE and file exists (#
   expect_true(any(grepl("Create a GitHub issue", content)))
 })
 
+test_that(".use_skill() uses empty list as default data (#15)", {
+  local_mocked_bindings(
+    .path_skill_save_as = function(skill, ...) skill,
+    .path_proj_save_as = function(save_as, ...) save_as,
+    .use_template = function(skill_path_relative, save_as, data, open, call) {
+      expect_identical(data, list())
+    },
+    .upsert_agents_skill_from_template = function(...) list()
+  )
+  expect_no_error(suppressMessages(.use_skill("skill")))
+})
+
 test_that(".use_skill() errors on non-scalar skill (#6)", {
   stbl::expect_pkg_error_classes(
     .use_skill(c("a", "b"), data = list(), open = FALSE),

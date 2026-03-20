@@ -18,7 +18,6 @@ use_skill_document <- function(
 ) {
   skill_path <- .use_skill(
     "document",
-    data = list(),
     target_dir = target_dir,
     use_skills_subdir = use_skills_subdir,
     overwrite = overwrite,
