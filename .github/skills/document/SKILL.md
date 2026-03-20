@@ -15,7 +15,7 @@ description: Document package functions. Use when asked to document functions.
 
 ## Shared parameters
 
-**Parameters used in more than one function** go in `R/aaa-shared.R` under `@name .shared-params`. Functions inherit them with `@inheritParams .shared-params`. See `R/aaa-shared.R` for current definitions (if it exists).
+**Parameters used in more than one function** go in `R/aaa-shared_params.R` under `@name .shared-params`. Functions inherit them with `@inheritParams .shared-params`. See `R/aaa-shared_params.R` for current definitions (if it exists).
 
 Shared params blocks: alphabetize parameters, use `@name .shared-params` (with leading dot), include `@keywords internal`, end with `NULL`.
 
