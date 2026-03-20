@@ -59,15 +59,6 @@ test_that("use_agent() errors on NULL save_as (#2)", {
   )
 })
 
-test_that(".use_template() errors on non-logical open (#2)", {
-  local_pkg()
-  stbl::expect_pkg_error_classes(
-    .use_template("AGENTS.md", "AGENTS.md", list(), open = "yes"),
-    "stbl",
-    "incompatible_type"
-  )
-})
-
 test_that("use_agent() respects a custom save_as path (#2)", {
   proj_dir <- local_pkg()
   result <- suppressMessages(use_agent(

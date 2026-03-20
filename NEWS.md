@@ -1,8 +1,8 @@
 # pkgskills (development version)
 
 * `use_skill_tdd_workflow()` installs the `tdd-workflow` skill and bootstraps
-  `tests/testthat/helper-expectations.R` in the target project, rendering the
-  package name from `DESCRIPTION` into both files (#9).
+  `tests/testthat/helper-expectations.R` in the target project (#11).
+* `use_skill_document()` installs the `document` skill and, if absent, creates a starter `R/aaa-shared_params.R` file from a built-in template (#9).
 * `use_skill_create_issue()` installs the `create-issue` skill, fetching
   repository metadata from GitHub and rendering a tailored skill template into
   the project (#3).

@@ -1,3 +1,30 @@
+#' Wrapper around [usethis::use_template()]
+#'
+#' @param template (`character(1)`) Template name within `inst/templates/`.
+#' @inheritParams .shared-params
+#' @returns Called for side effects.
+#' @keywords internal
+.use_template <- function(
+  template,
+  save_as,
+  data = list(),
+  open = FALSE,
+  call = caller_env()
+) {
+  save_as <- .to_string(save_as, call = call)
+  data <- stbl::to_list(data, call = call)
+  template <- .to_string(template, call = call)
+  open <- stbl::to_lgl_scalar(open, allow_null = FALSE, call = call)
+  fs::dir_create(fs::path_dir(usethis::proj_path(save_as)))
+  usethis::use_template(
+    template,
+    save_as = save_as,
+    data = data,
+    open = open,
+    package = "pkgskills"
+  )
+}
+
 #' Call the GitHub API
 #'
 #' Thin wrapper around [gh::gh()] to facilitate mocking in tests.
