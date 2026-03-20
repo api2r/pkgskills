@@ -14,7 +14,7 @@ test_that(".get_desc_fields() returns a named list of non-NA field values", {
     )
   )
   result <- .get_desc_fields(c("Package", "Title", "URL"))
-  expect_setequal(result, list(Package = "mypkg", Title = "My Package"))
+  expect_mapequal(result, list(Package = "mypkg", Title = "My Package"))
 })
 
 test_that(".use_template() errors on non-logical open (#2)", {
