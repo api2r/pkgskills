@@ -57,7 +57,7 @@ use_skill_create_issue <- function(
 .extract_repo_from_desc <- function(call = caller_env()) {
   bug_reports <- .get_desc_fields("BugReports", call = call)[["BugReports"]]
 
-  if (!length(bug_reports) || is.na(bug_reports)) {
+  if (!length(bug_reports)) {
     .pkg_abort(
       c(
         "No {.field BugReports} field found in {.file DESCRIPTION}.",

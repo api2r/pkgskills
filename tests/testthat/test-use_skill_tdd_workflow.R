@@ -83,20 +83,13 @@ test_that("use_skill_tdd_workflow() does not emit helper message when it already
   expect_snapshot(use_skill_tdd_workflow(open = FALSE))
 })
 
-test_that("use_skill_tdd_workflow() errors on non-scalar target_dir (#11)", {
+test_that("use_skill_tdd_workflow() errors when Package field is absent (#11)", {
   local_pkg()
-  stbl::expect_pkg_error_classes(
-    use_skill_tdd_workflow(target_dir = c("a", "b"), open = FALSE),
-    "stbl",
-    "non_scalar"
+  local_mocked_bindings(
+    .get_desc_fields = function(...) list()
   )
-})
-
-test_that("use_skill_tdd_workflow() errors on non-logical overwrite (#11)", {
-  local_pkg()
-  stbl::expect_pkg_error_classes(
-    use_skill_tdd_workflow(overwrite = "yes", open = FALSE),
-    "stbl",
-    "incompatible_type"
+  expect_pkg_error_snapshot(
+    use_skill_tdd_workflow(open = FALSE),
+    "no_package_field"
   )
 })

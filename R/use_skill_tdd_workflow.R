@@ -17,6 +17,12 @@ use_skill_tdd_workflow <- function(
   open = rlang::is_interactive()
 ) {
   pkg_name <- .get_desc_fields("Package")[["Package"]]
+  if (!length(pkg_name)) {
+    .pkg_abort(
+      "No {.field Package} field found in {.file DESCRIPTION}.",
+      "no_package_field"
+    )
+  }
   skill_path <- .use_skill(
     "tdd-workflow",
     data = list(package = pkg_name),
