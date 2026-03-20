@@ -21,7 +21,13 @@
   save_as_absolute <- .path_proj_save_as(save_as, overwrite, call = call)
   skill_path_relative <- fs::path("skills", skill, "SKILL.md")
 
-  .use_template(skill_path_relative, save_as, data, open, call = call)
+  .use_template(
+    skill_path_relative,
+    save_as,
+    data = data,
+    open = open,
+    call = call
+  )
   .upsert_agents_skill_from_template(skill_path_relative, save_as, call = call)
   cli::cli_inform("Skill {.file {save_as}} installed.")
   invisible(save_as_absolute)

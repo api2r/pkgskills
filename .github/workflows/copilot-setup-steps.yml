@@ -35,6 +35,7 @@ jobs:
             any::usethis
             any::devtools
             any::covr
+            any::astgrepr
             local::.
 
       - name: Install air
