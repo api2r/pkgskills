@@ -210,7 +210,7 @@ withr::local_tempfile(lines = c("a", "b"))
 
 ### Package project helper
 
-Use `local_pkg()` (defined in `tests/testthat/helper-local_pkg.R`) whenever a test needs a temporary package project. It comes with a default `DESCRIPTION` (Package: pkgskills, with Title, Description, Version, and URL); override it only when the test requires specific field values. Pass additional named `...` arguments to create other files, where each name is a relative path and each value is a character vector of lines to write:
+Use `local_pkg()` (defined in `tests/testthat/helper-local_pkg.R`) whenever a test needs a temporary package project. It comes with a default `DESCRIPTION` (Package: mypkg, with Title, Description, Version, and URL); override it only when the test requires specific field values. Pass additional named `...` arguments to create other files, where each name is a relative path and each value is a character vector of lines to write:
 
 ```r
 # Use the default DESCRIPTION when field values don't matter
