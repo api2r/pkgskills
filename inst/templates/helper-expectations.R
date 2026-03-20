@@ -13,7 +13,6 @@
 expect_pkg_error_snapshot <- function(
   object,
   error_class_component,
-  # Rendered by whisker during installation via use_skill_tdd_workflow().
   package = "{{{package}}}",
   transform = NULL,
   call = caller_env()
