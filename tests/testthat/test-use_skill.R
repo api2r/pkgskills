@@ -266,7 +266,7 @@ test_that(".use_skill() overwrites file when overwrite = TRUE and file exists (#
   expect_true(any(grepl("Create a GitHub issue", content)))
 })
 
-test_that(".use_skill() uses empty list as default data (#6)", {
+test_that(".use_skill() uses empty list as default data (#15)", {
   proj_dir <- local_pkg()
   suppressMessages(.use_skill("document", open = FALSE))
   expect_true(
