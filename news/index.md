@@ -2,6 +2,10 @@
 
 ## pkgskills (development version)
 
+- [`use_skill_document()`](https://api2r.github.io/pkgskills/reference/use_skill_document.md)
+  installs the `document` skill and, if absent, creates a starter
+  `R/aaa-shared_params.R` file from a built-in template
+  ([\#9](https://github.com/api2r/pkgskills/issues/9)).
 - [`use_skill_create_issue()`](https://api2r.github.io/pkgskills/reference/use_skill_create_issue.md)
   installs the `create-issue` skill, fetching repository metadata from
   GitHub and rendering a tailored skill template into the project

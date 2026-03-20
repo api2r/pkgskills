@@ -6,7 +6,13 @@ Wrapper around
 ## Usage
 
 ``` r
-.use_template(template, save_as, data, open, call = caller_env())
+.use_template(
+  template,
+  save_as,
+  data = list(),
+  open = FALSE,
+  call = caller_env()
+)
 ```
 
 ## Arguments
