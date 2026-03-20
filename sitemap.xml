@@ -28,6 +28,7 @@
 <url><loc>https://api2r.github.io/pkgskills/reference/dot-find_table_last_row_idx.html</loc></url>
 <url><loc>https://api2r.github.io/pkgskills/reference/dot-format_now_utc.html</loc></url>
 <url><loc>https://api2r.github.io/pkgskills/reference/dot-get_create_issue_data.html</loc></url>
+<url><loc>https://api2r.github.io/pkgskills/reference/dot-get_desc_fields.html</loc></url>
 <url><loc>https://api2r.github.io/pkgskills/reference/dot-is_first_run.html</loc></url>
 <url><loc>https://api2r.github.io/pkgskills/reference/dot-lines_insert_after.html</loc></url>
 <url><loc>https://api2r.github.io/pkgskills/reference/dot-make_skill_row.html</loc></url>
@@ -52,5 +53,6 @@
 <url><loc>https://api2r.github.io/pkgskills/reference/use_agent.html</loc></url>
 <url><loc>https://api2r.github.io/pkgskills/reference/use_skill_create_issue.html</loc></url>
 <url><loc>https://api2r.github.io/pkgskills/reference/use_skill_document.html</loc></url>
+<url><loc>https://api2r.github.io/pkgskills/reference/use_skill_tdd_workflow.html</loc></url>
 </urlset>
 

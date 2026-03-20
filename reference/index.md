@@ -8,3 +8,5 @@
   : Install the create-issue skill into a project
 - [`use_skill_document()`](https://api2r.github.io/pkgskills/reference/use_skill_document.md)
   : Install the document skill into a project
+- [`use_skill_tdd_workflow()`](https://api2r.github.io/pkgskills/reference/use_skill_tdd_workflow.md)
+  : Install the tdd-workflow skill into a project

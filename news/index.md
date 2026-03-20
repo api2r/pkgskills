@@ -2,6 +2,10 @@
 
 ## pkgskills (development version)
 
+- [`use_skill_tdd_workflow()`](https://api2r.github.io/pkgskills/reference/use_skill_tdd_workflow.md)
+  installs the `tdd-workflow` skill and bootstraps
+  `tests/testthat/helper-expectations.R` in the target project
+  ([\#11](https://github.com/api2r/pkgskills/issues/11)).
 - [`use_skill_document()`](https://api2r.github.io/pkgskills/reference/use_skill_document.md)
   installs the `document` skill and, if absent, creates a starter
   `R/aaa-shared_params.R` file from a built-in template

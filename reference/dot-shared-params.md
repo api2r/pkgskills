@@ -17,6 +17,10 @@ to make them easier to import and to find.
 
   (`list`) Named list of whisker template variables for rendering.
 
+- fields:
+
+  (`character`) Field name(s) to read from `DESCRIPTION`.
+
 - gh_token:
 
   (`character(1)`) A GitHub personal access token. Defaults to
