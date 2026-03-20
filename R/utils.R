@@ -50,3 +50,14 @@
     format = "%Y-%m-%d %H:%M:%S UTC"
   )
 }
+
+#' Get non-NA fields from DESCRIPTION
+#'
+#' @inheritParams .shared-params
+#' @returns (`list`) Named list of non-`NA` field values from `DESCRIPTION`.
+#' @keywords internal
+.get_desc_fields <- function(fields, call = caller_env()) {
+  as.list(stats::na.omit(
+    desc::desc_get(fields, file = usethis::proj_path("DESCRIPTION"))
+  ))
+}

@@ -6,6 +6,7 @@
 #' @param agents_lines (`character`) Lines of `AGENTS.md`.
 #' @param call (`environment`) The caller environment for error messages.
 #' @param data (`list`) Named list of whisker template variables for rendering.
+#' @param fields (`character`) Field name(s) to read from `DESCRIPTION`.
 #' @param gh_token (`character(1)`) A GitHub personal access token. Defaults to
 #'   `gh::gh_token()`.
 #' @param lines (`character`) Lines of a file, as returned by [readLines()].

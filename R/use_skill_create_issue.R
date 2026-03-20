@@ -55,12 +55,9 @@ use_skill_create_issue <- function(
 #' @returns (`list`) Named list with `owner` and `repo` elements.
 #' @keywords internal
 .extract_repo_from_desc <- function(call = caller_env()) {
-  bug_reports <- desc::desc_get(
-    "BugReports",
-    file = usethis::proj_path("DESCRIPTION")
-  )[[1L]]
+  bug_reports <- .get_desc_fields("BugReports", call = call)[["BugReports"]]
 
-  if (!length(bug_reports) || is.na(bug_reports)) {
+  if (!length(bug_reports)) {
     .pkg_abort(
       c(
         "No {.field BugReports} field found in {.file DESCRIPTION}.",
