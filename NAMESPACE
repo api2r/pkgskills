@@ -3,6 +3,7 @@
 export(use_agent)
 export(use_skill_create_issue)
 export(use_skill_document)
+export(use_skill_r_code)
 export(use_skill_tdd_workflow)
 importFrom(rlang,caller_arg)
 importFrom(rlang,caller_env)
