@@ -10,6 +10,8 @@
 
 \item{data}{(\code{list}) Named list of whisker template variables for rendering.}
 
+\item{fields}{(\code{character}) Field name(s) to read from \code{DESCRIPTION}.}
+
 \item{gh_token}{(\code{character(1)}) A GitHub personal access token. Defaults to
 \code{gh::gh_token()}.}
 

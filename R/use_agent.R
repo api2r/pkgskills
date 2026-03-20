@@ -11,12 +11,7 @@
 #'   use_agent()
 use_agent <- function(save_as = "AGENTS.md", open = rlang::is_interactive()) {
   save_as <- .to_string(save_as)
-  data <- as.list(stats::na.omit(
-    desc::desc_get(
-      c("Package", "Title", "Description", "URL"),
-      file = usethis::proj_path("DESCRIPTION")
-    )
-  ))
+  data <- .get_desc_fields(c("Package", "Title", "Description", "URL"))
   .use_template("AGENTS.md", save_as, data, open)
   cli::cli_inform(c(
     "{.file AGENTS.md} created.",
