@@ -22,7 +22,7 @@ test_that("use_skill_search_code() adds astgrepr to Suggests when absent (#20)",
   skip_if_not_installed("astgrepr")
   proj_dir <- local_pkg()
   suppressMessages(use_skill_search_code(open = FALSE))
-  deps <- desc::desc(fs::path(proj_dir, "DESCRIPTION"))$get_deps()
+  deps <- desc::desc_get_deps(fs::path(proj_dir, "DESCRIPTION"))
   astgrepr_row <- deps[deps$package == "astgrepr", ]
   expect_equal(nrow(astgrepr_row), 1L)
   expect_equal(astgrepr_row$type, "Suggests")
@@ -40,7 +40,7 @@ test_that("use_skill_search_code() does not modify DESCRIPTION when astgrepr alr
     )
   )
   suppressMessages(use_skill_search_code(open = FALSE))
-  deps <- desc::desc(fs::path(proj_dir, "DESCRIPTION"))$get_deps()
+  deps <- desc::desc_get_deps(fs::path(proj_dir, "DESCRIPTION"))
   astgrepr_rows <- deps[deps$package == "astgrepr", ]
   expect_equal(nrow(astgrepr_rows), 1L)
   expect_equal(astgrepr_rows$type, "Suggests")
@@ -58,7 +58,7 @@ test_that("use_skill_search_code() does not modify DESCRIPTION when astgrepr alr
     )
   )
   suppressMessages(use_skill_search_code(open = FALSE))
-  deps <- desc::desc(fs::path(proj_dir, "DESCRIPTION"))$get_deps()
+  deps <- desc::desc_get_deps(fs::path(proj_dir, "DESCRIPTION"))
   astgrepr_rows <- deps[deps$package == "astgrepr", ]
   expect_equal(nrow(astgrepr_rows), 1L)
   expect_equal(astgrepr_rows$type, "Imports")

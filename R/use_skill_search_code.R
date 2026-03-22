@@ -16,6 +16,11 @@ use_skill_search_code <- function(
   overwrite = TRUE,
   open = rlang::is_interactive()
 ) {
+  deps <- desc::desc_get_deps(usethis::proj_path("DESCRIPTION"))
+  if (!("astgrepr" %in% deps$package)) {
+    usethis::use_package("astgrepr", "Suggests")
+  }
+
   skill_path <- .use_skill(
     "search-code",
     target_dir = target_dir,
@@ -23,14 +28,6 @@ use_skill_search_code <- function(
     overwrite = overwrite,
     open = open
   )
-
-  deps <- desc::desc(usethis::proj_path("DESCRIPTION"))$get_deps()
-  already_dep <- "astgrepr" %in%
-    deps[deps$type %in% c("Imports", "Suggests"), "package"]
-  if (!already_dep) {
-    rlang::check_installed("astgrepr")
-    usethis::use_package("astgrepr", "Suggests")
-  }
 
   invisible(skill_path)
 }
