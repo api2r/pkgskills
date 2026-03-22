@@ -88,10 +88,10 @@ Snapshots are stored in `tests/testthat/_snaps/`. The filename corresponds to th
 - **Self-sufficient:** each test contains its own setup, execution, and assertion. Tests must be runnable in isolation.
 - **Duplication over factoring:** repeat setup code rather than extracting it. Clarity beats DRY in tests.
 - **One concept per test:** a failing test should tell you exactly what broke.
-- **Issue reference in description:** the `desc` of every new `test_that()` call should end with one or more parenthetical issue references:
+- **Issue reference in description:** the `desc` of every new `test_that()` call should end with one or more parenthetical issue references for the issue(s) *verified by those tests* — typically the issue currently being solved. Never guess or invent issue numbers; if no tracked issue applies, use `#noissue`:
   ```r
   test_that("fetch_records() returns correct columns (#1)", { ... })
-  test_that("build_summary() returns correct columns (#2. #3)", { ... })
+  test_that("build_summary() returns correct columns (#2, #3)", { ... })
   test_that(".check_record() errors on empty input (#noissue)", { ... })
   ```
 
