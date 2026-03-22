@@ -2,6 +2,10 @@
 
 ## pkgskills (development version)
 
+- [`use_github_copilot()`](https://api2r.github.io/pkgskills/reference/use_github_copilot.md)
+  installs a `copilot-setup-steps.yml` workflow and its companion
+  reusable `install` action into `.github/workflows/`
+  ([\#25](https://github.com/api2r/pkgskills/issues/25)).
 - [`use_skill_implement_issue()`](https://api2r.github.io/pkgskills/reference/use_skill_implement_issue.md)
   installs the `implement-issue` skill into the target project
   ([\#18](https://github.com/api2r/pkgskills/issues/18)).
