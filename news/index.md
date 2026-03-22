@@ -2,6 +2,10 @@
 
 ## pkgskills (development version)
 
+- [`use_skill_github()`](https://api2r.github.io/pkgskills/reference/use_skill_github.md)
+  installs the `github` skill, providing AI agents with `gh` CLI
+  guidance and conventional commit message conventions
+  ([\#17](https://github.com/api2r/pkgskills/issues/17)).
 - [`use_skill_r_code()`](https://api2r.github.io/pkgskills/reference/use_skill_r_code.md)
   installs the `r-code` skill into the target project
   ([\#17](https://github.com/api2r/pkgskills/issues/17)).
