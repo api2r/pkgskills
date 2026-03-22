@@ -1,4 +1,4 @@
-test_that("use_skill_search_code() installs skill at correct path (#12)", {
+test_that("use_skill_search_code() installs skill at correct path (#20)", {
   skip_if_not_installed("astgrepr")
   proj_dir <- local_pkg()
   suppressMessages(use_skill_search_code(open = FALSE))
@@ -7,7 +7,7 @@ test_that("use_skill_search_code() installs skill at correct path (#12)", {
   )
 })
 
-test_that("use_skill_search_code() returns path invisibly (#12)", {
+test_that("use_skill_search_code() returns path invisibly (#20)", {
   skip_if_not_installed("astgrepr")
   proj_dir <- local_pkg()
   result <- withVisible(suppressMessages(use_skill_search_code(open = FALSE)))
@@ -18,7 +18,7 @@ test_that("use_skill_search_code() returns path invisibly (#12)", {
   )
 })
 
-test_that("use_skill_search_code() adds astgrepr to Suggests when absent (#12)", {
+test_that("use_skill_search_code() adds astgrepr to Suggests when absent (#20)", {
   skip_if_not_installed("astgrepr")
   proj_dir <- local_pkg()
   suppressMessages(use_skill_search_code(open = FALSE))
@@ -28,7 +28,7 @@ test_that("use_skill_search_code() adds astgrepr to Suggests when absent (#12)",
   expect_equal(astgrepr_row$type, "Suggests")
 })
 
-test_that("use_skill_search_code() does not modify DESCRIPTION when astgrepr already in Suggests (#12)", {
+test_that("use_skill_search_code() does not modify DESCRIPTION when astgrepr already in Suggests (#20)", {
   proj_dir <- local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -46,7 +46,7 @@ test_that("use_skill_search_code() does not modify DESCRIPTION when astgrepr alr
   expect_equal(astgrepr_rows$type, "Suggests")
 })
 
-test_that("use_skill_search_code() does not modify DESCRIPTION when astgrepr already in Imports (#12)", {
+test_that("use_skill_search_code() does not modify DESCRIPTION when astgrepr already in Imports (#20)", {
   proj_dir <- local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
