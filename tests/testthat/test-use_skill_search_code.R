@@ -1,4 +1,5 @@
 test_that("use_skill_search_code() installs skill at correct path (#12)", {
+  skip_if_not_installed("astgrepr")
   proj_dir <- local_pkg()
   suppressMessages(use_skill_search_code(open = FALSE))
   expect_true(
@@ -7,6 +8,7 @@ test_that("use_skill_search_code() installs skill at correct path (#12)", {
 })
 
 test_that("use_skill_search_code() returns path invisibly (#12)", {
+  skip_if_not_installed("astgrepr")
   proj_dir <- local_pkg()
   result <- withVisible(suppressMessages(use_skill_search_code(open = FALSE)))
   expect_false(result$visible)
@@ -17,6 +19,7 @@ test_that("use_skill_search_code() returns path invisibly (#12)", {
 })
 
 test_that("use_skill_search_code() adds astgrepr to Suggests when absent (#12)", {
+  skip_if_not_installed("astgrepr")
   proj_dir <- local_pkg()
   suppressMessages(use_skill_search_code(open = FALSE))
   deps <- desc::desc(fs::path(proj_dir, "DESCRIPTION"))$get_deps()

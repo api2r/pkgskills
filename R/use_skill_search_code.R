@@ -24,17 +24,12 @@ use_skill_search_code <- function(
     open = open
   )
 
-  desc_path <- usethis::proj_path("DESCRIPTION")
-  d <- desc::desc(desc_path)
-  deps <- d$get_deps()
+  deps <- desc::desc(usethis::proj_path("DESCRIPTION"))$get_deps()
   already_dep <- "astgrepr" %in%
     deps[deps$type %in% c("Imports", "Suggests"), "package"]
   if (!already_dep) {
-    d$set_dep("astgrepr", "Suggests")
-    d$write()
-    cli::cli_inform(
-      c(v = "Adding {.pkg astgrepr} to {.field Suggests} field in DESCRIPTION.")
-    )
+    rlang::check_installed("astgrepr")
+    usethis::use_package("astgrepr", "Suggests")
   }
 
   invisible(skill_path)
