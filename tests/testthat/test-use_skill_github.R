@@ -1,4 +1,4 @@
-test_that("use_skill_github() installs skill at correct path", {
+test_that("use_skill_github() installs skill at correct path (#17)", {
   proj_dir <- local_pkg()
   suppressMessages(use_skill_github(open = FALSE))
   expect_true(
@@ -6,7 +6,7 @@ test_that("use_skill_github() installs skill at correct path", {
   )
 })
 
-test_that("use_skill_github() returns path invisibly", {
+test_that("use_skill_github() returns path invisibly (#17)", {
   proj_dir <- local_pkg()
   result <- withVisible(suppressMessages(use_skill_github(open = FALSE)))
   expect_false(result$visible)
