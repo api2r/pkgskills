@@ -4,6 +4,8 @@
 
 - [`use_agent()`](https://api2r.github.io/pkgskills/reference/use_agent.md)
   : Create an AGENTS.md file for your project
+- [`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md) :
+  Set up the full AI agent suite for a project
 - [`use_github_copilot()`](https://api2r.github.io/pkgskills/reference/use_github_copilot.md)
   : Install GitHub Copilot setup workflow into a project
 - [`use_skill_create_issue()`](https://api2r.github.io/pkgskills/reference/use_skill_create_issue.md)

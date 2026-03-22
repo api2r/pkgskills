@@ -2,6 +2,10 @@
 
 ## pkgskills (development version)
 
+- [`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md)
+  sets up the full AI agent suite in a single call, installing
+  `AGENTS.md`, the GitHub Copilot workflow, and all selected skills
+  ([\#28](https://github.com/api2r/pkgskills/issues/28)).
 - [`use_github_copilot()`](https://api2r.github.io/pkgskills/reference/use_github_copilot.md)
   installs a `copilot-setup-steps.yml` workflow and its companion
   reusable `install` action into `.github/workflows/`
