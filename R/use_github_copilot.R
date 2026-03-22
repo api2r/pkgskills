@@ -31,13 +31,11 @@ use_github_copilot <- function(
   .use_template(
     "workflows/copilot-setup-steps.yml",
     ".github/workflows/copilot-setup-steps.yml",
-    data = list(),
     open = open
   )
   .use_template(
     "workflows/install/action.yml",
     ".github/workflows/install/action.yml",
-    data = list(),
     open = FALSE
   )
 
