@@ -24,7 +24,10 @@ test_that("use_github_copilot() returns path to copilot-setup-steps.yml invisibl
   expect_false(result$visible)
   expect_equal(
     fs::path_real(result$value),
-    fs::path_real(fs::path(proj_dir, ".github/workflows/copilot-setup-steps.yml"))
+    fs::path_real(fs::path(
+      proj_dir,
+      ".github/workflows/copilot-setup-steps.yml"
+    ))
   )
 })
 
