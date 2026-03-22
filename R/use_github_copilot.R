@@ -16,8 +16,8 @@ use_github_copilot <- function(
   overwrite = FALSE,
   open = rlang::is_interactive()
 ) {
-  overwrite <- stbl::to_lgl_scalar(overwrite, allow_null = FALSE)
-  open <- stbl::to_lgl_scalar(open, allow_null = FALSE)
+  overwrite <- stbl::to_lgl_scalar(overwrite)
+  open <- stbl::to_lgl_scalar(open)
 
   .path_proj_save_as(".github/workflows/copilot-setup-steps.yml", overwrite)
   .path_proj_save_as(".github/workflows/install/action.yml", overwrite)
