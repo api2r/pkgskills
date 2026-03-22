@@ -16,7 +16,6 @@ jobs:
   copilot-setup-steps:
     runs-on: ubuntu-latest
 
-    # Lowest permissions needed; Copilot gets its own token for its operations.
     permissions:
       contents: read
 
@@ -28,15 +27,29 @@ jobs:
           token: ${{ secrets.GITHUB_TOKEN }}
           cache-version: copilot
           needs: build, check, website
+          # Extra packages include things referenced in skills, to make sure the
+          # agent has them available.
           extra-packages: >-
-            any::rcmdcheck
-            any::roxygen2
-            any::pkgdown
-            any::usethis
-            any::devtools
-            any::covr
             any::astgrepr
+            any::cli
+            any::covr
+            any::devtools
+            any::pak
+            any::pkgdown
+            any::purrr
+            any::rcmdcheck
+            any::rlang
+            any::roxygen2
+            any::testthat
+            any::usethis
+            any::withr
             local::.
+
+      # This step can be removed (and stbl moved up) when stbl is updated on
+      # CRAN.
+      - name: Install dev stbl
+        run: pak::pak("wranglezone/stbl")
+        shell: Rscript {0}
 
       - name: Install air
         uses: posit-dev/setup-air@v1
