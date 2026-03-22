@@ -1,4 +1,4 @@
-test_that("use_skill_implement_issue() installs skill at correct path", {
+test_that("use_skill_implement_issue() installs skill at correct path (#18)", {
   proj_dir <- local_pkg()
   suppressMessages(use_skill_implement_issue(open = FALSE))
   expect_true(
@@ -8,7 +8,7 @@ test_that("use_skill_implement_issue() installs skill at correct path", {
   )
 })
 
-test_that("use_skill_implement_issue() returns path invisibly", {
+test_that("use_skill_implement_issue() returns path invisibly (#18)", {
   proj_dir <- local_pkg()
   result <- withVisible(suppressMessages(use_skill_implement_issue(
     open = FALSE
