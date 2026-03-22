@@ -17,6 +17,7 @@ Imports:
     desc,
     fs,
     gh,
+    purrr,
     rlang,
     stbl,
     stringr,
