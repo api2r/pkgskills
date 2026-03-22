@@ -28,7 +28,9 @@ Defaults to \code{TRUE}.}
 The path to the installed skill file, invisibly.
 }
 \description{
-Installs the \code{search-code} skill template into the project.
+Installs the \code{search-code} skill template into the project and, if
+\code{astgrepr} is not already listed in \code{Imports} or \code{Suggests}, adds it to
+\code{Suggests}.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
