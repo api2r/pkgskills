@@ -10,6 +10,8 @@
   : Install the document skill into a project
 - [`use_skill_github()`](https://api2r.github.io/pkgskills/reference/use_skill_github.md)
   : Install the github skill into a project
+- [`use_skill_implement_issue()`](https://api2r.github.io/pkgskills/reference/use_skill_implement_issue.md)
+  : Install the implement-issue skill into a project
 - [`use_skill_r_code()`](https://api2r.github.io/pkgskills/reference/use_skill_r_code.md)
   : Install the r-code skill into a project
 - [`use_skill_search_code()`](https://api2r.github.io/pkgskills/reference/use_skill_search_code.md)

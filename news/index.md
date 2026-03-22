@@ -2,6 +2,9 @@
 
 ## pkgskills (development version)
 
+- [`use_skill_implement_issue()`](https://api2r.github.io/pkgskills/reference/use_skill_implement_issue.md)
+  installs the `implement-issue` skill into the target project
+  ([\#18](https://github.com/api2r/pkgskills/issues/18)).
 - [`use_skill_github()`](https://api2r.github.io/pkgskills/reference/use_skill_github.md)
   installs the `github` skill, providing AI agents with `gh` CLI
   guidance and conventional commit message conventions
