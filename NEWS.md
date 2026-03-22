@@ -1,5 +1,7 @@
 # pkgskills (development version)
 
+* `use_skill_github()` installs the `github` skill, providing AI agents with
+  `gh` CLI guidance and conventional commit message conventions (#17).
 * `use_skill_r_code()` installs the `r-code` skill into the target project (#17).
 * `use_skill_search_code()` installs the `search-code` skill into the target project (#20).
 * `use_skill_tdd_workflow()` installs the `tdd-workflow` skill and bootstraps
