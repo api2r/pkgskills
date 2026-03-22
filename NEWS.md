@@ -1,5 +1,6 @@
 # pkgskills (development version)
 
+* `use_github_copilot()` installs a `copilot-setup-steps.yml` workflow and its companion reusable `install` action into `.github/workflows/` (#17).
 * `use_skill_implement_issue()` installs the `implement-issue` skill into the target project (#18).
 * `use_skill_github()` installs the `github` skill, providing AI agents with
   `gh` CLI guidance and conventional commit message conventions (#17).
