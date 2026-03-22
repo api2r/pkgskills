@@ -1,5 +1,6 @@
 # pkgskills (development version)
 
+* `use_skill_search_code()` installs the `search-code` skill into the target project (#20).
 * `use_skill_tdd_workflow()` installs the `tdd-workflow` skill and bootstraps
   `tests/testthat/helper-expectations.R` in the target project (#11).
 * `use_skill_document()` installs the `document` skill and, if absent, creates a starter `R/aaa-shared_params.R` file from a built-in template (#9).
