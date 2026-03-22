@@ -9,8 +9,8 @@
 #' @param target_skills_dir (`character(1)`) Directory where skills will be
 #'   installed. Passed to all `use_skill_*()` functions as `target_dir`.
 #' @param skills (`character`) Which skills to install. Defaults to all known
-#'   skills. Validated with `rlang::arg_match(skills, multiple = TRUE)`. Pass
-#'   a subset to install only specific skills, or `character(0)` for none.
+#'   skills. Pass a subset to install only specific skills, or `character(0)`
+#'   for none.
 #' @inheritParams .shared-params
 #' @returns A named list of paths returned by each wrapped function, invisibly.
 #'   Names match the function name that produced each path (e.g.

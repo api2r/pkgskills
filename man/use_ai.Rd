@@ -35,8 +35,8 @@ Defaults to \code{TRUE}.}
 \code{gh::gh_token()}.}
 
 \item{skills}{(\code{character}) Which skills to install. Defaults to all known
-skills. Validated with \code{rlang::arg_match(skills, multiple = TRUE)}. Pass
-a subset to install only specific skills, or \code{character(0)} for none.}
+skills. Pass a subset to install only specific skills, or \code{character(0)}
+for none.}
 }
 \value{
 A named list of paths returned by each wrapped function, invisibly.
