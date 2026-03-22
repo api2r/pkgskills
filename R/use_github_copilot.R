@@ -19,8 +19,14 @@ use_github_copilot <- function(
   overwrite <- stbl::to_lgl_scalar(overwrite)
   open <- stbl::to_lgl_scalar(open)
 
-  path_copilot_abs <- .path_proj_save_as(".github/workflows/copilot-setup-steps.yml", overwrite)
-  path_install_abs <- .path_proj_save_as(".github/workflows/install/action.yml", overwrite)
+  path_copilot_abs <- .path_proj_save_as(
+    ".github/workflows/copilot-setup-steps.yml",
+    overwrite
+  )
+  path_install_abs <- .path_proj_save_as(
+    ".github/workflows/install/action.yml",
+    overwrite
+  )
 
   .use_template(
     "workflows/copilot-setup-steps.yml",
