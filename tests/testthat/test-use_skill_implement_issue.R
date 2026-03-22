@@ -10,7 +10,9 @@ test_that("use_skill_implement_issue() installs skill at correct path", {
 
 test_that("use_skill_implement_issue() returns path invisibly", {
   proj_dir <- local_pkg()
-  result <- withVisible(suppressMessages(use_skill_implement_issue(open = FALSE)))
+  result <- withVisible(suppressMessages(use_skill_implement_issue(
+    open = FALSE
+  )))
   expect_false(result$visible)
   expect_equal(
     fs::path_real(result$value),
