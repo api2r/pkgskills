@@ -2,6 +2,9 @@
 
 ## pkgskills (development version)
 
+- [`use_skill_search_code()`](https://api2r.github.io/pkgskills/reference/use_skill_search_code.md)
+  installs the `search-code` skill into the target project
+  ([\#20](https://github.com/api2r/pkgskills/issues/20)).
 - [`use_skill_tdd_workflow()`](https://api2r.github.io/pkgskills/reference/use_skill_tdd_workflow.md)
   installs the `tdd-workflow` skill and bootstraps
   `tests/testthat/helper-expectations.R` in the target project
