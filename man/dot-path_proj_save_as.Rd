@@ -11,7 +11,7 @@
 root.}
 
 \item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
-Defaults to \code{TRUE}.}
+Defaults to \code{FALSE}.}
 
 \item{call}{(\code{environment}) The caller environment for error messages.}
 }

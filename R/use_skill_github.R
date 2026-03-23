@@ -13,7 +13,7 @@
 use_skill_github <- function(
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive()
 ) {
   .use_skill(

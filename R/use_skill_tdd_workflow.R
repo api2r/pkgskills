@@ -13,7 +13,7 @@
 use_skill_tdd_workflow <- function(
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive()
 ) {
   pkg_name <- .get_desc_fields("Package")[["Package"]]

@@ -13,7 +13,7 @@
 use_skill_search_code <- function(
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive()
 ) {
   deps <- desc::desc_get_deps(usethis::proj_path("DESCRIPTION"))

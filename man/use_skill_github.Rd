@@ -7,7 +7,7 @@
 use_skill_github(
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive()
 )
 }
@@ -20,7 +20,7 @@ under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE}
 producing \code{.github/skills/{skill}/SKILL.md}.}
 
 \item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
-Defaults to \code{TRUE}.}
+Defaults to \code{FALSE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 }

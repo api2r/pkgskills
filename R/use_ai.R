@@ -24,7 +24,7 @@ use_ai <- function(
   save_agent_as = "AGENTS.md",
   target_skills_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
   skills = c(
@@ -39,7 +39,11 @@ use_ai <- function(
 ) {
   skills <- rlang::arg_match(skills, multiple = TRUE)
 
-  agent_path <- use_agent(save_as = save_agent_as, open = open)
+  agent_path <- use_agent(
+    save_as = save_agent_as,
+    overwrite = overwrite,
+    open = open
+  )
   copilot_path <- use_github_copilot(overwrite = overwrite, open = open)
 
   skill_fn_names <- stringr::str_c(
