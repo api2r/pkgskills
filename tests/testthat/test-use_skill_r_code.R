@@ -1,4 +1,4 @@
-test_that("use_skill_r_code() installs skill at correct path (#17)", {
+test_that("use_skill_r_code() installs skill at correct path (#19)", {
   proj_dir <- local_pkg()
   suppressMessages(use_skill_r_code(open = FALSE))
   expect_true(
@@ -6,7 +6,7 @@ test_that("use_skill_r_code() installs skill at correct path (#17)", {
   )
 })
 
-test_that("use_skill_r_code() returns path invisibly (#17)", {
+test_that("use_skill_r_code() returns path invisibly (#19)", {
   proj_dir <- local_pkg()
   result <- withVisible(suppressMessages(use_skill_r_code(open = FALSE)))
   expect_false(result$visible)
@@ -16,7 +16,7 @@ test_that("use_skill_r_code() returns path invisibly (#17)", {
   )
 })
 
-test_that("use_skill_r_code() emits install message (#17)", {
+test_that("use_skill_r_code() emits install message (#19)", {
   local_pkg()
   expect_snapshot(use_skill_r_code(open = FALSE))
 })
