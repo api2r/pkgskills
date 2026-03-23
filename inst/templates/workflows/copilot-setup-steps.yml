@@ -44,13 +44,8 @@ jobs:
             any::testthat
             any::usethis
             any::withr
+            wranglezone/stbl
             local::.
-
-      # This step can be removed (and stbl moved up) when stbl is updated on
-      # CRAN.
-      - name: Install dev stbl
-        run: pak::pak("wranglezone/stbl")
-        shell: Rscript {0}
 
       - name: Install air
         uses: posit-dev/setup-air@v1
