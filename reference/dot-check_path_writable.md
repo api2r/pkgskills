@@ -17,7 +17,7 @@ Check whether a path is writable
 - overwrite:
 
   (`logical(1)`) Whether to overwrite an existing file. Defaults to
-  `TRUE`.
+  `FALSE`.
 
 - call:
 

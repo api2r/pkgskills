@@ -10,7 +10,7 @@ Install a skill into a project
   data = list(),
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive(),
   call = caller_env()
 )
@@ -42,7 +42,7 @@ Install a skill into a project
 - overwrite:
 
   (`logical(1)`) Whether to overwrite an existing file. Defaults to
-  `TRUE`.
+  `FALSE`.
 
 - open:
 

@@ -75,7 +75,7 @@ pkgskills::use_ai(
   save_agent_as = "AGENTS.md",
   target_skills_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
   skills = c(
@@ -88,7 +88,7 @@ pkgskills::use_ai(
 Key parameters:
 
 - `skills`: subset the skills that get installed.
-- `overwrite`: whether to overwrite existing files (default `TRUE`).
+- `overwrite`: whether to overwrite existing files (default `FALSE`).
 - `open`: whether to open `AGENTS.md` for editing after installation.
 
 ## How skills work

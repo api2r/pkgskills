@@ -14,7 +14,7 @@ use_ai(
   save_agent_as = "AGENTS.md",
   target_skills_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
   skills = c("create-issue", "document", "github", "implement-issue", "r-code",
@@ -45,7 +45,7 @@ use_ai(
 - overwrite:
 
   (`logical(1)`) Whether to overwrite an existing file. Defaults to
-  `TRUE`.
+  `FALSE`.
 
 - open:
 

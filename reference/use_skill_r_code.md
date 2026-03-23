@@ -8,7 +8,7 @@ Installs the `r-code` skill template into the project.
 use_skill_r_code(
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive()
 )
 ```
@@ -29,7 +29,7 @@ use_skill_r_code(
 - overwrite:
 
   (`logical(1)`) Whether to overwrite an existing file. Defaults to
-  `TRUE`.
+  `FALSE`.
 
 - open:
 

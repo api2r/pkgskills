@@ -7,7 +7,11 @@ file.
 ## Usage
 
 ``` r
-use_agent(save_as = "AGENTS.md", open = rlang::is_interactive())
+use_agent(
+  save_as = "AGENTS.md",
+  overwrite = FALSE,
+  open = rlang::is_interactive()
+)
 ```
 
 ## Arguments
@@ -15,6 +19,11 @@ use_agent(save_as = "AGENTS.md", open = rlang::is_interactive())
 - save_as:
 
   (`character(1)`) Output file path, relative to the project root.
+
+- overwrite:
+
+  (`logical(1)`) Whether to overwrite an existing file. Defaults to
+  `FALSE`.
 
 - open:
 

@@ -10,7 +10,7 @@ end-to-end in the package.
 use_skill_implement_issue(
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive()
 )
 ```
@@ -31,7 +31,7 @@ use_skill_implement_issue(
 - overwrite:
 
   (`logical(1)`) Whether to overwrite an existing file. Defaults to
-  `TRUE`.
+  `FALSE`.
 
 - open:
 

@@ -43,7 +43,7 @@ to make them easier to import and to find.
 - overwrite:
 
   (`logical(1)`) Whether to overwrite an existing file. Defaults to
-  `TRUE`.
+  `FALSE`.
 
 - owner:
 
