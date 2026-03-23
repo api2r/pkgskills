@@ -2,6 +2,11 @@
 
 ## pkgskills (development version)
 
+- [`vignette("pkgskills")`](https://api2r.github.io/pkgskills/articles/pkgskills.md)
+  now provides a complete “Get Started” guide covering terminology,
+  [`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md)
+  setup, skill descriptions, and issue-writing best practices
+  ([\#31](https://github.com/api2r/pkgskills/issues/31)).
 - [`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md)
   sets up the full AI agent suite in a single call, installing
   `AGENTS.md`, the GitHub Copilot workflow, and all selected skills

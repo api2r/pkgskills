@@ -31,6 +31,7 @@
 
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
+<li class="nav-item"><a class="nav-link" href="articles/pkgskills.html">Get started</a></li>
 <li class="nav-item"><a class="nav-link" href="reference/index.html">Reference</a></li>
 <li class="nav-item"><a class="nav-link" href="news/index.html">Changelog</a></li>
       </ul>
@@ -55,7 +56,7 @@
 <div class="section level2">
 <h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
 </h2>
-<p>You can install the development version of pkgskills from <a href="https://github.com/" class="external-link">GitHub</a> with:</p>
+<p>You can install pkgskills from <a href="https://github.com/api2r/pkgskills" class="external-link">GitHub</a> with:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="co"># install.packages("pak")</span></span>
 <span><span class="fu">pak</span><span class="fu">::</span><span class="fu"><a href="https://pak.r-lib.org/reference/pak.html" class="external-link">pak</a></span><span class="op">(</span><span class="st">"api2r/pkgskills"</span><span class="op">)</span></span></code></pre></div>
@@ -63,7 +64,19 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Add usage information and examples here.</p>
+<p>pkgskills installs <code>AGENTS.md</code> and curated skill files into an R package project, giving AI coding agents the project-specific context they need to contribute effectively. The quickest way to get started is a single call to <code><a href="reference/use_ai.html">use_ai()</a></code>:</p>
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
+<code class="sourceCode R"><span><span class="fu">pkgskills</span><span class="fu">::</span><span class="fu"><a href="reference/use_ai.html">use_ai</a></span><span class="op">(</span><span class="op">)</span></span></code></pre></div>
+<p>This installs:</p>
+<ul>
+<li>
+<strong><code>AGENTS.md</code></strong> — a top-level context file describing your repository layout, standard workflow, and available skills.</li>
+<li>
+<strong>A GitHub Copilot workflow</strong> — so Copilot Coding Agent can work on your repository.</li>
+<li>
+<strong>Seven skills</strong> in <code>.github/skills/</code> — opinionated guidance for creating issues, implementing issues, writing R code, test-driven development, documenting functions, code search, and GitHub CLI usage.</li>
+</ul>
+<p>See <code><a href="articles/pkgskills.html">vignette("pkgskills")</a></code> for a full walkthrough.</p>
 </div>
 <div class="section level2">
 <h2 id="code-of-conduct">Code of Conduct<a class="anchor" aria-label="anchor" href="#code-of-conduct"></a>
