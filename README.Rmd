@@ -26,7 +26,7 @@ A collection of curated, opinionated skills and agent instructions to improve ag
 
 ## Installation
 
-You can install pkgskills from [GitHub](https://github.com/) with:
+You can install pkgskills from [GitHub](https://github.com/api2r/pkgskills) with:
 
 ``` r
 # install.packages("pak")

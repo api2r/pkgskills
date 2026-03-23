@@ -19,7 +19,8 @@ improve agentic coding of R packages.
 
 ## Installation
 
-You can install pkgskills from [GitHub](https://github.com/) with:
+You can install pkgskills from
+[GitHub](https://github.com/api2r/pkgskills) with:
 
 ``` r
 # install.packages("pak")
