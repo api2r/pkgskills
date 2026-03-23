@@ -56,7 +56,7 @@ This call installs three things:
 The full signature is:
 
 ```r
-use_ai(
+pkgskills::use_ai(
   save_agent_as = "AGENTS.md",
   target_skills_dir = ".github",
   use_skills_subdir = TRUE,
@@ -92,7 +92,7 @@ By embedding these references into skills, pkgskills helps to ensure that agents
 
 pkgskills ships seven skills:
 
-- **`create-issue`**: creates well-structured GitHub issues via the `gh` CLI and GraphQL API; enforces conventional-commit titles and a standardised body format.
+- **`create-issue`**: creates well-structured GitHub issues via the `gh` CLI and GraphQL API; enforces conventional-commit titles and a standardized body format.
 - **`implement-issue`**: end-to-end workflow for implementing a GitHub issue: fetch the issue, plan, write tests first, implement, document, run checks, and open a pull request.
 - **`r-code`**: opinionated guidance on R function design, error handling, and code patterns for package development. Draws on [Tidy design principles](https://design.tidyverse.org/) for API design decisions and the [Tidyverse style guide](https://style.tidyverse.org/) for code style.
 - **`tdd-workflow`**: test-driven development: write a failing test, implement to pass, refactor.
@@ -117,7 +117,7 @@ The `create-issue` skill structures issue bodies with these sections:
 |---|---|
 | `## Summary` | A single user-story sentence: "As a [role], in order to [goal], I would like to [feature]." |
 | `## Proposed signature` | (Feature issues) The proposed function signature, argument descriptions, and return value. |
-| `## Behavior` | Expected behaviour and edge cases (features), or current vs. expected behaviour (bugs). |
+| `## Behavior` | Expected behavior and edge cases (features), or current vs. expected behavior (bugs). |
 | `## Details` | Optional. Implementation details that don't fit elsewhere. |
 | `## References` | Optional. Related code, URLs, or prior art. |
 
