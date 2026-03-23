@@ -8,7 +8,7 @@
   data = list(),
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive(),
   call = caller_env()
 ) {

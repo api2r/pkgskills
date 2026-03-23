@@ -11,7 +11,7 @@
 use_skill_r_code <- function(
   target_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive()
 ) {
   skill_path <- .use_skill(

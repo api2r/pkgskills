@@ -9,14 +9,15 @@
 #' @examplesIf interactive()
 #'
 #'   use_agent()
-use_agent <- function(save_as = "AGENTS.md", open = rlang::is_interactive()) {
+use_agent <- function(
+  save_as = "AGENTS.md",
+  overwrite = FALSE,
+  open = rlang::is_interactive()
+) {
   save_as <- .to_string(save_as)
-  data <- as.list(stats::na.omit(
-    desc::desc_get(
-      c("Package", "Title", "Description", "URL"),
-      file = usethis::proj_path("DESCRIPTION")
-    )
-  ))
+  overwrite <- stbl::to_lgl_scalar(overwrite)
+  .path_proj_save_as(save_as, overwrite)
+  data <- .get_desc_fields(c("Package", "Title", "Description", "URL"))
   .use_template("AGENTS.md", save_as, data = data, open = open)
   cli::cli_inform(c(
     "{.file AGENTS.md} created.",

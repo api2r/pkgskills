@@ -8,7 +8,7 @@ use_ai(
   save_agent_as = "AGENTS.md",
   target_skills_dir = ".github",
   use_skills_subdir = TRUE,
-  overwrite = TRUE,
+  overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
   skills = c("create-issue", "document", "github", "implement-issue", "r-code",
@@ -27,7 +27,7 @@ under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE}
 producing \code{.github/skills/{skill}/SKILL.md}.}
 
 \item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
-Defaults to \code{TRUE}.}
+Defaults to \code{FALSE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 

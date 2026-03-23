@@ -6,6 +6,8 @@
 \alias{pkgskills-package}
 \title{pkgskills: AI Skills for R Package Development}
 \description{
+\if{html}{\figure{logo.png}{options: style='float: right' alt='logo' width='120'}}
+
 A collection of curated, opinionated skills and agent instructions to improve agentic coding of R packages.
 }
 \seealso{
