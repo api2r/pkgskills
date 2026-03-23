@@ -1,5 +1,6 @@
 # pkgskills (development version)
 
+* `vignette("pkgskills")` now provides a complete "Get Started" guide covering terminology, `use_ai()` setup, skill descriptions, and issue-writing best practices (#31).
 * `use_ai()` sets up the full AI agent suite in a single call, installing `AGENTS.md`, the GitHub Copilot workflow, and all selected skills (#28).
 * `use_github_copilot()` installs a `copilot-setup-steps.yml` workflow and its companion reusable `install` action into `.github/workflows/` (#25).
 * `use_skill_implement_issue()` installs the `implement-issue` skill into the target project (#18).
