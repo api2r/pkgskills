@@ -1,7 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-# pkgskills
+# pkgskills <a href="https://api2r.github.io/pkgskills/"><img src="man/figures/logo.png" align="right" height="120" alt="pkgskills website" /></a>
 
 <!-- badges: start -->
 
