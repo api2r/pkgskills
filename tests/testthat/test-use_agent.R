@@ -72,7 +72,7 @@ test_that("use_agent() respects a custom save_as path (#2)", {
   )
 })
 
-test_that("use_agent() errors if AGENTS.md exists and overwrite = FALSE", {
+test_that("use_agent() errors if AGENTS.md exists and overwrite = FALSE (#36)", {
   proj_dir <- local_pkg("AGENTS.md" = "# existing")
   expect_error(
     suppressMessages(use_agent(open = FALSE)),
@@ -81,7 +81,7 @@ test_that("use_agent() errors if AGENTS.md exists and overwrite = FALSE", {
   expect_equal(readLines(fs::path(proj_dir, "AGENTS.md")), "# existing")
 })
 
-test_that("use_agent() overwrites AGENTS.md when overwrite = TRUE", {
+test_that("use_agent() overwrites AGENTS.md when overwrite = TRUE (#36)", {
   proj_dir <- local_pkg("AGENTS.md" = "# existing")
   suppressMessages(use_agent(overwrite = TRUE, open = FALSE))
   content <- readLines(fs::path(proj_dir, "AGENTS.md"))
