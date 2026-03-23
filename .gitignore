@@ -8,3 +8,5 @@ docs
 .positai
 conversation-export.json
 _problems/
+inst/doc
+README.html
