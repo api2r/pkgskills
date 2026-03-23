@@ -34,6 +34,7 @@ jobs:
             any::cli
             any::covr
             any::devtools
+            any::magick
             any::pak
             any::pkgdown
             any::purrr
