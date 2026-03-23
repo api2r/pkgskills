@@ -7,14 +7,14 @@
 use_github_copilot(overwrite = FALSE, open = rlang::is_interactive())
 }
 \arguments{
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing files.
-Defaults to \code{FALSE}.}
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing files. Defaults
+to \code{FALSE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 }
 \value{
-The path to the installed \code{.github/workflows/copilot-setup-steps.yml},
-invisibly.
+The path to the installed
+\code{.github/workflows/copilot-setup-steps.yml}, invisibly.
 }
 \description{
 Installs a \code{copilot-setup-steps.yml} workflow and its companion reusable

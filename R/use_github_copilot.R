@@ -3,11 +3,11 @@
 #' Installs a `copilot-setup-steps.yml` workflow and its companion reusable
 #' `install` action into the project's `.github/workflows/` directory.
 #'
-#' @param overwrite (`logical(1)`) Whether to overwrite existing files.
-#'   Defaults to `FALSE`.
+#' @param overwrite (`logical(1)`) Whether to overwrite existing files. Defaults
+#'   to `FALSE`.
 #' @inheritParams .shared-params
-#' @returns The path to the installed `.github/workflows/copilot-setup-steps.yml`,
-#'   invisibly.
+#' @returns The path to the installed
+#'   `.github/workflows/copilot-setup-steps.yml`, invisibly.
 #' @export
 #' @examplesIf interactive()
 #'
