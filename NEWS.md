@@ -1,7 +1,7 @@
 # pkgskills (development version)
 
-* `use_agent()` now accepts an `overwrite` argument (default `FALSE`) and errors if `AGENTS.md` already exists, consistent with other `use_*()` functions (@jonthegeek, #36).
-* All `use_*()` functions that accept `overwrite` now default to `FALSE` instead of `TRUE` (@jonthegeek, #36).
+* `use_agent()` now accepts an `overwrite` argument (default `FALSE`) and errors if `AGENTS.md` already exists, consistent with other `use_*()` functions (#36).
+* All `use_*()` functions that accept `overwrite` now default to `FALSE` (#36).
 
 * `vignette("pkgskills")` now provides a complete "Get Started" guide covering terminology, `use_ai()` setup, skill descriptions, and issue-writing best practices (#31).
 * `use_ai()` sets up the full AI agent suite in a single call, installing `AGENTS.md`, the GitHub Copilot workflow, and all selected skills (#28).
