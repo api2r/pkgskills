@@ -52,5 +52,10 @@ jobs:
         run: pak::pak("wranglezone/stbl")
         shell: Rscript {0}
 
+      # We will stick with the GitHub version of qcthat.
+      - name: Install qcthat
+        run: pak::pak("Gilead-BioStats/qcthat")
+        shell: Rscript {0}
+
       - name: Install air
         uses: posit-dev/setup-air@v1
