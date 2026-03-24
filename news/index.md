@@ -2,6 +2,13 @@
 
 ## pkgskills (development version)
 
+- [`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md)
+  now works when called via
+  [`pkgskills::use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md)
+  without first calling
+  [`library(pkgskills)`](https://github.com/api2r/pkgskills)
+  ([\#42](https://github.com/api2r/pkgskills/issues/42)).
+
 - [`use_agent()`](https://api2r.github.io/pkgskills/reference/use_agent.md)
   now accepts an `overwrite` argument (default `FALSE`) and errors if
   `AGENTS.md` already exists, consistent with other `use_*()` functions
