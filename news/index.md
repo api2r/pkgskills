@@ -2,6 +2,12 @@
 
 ## pkgskills (development version)
 
+- [`use_github_copilot()`](https://api2r.github.io/pkgskills/reference/use_github_copilot.md)
+  now writes workflow files byte-for-byte from the templates, preserving
+  `${{ }}` GitHub Actions expressions that were previously corrupted by
+  whisker rendering
+  ([\#44](https://github.com/api2r/pkgskills/issues/44)).
+
 - [`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md)
   now works when called via
   [`pkgskills::use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md)
