@@ -14,7 +14,7 @@ use_agent <- function(
   overwrite = FALSE,
   open = rlang::is_interactive()
 ) {
-  save_as <- .to_string(save_as)
+  save_as <- stbl::to_character_scalar(save_as)
   overwrite <- stbl::to_lgl_scalar(overwrite)
   .path_proj_save_as(save_as, overwrite)
   data <- .get_desc_fields(c("Package", "Title", "Description", "URL"))

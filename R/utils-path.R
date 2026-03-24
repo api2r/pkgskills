@@ -38,8 +38,8 @@
 #'   `overwrite = FALSE`.
 #' @keywords internal
 .check_path_writable <- function(path, overwrite, call = caller_env()) {
-  path <- .to_string(path, call = call)
-  overwrite <- .to_boolean(overwrite, call = call)
+  path <- stbl::to_character_scalar(path, call = call)
+  overwrite <- stbl::to_lgl_scalar(overwrite, call = call)
   if (fs::file_exists(path)) {
     if (overwrite) {
       fs::file_delete(path)
