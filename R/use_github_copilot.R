@@ -28,12 +28,12 @@ use_github_copilot <- function(
     overwrite
   )
 
-  .use_template(
+  .use_template_as_is(
     "workflows/copilot-setup-steps.yml",
     ".github/workflows/copilot-setup-steps.yml",
     open = open
   )
-  .use_template(
+  .use_template_as_is(
     "workflows/install/action.yml",
     ".github/workflows/install/action.yml",
     open = FALSE

@@ -25,6 +25,31 @@
   )
 }
 
+#' Write a template verbatim to a project file
+#'
+#' @inheritParams .shared-params
+#' @returns Called for side effects.
+#' @keywords internal
+.use_template_as_is <- function(
+  template,
+  save_as,
+  overwrite = FALSE,
+  open = FALSE,
+  call = caller_env()
+) {
+  save_as <- .to_string(save_as, call = call)
+  template <- .to_string(template, call = call)
+  open <- stbl::to_lgl_scalar(open, allow_null = FALSE, call = call)
+  path <- usethis::proj_path(save_as)
+  .check_path_writable(path, overwrite, call = call)
+  fs::dir_create(fs::path_dir(path))
+  content <- readLines(.path_template(template), warn = FALSE)
+  usethis::write_over(path, content, overwrite = TRUE)
+  if (open) {
+    usethis::edit_file(path)
+  }
+}
+
 #' Call the GitHub API
 #'
 #' Thin wrapper around [gh::gh()] to facilitate mocking in tests.
