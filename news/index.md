@@ -2,6 +2,14 @@
 
 ## pkgskills (development version)
 
+- Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced
+  with direct
+  [`stbl::to_character_scalar()`](https://stbl.api2r.org/reference/stabilize_chr.html)
+  and
+  [`stbl::to_lgl_scalar()`](https://stbl.api2r.org/reference/stabilize_lgl.html)
+  calls; `R/utils-coerce.R` removed
+  ([\#46](https://github.com/api2r/pkgskills/issues/46)).
+
 - [`use_github_copilot()`](https://api2r.github.io/pkgskills/reference/use_github_copilot.md)
   now writes workflow files byte-for-byte from the templates, preserving
   `${{ }}` GitHub Actions expressions that were previously corrupted by
