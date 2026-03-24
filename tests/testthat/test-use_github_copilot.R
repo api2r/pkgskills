@@ -59,6 +59,24 @@ test_that("use_github_copilot() overwrites files when overwrite = TRUE (#25)", {
   expect_false(identical(workflow_content, "# old"))
 })
 
+test_that("use_github_copilot() preserves ${{ }} in copilot-setup-steps.yml (#45)", {
+  proj_dir <- local_pkg()
+  suppressMessages(use_github_copilot(open = FALSE))
+  workflow_content <- readLines(
+    fs::path(proj_dir, ".github/workflows/copilot-setup-steps.yml")
+  )
+  expect_true(any(grepl("${{", workflow_content, fixed = TRUE)))
+})
+
+test_that("use_github_copilot() preserves ${{ }} in install/action.yml (#45)", {
+  proj_dir <- local_pkg()
+  suppressMessages(use_github_copilot(open = FALSE))
+  action_content <- readLines(
+    fs::path(proj_dir, ".github/workflows/install/action.yml")
+  )
+  expect_true(any(grepl("${{", action_content, fixed = TRUE)))
+})
+
 test_that("use_github_copilot() checks both paths before writing either (#25)", {
   # install/action.yml exists, copilot-setup-steps.yml does not
   # Should error before writing copilot-setup-steps.yml
