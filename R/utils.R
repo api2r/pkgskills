@@ -27,10 +27,6 @@
 
 #' Write a template verbatim to a project file
 #'
-#' Like [.use_template()], but skips whisker rendering — the template is copied
-#' byte-for-byte. Use this for templates that contain `${{ }}` GitHub Actions
-#' expressions that must not be interpreted as whisker variables.
-#'
 #' @inheritParams .shared-params
 #' @returns Called for side effects.
 #' @keywords internal

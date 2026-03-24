@@ -27,8 +27,6 @@ Defaults to \code{FALSE}.}
 Called for side effects.
 }
 \description{
-Like \code{\link[=.use_template]{.use_template()}}, but skips whisker rendering — the template is copied
-byte-for-byte. Use this for templates that contain \verb{$\{\{ \}\}} GitHub Actions
-expressions that must not be interpreted as whisker variables.
+Write a template verbatim to a project file
 }
 \keyword{internal}
