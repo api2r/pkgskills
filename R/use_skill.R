@@ -45,9 +45,9 @@
   use_skills_subdir = TRUE,
   call = caller_env()
 ) {
-  skill <- .to_string(skill, call = call)
-  target_dir <- .to_string(target_dir, call = call)
-  use_skills_subdir <- .to_boolean(use_skills_subdir, call = call)
+  skill <- stbl::to_character_scalar(skill, call = call)
+  target_dir <- stbl::to_character_scalar(target_dir, call = call)
+  use_skills_subdir <- stbl::to_lgl_scalar(use_skills_subdir, call = call)
   if (use_skills_subdir) {
     target_dir <- fs::path(target_dir, "skills")
   }
@@ -78,7 +78,7 @@
 #' @returns (`character(1)`) The trigger phrase.
 #' @keywords internal
 .read_skill_trigger <- function(path, call = caller_env()) {
-  path <- .to_string(path, call = call)
+  path <- stbl::to_character_scalar(path, call = call)
   if (!fs::file_exists(path)) {
     .pkg_abort(
       "Template not found: {.file {path}}.",
@@ -125,7 +125,7 @@
   save_as,
   call = caller_env()
 ) {
-  save_as <- .to_string(save_as, call = call)
+  save_as <- stbl::to_character_scalar(save_as, call = call)
   lines <- readLines(path, warn = FALSE)
   new_row <- .make_skill_row(trigger, save_as, call = call)
 
@@ -215,7 +215,7 @@
 #' @returns (`character(1)`) A markdown table row string.
 #' @keywords internal
 .make_skill_row <- function(trigger, save_as, call = caller_env()) {
-  trigger <- .to_string(trigger, call = call)
+  trigger <- stbl::to_character_scalar(trigger, call = call)
   paste0("| ", trigger, " | @", save_as, " |")
 }
 

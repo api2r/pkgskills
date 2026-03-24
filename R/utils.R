@@ -11,9 +11,9 @@
   open = FALSE,
   call = caller_env()
 ) {
-  save_as <- .to_string(save_as, call = call)
+  save_as <- stbl::to_character_scalar(save_as, call = call)
   data <- stbl::to_list(data, call = call)
-  template <- .to_string(template, call = call)
+  template <- stbl::to_character_scalar(template, call = call)
   open <- stbl::to_lgl_scalar(open, allow_null = FALSE, call = call)
   fs::dir_create(fs::path_dir(usethis::proj_path(save_as)))
   usethis::use_template(
@@ -37,8 +37,8 @@
   open = FALSE,
   call = caller_env()
 ) {
-  save_as <- .to_string(save_as, call = call)
-  template <- .to_string(template, call = call)
+  save_as <- stbl::to_character_scalar(save_as, call = call)
+  template <- stbl::to_character_scalar(template, call = call)
   open <- stbl::to_lgl_scalar(open, allow_null = FALSE, call = call)
   path <- usethis::proj_path(save_as)
   .check_path_writable(path, overwrite, call = call)
