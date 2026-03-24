@@ -1,6 +1,6 @@
 # pkgskills (development version)
 
-* Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced with direct `stbl::to_character_scalar()` and `stbl::to_lgl_scalar()` calls; `R/utils-coerce.R` removed (#47).
+* Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced with direct `stbl::to_character_scalar()` and `stbl::to_lgl_scalar()` calls; `R/utils-coerce.R` removed (#46).
 
 * `use_github_copilot()` now writes workflow files byte-for-byte from the templates, preserving `${{ }}` GitHub Actions expressions that were previously corrupted by whisker rendering (#44).
 * `use_ai()` now works when called via `pkgskills::use_ai()` without first calling `library(pkgskills)` (#42).
