@@ -32,7 +32,7 @@ test_that(".use_template() creates the file with default data and open args (#2)
   expect_true(fs::file_exists(fs::path(proj_dir, "AGENTS.md")))
 })
 
-test_that(".use_template_as_is() errors on non-logical open (#45)", {
+test_that(".use_template_as_is() errors on non-logical open (#44)", {
   local_pkg()
   stbl::expect_pkg_error_classes(
     .use_template_as_is("AGENTS.md", "AGENTS.md", open = "yes"),
@@ -41,7 +41,7 @@ test_that(".use_template_as_is() errors on non-logical open (#45)", {
   )
 })
 
-test_that(".use_template_as_is() writes template content verbatim (#45)", {
+test_that(".use_template_as_is() writes template content verbatim (#44)", {
   proj_dir <- local_pkg()
   suppressMessages(.use_template_as_is("AGENTS.md", "AGENTS.md"))
   expect_true(fs::file_exists(fs::path(proj_dir, "AGENTS.md")))
@@ -53,7 +53,7 @@ test_that(".use_template_as_is() writes template content verbatim (#45)", {
   expect_identical(installed, expected)
 })
 
-test_that(".use_template_as_is() calls edit_file when open = TRUE (#45)", {
+test_that(".use_template_as_is() calls edit_file when open = TRUE (#44)", {
   proj_dir <- local_pkg()
   edited <- character(0)
   local_mocked_bindings(
@@ -64,5 +64,5 @@ test_that(".use_template_as_is() calls edit_file when open = TRUE (#45)", {
     .package = "usethis"
   )
   suppressMessages(.use_template_as_is("AGENTS.md", "AGENTS.md", open = TRUE))
-  expect_identical(edited, fs::path(proj_dir, "AGENTS.md"))
+  expect_identical(fs::path_real(edited), fs::path_real(fs::path(proj_dir, "AGENTS.md")))
 })

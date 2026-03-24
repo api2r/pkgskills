@@ -59,7 +59,7 @@ test_that("use_github_copilot() overwrites files when overwrite = TRUE (#25)", {
   expect_false(identical(workflow_content, "# old"))
 })
 
-test_that("use_github_copilot() preserves ${{ }} in copilot-setup-steps.yml (#45)", {
+test_that("use_github_copilot() preserves ${{ }} in copilot-setup-steps.yml (#44)", {
   proj_dir <- local_pkg()
   suppressMessages(use_github_copilot(open = FALSE))
   workflow_content <- readLines(
@@ -68,7 +68,7 @@ test_that("use_github_copilot() preserves ${{ }} in copilot-setup-steps.yml (#45
   expect_true(any(grepl("${{", workflow_content, fixed = TRUE)))
 })
 
-test_that("use_github_copilot() preserves ${{ }} in install/action.yml (#45)", {
+test_that("use_github_copilot() preserves ${{ }} in install/action.yml (#44)", {
   proj_dir <- local_pkg()
   suppressMessages(use_github_copilot(open = FALSE))
   action_content <- readLines(
