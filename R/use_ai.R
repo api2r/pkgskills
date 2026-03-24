@@ -51,14 +51,13 @@ use_ai <- function(
     stringr::str_replace_all(skills, "-", "_")
   )
   skill_paths <- purrr::map2(skills, skill_fn_names, function(skill, fn_name) {
-    fn <- match.fun(fn_name)
     extra_args <- if (skill == "create-issue") {
       list(gh_token = gh_token)
     } else {
       list()
     }
     rlang::exec(
-      fn,
+      fn_name,
       target_dir = target_skills_dir,
       use_skills_subdir = use_skills_subdir,
       overwrite = overwrite,

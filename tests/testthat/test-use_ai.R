@@ -107,6 +107,32 @@ test_that("use_ai() respects target_skills_dir (#28)", {
   )))
 })
 
+test_that("pkgskills::use_ai() works without library(pkgskills) (#42)", {
+  skip_if_not_installed("callr")
+  result <- callr::r(function() {
+    # pkgskills namespace is available via :: but library(pkgskills) is not called,
+    # simulating the scenario described in #42
+    proj_dir <- withr::local_tempdir()
+    writeLines(
+      c(
+        "Package: mypkg",
+        "Title: My Test Package",
+        "Description: A package for testing.",
+        "Version: 0.1.0",
+        "URL: https://example.com",
+        "BugReports: https://github.com/myorg/mypkg/issues"
+      ),
+      file.path(proj_dir, "DESCRIPTION")
+    )
+    usethis::local_project(proj_dir, quiet = TRUE)
+    suppressMessages(
+      pkgskills::use_ai(skills = "r-code", open = FALSE)
+    )
+  })
+  expect_type(result, "list")
+  expect_named(result, c("use_agent", "use_github_copilot", "use_skill_r_code"))
+})
+
 test_that("use_ai() passes gh_token to use_skill_create_issue() (#28)", {
   local_pkg()
   local_mocked_bindings(
