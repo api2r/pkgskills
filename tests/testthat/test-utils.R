@@ -5,7 +5,7 @@ test_that(".format_now_utc() returns a correctly formatted UTC timestamp (#noiss
   expect_match(result, "^\\d{4}-\\d{2}-\\d{2} \\d{2}:\\d{2}:\\d{2} UTC$")
 })
 
-test_that(".get_desc_fields() returns a named list of non-NA field values", {
+test_that(".get_desc_fields() returns a named list of non-NA field values (#noissue)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
