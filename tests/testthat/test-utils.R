@@ -64,5 +64,8 @@ test_that(".use_template_as_is() calls edit_file when open = TRUE (#44)", {
     .package = "usethis"
   )
   suppressMessages(.use_template_as_is("AGENTS.md", "AGENTS.md", open = TRUE))
-  expect_identical(fs::path_real(edited), fs::path_real(fs::path(proj_dir, "AGENTS.md")))
+  expect_identical(
+    fs::path_real(edited),
+    fs::path_real(fs::path(proj_dir, "AGENTS.md"))
+  )
 })
