@@ -24,6 +24,7 @@ Imports:
     usethis
 Suggests:
     astgrepr,
+    callr,
     knitr,
     rmarkdown,
     testthat (>= 3.0.0),

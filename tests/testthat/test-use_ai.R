@@ -1,4 +1,4 @@
-test_that("use_ai() returns invisibly (#28)", {
+test_that("use_ai() returns invisibly (#28, #42)", {
   local_pkg()
   local_gh_mock()
   result <- withVisible(suppressMessages(use_ai(open = FALSE)))
@@ -6,7 +6,7 @@ test_that("use_ai() returns invisibly (#28)", {
   expect_type(result$value, "list")
 })
 
-test_that("use_ai() returns a named list with all function names (#28)", {
+test_that("use_ai() returns a named list with all function names (#28, #42)", {
   local_pkg()
   local_gh_mock()
   result <- suppressMessages(use_ai(open = FALSE))
@@ -26,7 +26,7 @@ test_that("use_ai() returns a named list with all function names (#28)", {
   )
 })
 
-test_that("use_ai() installs only selected skills (#28)", {
+test_that("use_ai() installs only selected skills (#28, #42)", {
   local_pkg()
   result <- suppressMessages(use_ai(
     skills = c("r-code", "github"),
@@ -43,7 +43,7 @@ test_that("use_ai() installs only selected skills (#28)", {
   )
 })
 
-test_that("use_ai() errors on invalid skill name (#28)", {
+test_that("use_ai() errors on invalid skill name (#28, #42)", {
   local_pkg()
   expect_error(
     use_ai(skills = "invalid-skill"),
@@ -51,7 +51,7 @@ test_that("use_ai() errors on invalid skill name (#28)", {
   )
 })
 
-test_that("use_ai() creates AGENTS.md and copilot workflow (#28)", {
+test_that("use_ai() creates AGENTS.md and copilot workflow (#28, #42)", {
   proj_dir <- local_pkg()
   local_gh_mock()
   suppressMessages(use_ai(open = FALSE))
@@ -62,7 +62,7 @@ test_that("use_ai() creates AGENTS.md and copilot workflow (#28)", {
   )))
 })
 
-test_that("use_ai() creates selected skill files (#28)", {
+test_that("use_ai() creates selected skill files (#28, #42)", {
   proj_dir <- local_pkg()
   suppressMessages(use_ai(skills = c("r-code", "tdd-workflow"), open = FALSE))
   expect_true(fs::file_exists(fs::path(
@@ -79,7 +79,7 @@ test_that("use_ai() creates selected skill files (#28)", {
   )))
 })
 
-test_that("use_ai() respects save_agent_as (#28)", {
+test_that("use_ai() respects save_agent_as (#28, #42)", {
   proj_dir <- local_pkg()
   local_gh_mock()
   result <- suppressMessages(use_ai(
@@ -94,7 +94,7 @@ test_that("use_ai() respects save_agent_as (#28)", {
   )
 })
 
-test_that("use_ai() respects target_skills_dir (#28)", {
+test_that("use_ai() respects target_skills_dir (#28, #42)", {
   proj_dir <- local_pkg()
   suppressMessages(use_ai(
     target_skills_dir = "agent-config",
@@ -107,7 +107,33 @@ test_that("use_ai() respects target_skills_dir (#28)", {
   )))
 })
 
-test_that("use_ai() passes gh_token to use_skill_create_issue() (#28)", {
+test_that("pkgskills::use_ai() works without library(pkgskills) (#42)", {
+  skip_if_not_installed("callr")
+  result <- callr::r(function() {
+    # pkgskills namespace is available via :: but library(pkgskills) is not called,
+    # simulating the scenario described in #42
+    proj_dir <- withr::local_tempdir()
+    writeLines(
+      c(
+        "Package: mypkg",
+        "Title: My Test Package",
+        "Description: A package for testing.",
+        "Version: 0.1.0",
+        "URL: https://example.com",
+        "BugReports: https://github.com/myorg/mypkg/issues"
+      ),
+      file.path(proj_dir, "DESCRIPTION")
+    )
+    usethis::local_project(proj_dir, quiet = TRUE)
+    suppressMessages(
+      pkgskills::use_ai(skills = "r-code", open = FALSE)
+    )
+  })
+  expect_type(result, "list")
+  expect_named(result, c("use_agent", "use_github_copilot", "use_skill_r_code"))
+})
+
+test_that("use_ai() passes gh_token to use_skill_create_issue() (#28, #42)", {
   local_pkg()
   local_mocked_bindings(
     use_skill_create_issue = function(

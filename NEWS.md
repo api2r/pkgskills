@@ -1,5 +1,6 @@
 # pkgskills (development version)
 
+* `use_ai()` now works when called via `pkgskills::use_ai()` without first calling `library(pkgskills)` (#42).
 * `use_agent()` now accepts an `overwrite` argument (default `FALSE`) and errors if `AGENTS.md` already exists, consistent with other `use_*()` functions (#36).
 * All `use_*()` functions that accept `overwrite` now default to `FALSE` (#36).
 
