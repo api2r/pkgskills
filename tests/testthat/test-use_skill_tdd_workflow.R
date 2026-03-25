@@ -34,52 +34,8 @@ test_that("use_skill_tdd_workflow() renders package name into skill file (#11)",
   expect_false(any(grepl("\\{\\{\\{package\\}\\}\\}", content)))
 })
 
-test_that("use_skill_tdd_workflow() creates helper-expectations.R (#11)", {
-  proj_dir <- local_pkg()
-  suppressMessages(use_skill_tdd_workflow(open = FALSE))
-  expect_true(
-    fs::file_exists(
-      fs::path(proj_dir, "tests/testthat/helper-expectations.R")
-    )
-  )
-})
-
-test_that("use_skill_tdd_workflow() renders package name into helper-expectations.R (#11)", {
-  proj_dir <- local_pkg(
-    DESCRIPTION = c(
-      "Package: coolpkg",
-      "Title: A Cool Package",
-      "Version: 0.1.0"
-    )
-  )
-  suppressMessages(use_skill_tdd_workflow(open = FALSE))
-  content <- readLines(
-    fs::path(proj_dir, "tests/testthat/helper-expectations.R")
-  )
-  expect_true(any(grepl('package = "coolpkg"', content, fixed = TRUE)))
-})
-
-test_that("use_skill_tdd_workflow() does not overwrite existing helper-expectations.R (#11)", {
-  helper_content <- c("# My custom helper", "custom_function <- function() {}")
-  proj_dir <- local_pkg(
-    "tests/testthat/helper-expectations.R" = helper_content
-  )
-  suppressMessages(use_skill_tdd_workflow(open = FALSE))
-  content <- readLines(
-    fs::path(proj_dir, "tests/testthat/helper-expectations.R")
-  )
-  expect_equal(content, helper_content)
-})
-
-test_that("use_skill_tdd_workflow() emits inform message when helper is created (#11)", {
+test_that("use_skill_tdd_workflow() emits inform message (#11)", {
   local_pkg()
-  expect_snapshot(use_skill_tdd_workflow(open = FALSE))
-})
-
-test_that("use_skill_tdd_workflow() does not emit helper message when it already exists (#11)", {
-  local_pkg(
-    "tests/testthat/helper-expectations.R" = "# existing"
-  )
   expect_snapshot(use_skill_tdd_workflow(open = FALSE))
 })
 
