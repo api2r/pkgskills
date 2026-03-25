@@ -28,9 +28,7 @@ Defaults to \code{FALSE}.}
 The path to the installed skill file, invisibly.
 }
 \description{
-Installs the \code{tdd-workflow} skill into the project and, if
-\code{tests/testthat/helper-expectations.R} does not already exist, creates it
-from the package template.
+Installs the \code{tdd-workflow} skill into the project.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

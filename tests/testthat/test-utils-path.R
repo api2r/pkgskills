@@ -26,8 +26,9 @@ test_that(".path_proj_save_as() errors when file exists and overwrite = FALSE (#
   output_path <- fs::path(proj_dir, "output.md")
   writeLines("content", output_path)
   output_path <- fs::path_real(output_path)
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .path_proj_save_as("output.md", overwrite = FALSE),
+    "pkgskills",
     "file_exists",
     transform = .transform_path(output_path)
   )
@@ -51,8 +52,9 @@ test_that(".check_path_writable() deletes existing file when overwrite = TRUE (#
 test_that(".check_path_writable() errors when file exists and overwrite = FALSE (#noissue)", {
   tmp <- withr::local_tempfile()
   writeLines("content", tmp)
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .check_path_writable(tmp, overwrite = FALSE),
+    "pkgskills",
     "file_exists",
     transform = .transform_path(tmp)
   )
