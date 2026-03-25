@@ -1,5 +1,7 @@
 # pkgskills (development version)
 
+* `use_skill_tdd_workflow()` no longer installs `helper-expectations.R` into the target project; `stbl::expect_pkg_error_snapshot()` is now used directly (#52).
+
 * `use_skill_r_code()` now installs a minimal `R/aaa-conditions.R` into the project when the file does not already exist (#48).
 
 * Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced with direct `stbl::to_character_scalar()` and `stbl::to_lgl_scalar()` calls; `R/utils-coerce.R` removed (#46).
