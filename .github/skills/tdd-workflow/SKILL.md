@@ -119,14 +119,14 @@ expect_identical(x, y)                    # exact match
 ### Conditions
 
 **Errors thrown by this package** (via `.pkg_abort()`) should always be tested
-with `expect_pkg_error_snapshot()` (defined in
-`tests/testthat/helper-expectations.R`), which captures both the error class
-hierarchy and the user-facing message in one snapshot:
+with `stbl::expect_pkg_error_snapshot()` from `stbl`, which captures both the
+error class hierarchy and the user-facing message in one snapshot:
 
 ```r
 test_that("process_data() errors on empty input (#42)", {
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     process_data(data.frame()),
+    "pkgname",
     "empty_input"
   )
 })
