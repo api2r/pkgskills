@@ -28,7 +28,9 @@ Defaults to \code{FALSE}.}
 The path to the installed skill file, invisibly.
 }
 \description{
-Installs the \code{r-code} skill template into the project.
+Installs the \code{r-code} skill template into the project and, if
+\code{R/aaa-conditions.R} does not already exist, creates a starter version
+from a built-in template.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
