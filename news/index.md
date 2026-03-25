@@ -2,6 +2,11 @@
 
 ## pkgskills (development version)
 
+- [`use_skill_r_code()`](https://api2r.github.io/pkgskills/reference/use_skill_r_code.md)
+  now installs a minimal `R/aaa-conditions.R` into the project when the
+  file does not already exist
+  ([\#48](https://github.com/api2r/pkgskills/issues/48)).
+
 - Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced
   with direct
   [`stbl::to_character_scalar()`](https://stbl.api2r.org/reference/stabilize_chr.html)

@@ -1,6 +1,8 @@
 # Install the r-code skill into a project
 
-Installs the `r-code` skill template into the project.
+Installs the `r-code` skill template into the project and, if
+`R/aaa-conditions.R` does not already exist, creates a starter version
+from a built-in template.
 
 ## Usage
 
