@@ -126,7 +126,7 @@ hierarchy and the user-facing message in one snapshot:
 test_that("process_data() errors on empty input (#42)", {
   stbl::expect_pkg_error_snapshot(
     process_data(data.frame()),
-    "pkgname",
+    "pkgskills",
     "empty_input"
   )
 })
