@@ -1,6 +1,8 @@
 #' Install the r-code skill into a project
 #'
-#' Installs the `r-code` skill template into the project.
+#' Installs the `r-code` skill template into the project and, if
+#' `R/aaa-conditions.R` does not already exist, creates a starter version
+#' from a built-in template.
 #'
 #' @inheritParams .shared-params
 #' @returns The path to the installed skill file, invisibly.
@@ -21,6 +23,19 @@ use_skill_r_code <- function(
     overwrite = overwrite,
     open = open
   )
+
+  conditions_path <- usethis::proj_path("R/aaa-conditions.R")
+  if (!fs::file_exists(conditions_path)) {
+    data <- .get_desc_fields("Package")
+    .use_template("aaa-conditions.R", "R/aaa-conditions.R", data = data)
+    cli::cli_inform(c(
+      "{.file R/aaa-conditions.R} created.",
+      "i" = paste(
+        "Use {.fn .pkg_abort} for package errors.",
+        "Add more error helpers here as your package grows."
+      )
+    ))
+  }
 
   invisible(skill_path)
 }
