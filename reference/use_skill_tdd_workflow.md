@@ -1,8 +1,6 @@
 # Install the tdd-workflow skill into a project
 
-Installs the `tdd-workflow` skill into the project and, if
-`tests/testthat/helper-expectations.R` does not already exist, creates
-it from the package template.
+Installs the `tdd-workflow` skill into the project.
 
 ## Usage
 

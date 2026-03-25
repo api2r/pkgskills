@@ -2,6 +2,12 @@
 
 ## pkgskills (development version)
 
+- [`use_skill_tdd_workflow()`](https://api2r.github.io/pkgskills/reference/use_skill_tdd_workflow.md)
+  no longer installs `helper-expectations.R` into the target project;
+  [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
+  is now used directly
+  ([\#52](https://github.com/api2r/pkgskills/issues/52)).
+
 - [`use_skill_r_code()`](https://api2r.github.io/pkgskills/reference/use_skill_r_code.md)
   now installs a minimal `R/aaa-conditions.R` into the project when the
   file does not already exist
