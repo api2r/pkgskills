@@ -1,8 +1,8 @@
 # use_skill_create_issue() errors when BugReports is absent (#6)
 
     Code
-      (stbl::expect_pkg_error_classes(use_skill_create_issue(open = FALSE),
-      "pkgskills", "no_bug_reports"))
+      (expect_pkg_error_classes(use_skill_create_issue(open = FALSE), "pkgskills",
+      "no_bug_reports"))
     Output
       <error/pkgskills-error-no_bug_reports>
       Error in `use_skill_create_issue()`:
@@ -12,8 +12,8 @@
 # use_skill_create_issue() errors when BugReports is not a GitHub URL (#6)
 
     Code
-      (stbl::expect_pkg_error_classes(use_skill_create_issue(open = FALSE),
-      "pkgskills", "unsupported_bug_reports"))
+      (expect_pkg_error_classes(use_skill_create_issue(open = FALSE), "pkgskills",
+      "unsupported_bug_reports"))
     Output
       <error/pkgskills-error-unsupported_bug_reports>
       Error in `use_skill_create_issue()`:

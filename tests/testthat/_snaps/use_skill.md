@@ -9,7 +9,7 @@
 # .use_skill() errors when overwrite = FALSE and file exists (#6)
 
     Code
-      (stbl::expect_pkg_error_classes({
+      (expect_pkg_error_classes({
         suppressMessages(.use_skill("create-issue", data = list(owner = "o", repo = "r",
           repo_id = "id", issue_types = list()), overwrite = FALSE, open = FALSE))
       }, "pkgskills", "file_exists"))
@@ -21,7 +21,7 @@
 # .read_skill_trigger() errors when template file not found (#6)
 
     Code
-      (stbl::expect_pkg_error_classes(.read_skill_trigger("/tmp/nonexistent/SKILL.md"),
+      (expect_pkg_error_classes(.read_skill_trigger("/tmp/nonexistent/SKILL.md"),
       "pkgskills", "template_not_found"))
     Output
       <error/pkgskills-error-template_not_found>
@@ -31,7 +31,7 @@
 # .read_skill_trigger() errors when front matter is missing (#6)
 
     Code
-      (stbl::expect_pkg_error_classes(.read_skill_trigger(tmp), "pkgskills",
+      (expect_pkg_error_classes(.read_skill_trigger(tmp), "pkgskills",
       "no_front_matter"))
     Output
       <error/pkgskills-error-no_front_matter>
@@ -41,8 +41,7 @@
 # .read_skill_trigger() errors when trigger field is absent (#6)
 
     Code
-      (stbl::expect_pkg_error_classes(.read_skill_trigger(tmp), "pkgskills",
-      "no_trigger"))
+      (expect_pkg_error_classes(.read_skill_trigger(tmp), "pkgskills", "no_trigger"))
     Output
       <error/pkgskills-error-no_trigger>
       Error:

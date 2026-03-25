@@ -221,7 +221,7 @@ test_that(".use_skill() errors when overwrite = FALSE and file exists (#6)", {
   fs::dir_create(fs::path_dir(existing_path))
   writeLines("original content", existing_path)
   existing_path <- fs::path_real(existing_path)
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     {
       suppressMessages(
         .use_skill(
@@ -237,6 +237,7 @@ test_that(".use_skill() errors when overwrite = FALSE and file exists (#6)", {
         )
       )
     },
+    "pkgskills",
     "file_exists",
     transform = .transform_path(existing_path)
   )
@@ -310,8 +311,9 @@ test_that(".use_skill() errors on non-logical overwrite (#6)", {
 })
 
 test_that(".read_skill_trigger() errors when template file not found (#6)", {
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .read_skill_trigger("/tmp/nonexistent/SKILL.md"),
+    "pkgskills",
     "template_not_found"
   )
 })
@@ -319,8 +321,9 @@ test_that(".read_skill_trigger() errors when template file not found (#6)", {
 test_that(".read_skill_trigger() errors when front matter is missing (#6)", {
   tmp <- withr::local_tempfile(fileext = ".md")
   writeLines(c("# No front matter here", "Just content."), tmp)
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .read_skill_trigger(tmp),
+    "pkgskills",
     "no_front_matter",
     transform = .transform_path(tmp)
   )
@@ -329,8 +332,9 @@ test_that(".read_skill_trigger() errors when front matter is missing (#6)", {
 test_that(".read_skill_trigger() errors when trigger field is absent (#6)", {
   tmp <- withr::local_tempfile(fileext = ".md")
   writeLines(c("---", "name: my-skill", "---", "# Content"), tmp)
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .read_skill_trigger(tmp),
+    "pkgskills",
     "no_trigger",
     transform = .transform_path(tmp)
   )

@@ -41,8 +41,9 @@ test_that(".parse_yaml_front_matter() returns lines between --- delimiters (#noi
 
 test_that(".parse_yaml_front_matter() errors when no delimiters found (#noissue)", {
   lines <- c("# No front matter", "Just content.")
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .parse_yaml_front_matter(lines, "test.md"),
+    "pkgskills",
     "no_front_matter"
   )
 })
@@ -55,8 +56,9 @@ test_that(".parse_yaml_front_matter() returns character(0) for empty front matte
 
 test_that(".parse_yaml_front_matter() errors when only one delimiter found (#noissue)", {
   lines <- c("---", "name: test", "# No closing delimiter")
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .parse_yaml_front_matter(lines, "test.md"),
+    "pkgskills",
     "no_front_matter"
   )
 })
@@ -75,8 +77,9 @@ test_that(".extract_yaml_scalar() trims leading whitespace from value (#noissue)
 
 test_that(".extract_yaml_scalar() errors when field not found (#noissue)", {
   front_matter <- c("name: my-skill")
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     .extract_yaml_scalar(front_matter, "trigger", "test.md"),
+    "pkgskills",
     "no_trigger"
   )
 })

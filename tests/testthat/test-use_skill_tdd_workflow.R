@@ -44,8 +44,9 @@ test_that("use_skill_tdd_workflow() errors when Package field is absent (#11)", 
   local_mocked_bindings(
     .get_desc_fields = function(...) list()
   )
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     use_skill_tdd_workflow(open = FALSE),
+    "pkgskills",
     "no_package_field"
   )
 })

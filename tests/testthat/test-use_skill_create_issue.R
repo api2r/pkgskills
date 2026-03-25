@@ -26,8 +26,9 @@ test_that("use_skill_create_issue() errors when BugReports is absent (#6)", {
       "Version: 0.1.0"
     )
   )
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     use_skill_create_issue(open = FALSE),
+    "pkgskills",
     "no_bug_reports"
   )
 })
@@ -41,8 +42,9 @@ test_that("use_skill_create_issue() errors when BugReports is not a GitHub URL (
       "BugReports: https://gitlab.com/myorg/mypkg/issues"
     )
   )
-  expect_pkg_error_snapshot(
+  stbl::expect_pkg_error_snapshot(
     use_skill_create_issue(open = FALSE),
+    "pkgskills",
     "unsupported_bug_reports"
   )
 })

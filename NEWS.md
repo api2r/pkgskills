@@ -1,5 +1,6 @@
 # pkgskills (development version)
 
+* Tests now use `stbl::expect_pkg_error_snapshot()` directly instead of a locally-defined wrapper; the `expect_pkg_error_snapshot()` definition has been removed from `tests/testthat/helper-expectations.R` (#50).
 * `use_skill_tdd_workflow()` no longer installs `helper-expectations.R` into the target project; `stbl::expect_pkg_error_snapshot()` is now used directly (#52).
 
 * `use_skill_r_code()` now installs a minimal `R/aaa-conditions.R` into the project when the file does not already exist (#48).
