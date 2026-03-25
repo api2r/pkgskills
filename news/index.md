@@ -2,6 +2,11 @@
 
 ## pkgskills (development version)
 
+- `tdd-workflow` skill now documents
+  [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
+  with an explicit `package` argument instead of a helper-defined
+  version ([\#51](https://github.com/api2r/pkgskills/issues/51)).
+
 - Tests now use
   [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
   directly instead of a locally-defined wrapper; the
