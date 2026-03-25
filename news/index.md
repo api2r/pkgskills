@@ -2,6 +2,13 @@
 
 ## pkgskills (development version)
 
+- Tests now use
+  [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
+  directly instead of a locally-defined wrapper; the
+  `expect_pkg_error_snapshot()` definition has been removed from
+  `tests/testthat/helper-expectations.R`
+  ([\#50](https://github.com/api2r/pkgskills/issues/50)).
+
 - [`use_skill_tdd_workflow()`](https://api2r.github.io/pkgskills/reference/use_skill_tdd_workflow.md)
   no longer installs `helper-expectations.R` into the target project;
   [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
