@@ -1,6 +1,6 @@
 # pkgskills (development version)
 
-* `use_skill_r_code()` now installs a minimal `R/aaa-conditions.R` into the project when the file does not already exist, substituting the package name via `DESCRIPTION` (#49).
+* `use_skill_r_code()` now installs a minimal `R/aaa-conditions.R` into the project when the file does not already exist (#48).
 
 * Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced with direct `stbl::to_character_scalar()` and `stbl::to_lgl_scalar()` calls; `R/utils-coerce.R` removed (#46).
 

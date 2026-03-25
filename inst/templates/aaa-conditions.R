@@ -8,13 +8,15 @@
   message,
   subclass,
   call = caller_env(),
-  message_env = caller_env()
+  message_env = caller_env(),
+  ...
 ) {
   stbl::pkg_abort(
     "{{{Package}}}",
     message,
     subclass,
     call = call,
-    message_env = message_env
+    message_env = message_env,
+    ...
   )
 }
