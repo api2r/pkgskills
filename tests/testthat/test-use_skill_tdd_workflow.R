@@ -34,7 +34,7 @@ test_that("use_skill_tdd_workflow() renders package name into skill file (#11)",
   expect_false(any(grepl("\\{\\{\\{package\\}\\}\\}", content)))
 })
 
-test_that("use_skill_tdd_workflow() emits inform message (#11)", {
+test_that("use_skill_tdd_workflow() emits inform message (#11, #52)", {
   local_pkg()
   expect_snapshot(use_skill_tdd_workflow(open = FALSE))
 })

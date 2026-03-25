@@ -1,6 +1,6 @@
 # pkgskills (development version)
 
-* `use_skill_tdd_workflow()` no longer installs `helper-expectations.R` into the target project; `stbl::expect_pkg_error_snapshot()` is now used directly (#13).
+* `use_skill_tdd_workflow()` no longer installs `helper-expectations.R` into the target project; `stbl::expect_pkg_error_snapshot()` is now used directly (#52).
 
 * `use_skill_r_code()` now installs a minimal `R/aaa-conditions.R` into the project when the file does not already exist (#48).
 

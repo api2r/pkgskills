@@ -1,4 +1,4 @@
-# use_skill_tdd_workflow() emits inform message (#11)
+# use_skill_tdd_workflow() emits inform message (#11, #52)
 
     Code
       use_skill_tdd_workflow(open = FALSE)
