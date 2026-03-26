@@ -88,6 +88,7 @@ Snapshots are stored in `tests/testthat/_snaps/`. The filename corresponds to th
 - **Self-sufficient:** each test contains its own setup, execution, and assertion. Tests must be runnable in isolation.
 - **Duplication over factoring:** repeat setup code rather than extracting it. Clarity beats DRY in tests.
 - **One concept per test:** a failing test should tell you exactly what broke.
+- **Minimal with few comments:** keep tests lean. Avoid over-commenting.
 - **Issue reference in description:** the `desc` of every new `test_that()` call should end with one or more parenthetical issue references for the issue(s) *verified by those tests* — typically the issue currently being solved. Never guess or invent issue numbers; if no tracked issue applies, use `#noissue`:
   ```r
   test_that("fetch_records() returns correct columns (#1)", { ... })
@@ -145,6 +146,21 @@ test_that("process_data() errors on non-integer page_size (#43)", {
     process_data(sample_data, page_size = "abc"),
     "stbl",
     "incompatible_type"
+  )
+})
+```
+
+For **composite** stbl error classes (where the class name contains dashes,
+e.g. `stbl-error-coerce-character`), pass each dash-separated component as a
+separate argument. Underscores within a component are kept as-is:
+
+```r
+test_that("process_data() errors on non-coercible input (#43)", {
+  stbl::expect_pkg_error_classes(
+    process_data(sample_data, value = list(bad = "input")),
+    package = "stbl",
+    "coerce",
+    "character"
   )
 })
 ```

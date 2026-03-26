@@ -10,8 +10,12 @@ description: Document package functions. Use when asked to document functions.
 
 - Run `air format .` then `devtools::document()` after changing any roxygen2 docs.
 - Use sentence case for all headings.
+- Wrap roxygen comments at 80 characters.
 - Files matching `R/import-standalone-*.R` are imported from other packages and have their own conventions. Do not modify their documentation.
 - After documenting functions, run `devtools::document(roclets = c('rd', 'collate', 'namespace'))`.
+- If `_pkgdown.yml` exists and contains a `reference` section:
+  - Whenever you add a new (non-internal) documentation topic, also add the topic to `_pkgdown.yml`.
+  - Use `pkgdown::check_pkgdown()` to check that all topics are included in the reference index.
 
 ## Shared parameters
 
