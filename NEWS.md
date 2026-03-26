@@ -1,18 +1,15 @@
 # pkgskills (development version)
 
+* `use_agent()` template is reconciled with this package's `AGENTS.md` file (#59).
 * `tdd-workflow` skill now documents `stbl::expect_pkg_error_snapshot()` with an explicit `package` argument instead of a helper-defined version (#51).
 * Tests now use `stbl::expect_pkg_error_snapshot()` directly instead of a locally-defined wrapper; the `expect_pkg_error_snapshot()` definition has been removed from `tests/testthat/helper-expectations.R` (#50).
 * `use_skill_tdd_workflow()` no longer installs `helper-expectations.R` into the target project; `stbl::expect_pkg_error_snapshot()` is now used directly (#52).
-
 * `use_skill_r_code()` now installs a minimal `R/aaa-conditions.R` into the project when the file does not already exist (#48).
-
 * Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced with direct `stbl::to_character_scalar()` and `stbl::to_lgl_scalar()` calls; `R/utils-coerce.R` removed (#46).
-
 * `use_github_copilot()` now writes workflow files byte-for-byte from the templates, preserving `${{ }}` GitHub Actions expressions that were previously corrupted by whisker rendering (#44).
 * `use_ai()` now works when called via `pkgskills::use_ai()` without first calling `library(pkgskills)` (#42).
 * `use_agent()` now accepts an `overwrite` argument (default `FALSE`) and errors if `AGENTS.md` already exists, consistent with other `use_*()` functions (#36).
 * All `use_*()` functions that accept `overwrite` now default to `FALSE` (#36).
-
 * `vignette("pkgskills")` now provides a complete "Get Started" guide covering terminology, `use_ai()` setup, skill descriptions, and issue-writing best practices (#31).
 * `use_ai()` sets up the full AI agent suite in a single call, installing `AGENTS.md`, the GitHub Copilot workflow, and all selected skills (#28).
 * `use_github_copilot()` installs a `copilot-setup-steps.yml` workflow and its companion reusable `install` action into `.github/workflows/` (#25).
