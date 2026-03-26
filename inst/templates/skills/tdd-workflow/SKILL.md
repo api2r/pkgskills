@@ -158,7 +158,7 @@ separate argument. Underscores within a component are kept as-is:
 test_that("process_data() errors on non-coercible input (#43)", {
   stbl::expect_pkg_error_classes(
     process_data(sample_data, value = list(bad = "input")),
-    package = "stbl",
+    "stbl",
     "coerce",
     "character"
   )

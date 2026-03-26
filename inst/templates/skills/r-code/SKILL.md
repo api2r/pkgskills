@@ -48,7 +48,7 @@ One exported function per file: `R/{function_name}.R` (e.g. `fetch_records()` â†
 ## Coding style
 
 - Always run `air format .` after generating code.
-- Use the base pipe operator (`|>`) not the magrittr pipe (`%>`).
+- Use the base pipe operator (`|>`) not the magrittr pipe (`%>%`).
 - Use `\() ...` for single-line anonymous functions. For all other cases, use `function() {...}`.
 
 ## Function design
