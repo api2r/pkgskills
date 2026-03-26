@@ -1,4 +1,4 @@
-# use_agent() substitutes Package and Title into the template (#2)
+# use_agent() substitutes Package and Title into the template (#2, #59)
 
     Code
       writeLines(readLines(fs::path(proj_dir, "AGENTS.md")))
@@ -46,17 +46,22 @@
       5. **Implement** — minimal code to pass tests.
       6. **Refactor** — clean up, keep tests green.
       7. **Document** — document any new or changed exports.
-      8. **Verify**: `devtools::check(error_on = "warning")`. Resolve warnings, errors, and NOTEs.
-      9. **News** — add a bullet at the top of `NEWS.md` for user-facing changes.
+      8. **Verify**: Run `devtools::test(reporter = "check")`, then `devtools::check(error_on = "warning")`. Resolve warnings, errors, and NOTEs.
+      9. **News** — add bullet at top of `NEWS.md` (under dev heading):
+         - User-facing changes only. 1 line, end with `.`
+         - Present tense, positive framing, function names (backticks + `()`) near start: `` * `fn()` now accepts ... `` not `* Fixed ...`
+         - Issue/contributor before final period: `` * `fn()` now accepts ... (@user, #N). ``
+         - Get username: `gh api user --jq .login`
       
       ---
       
       ## General
       
       - R console: use `--quiet --vanilla`.
+      - Always run `air format .` after generating R code.
       - Comments explain *why*, not *what*.
 
-# use_agent() does not insert 'NA' when Description or URL is absent (#2)
+# use_agent() does not insert 'NA' when Description or URL is absent (#2, #59)
 
     Code
       writeLines(readLines(fs::path(proj_dir, "AGENTS.md")))
@@ -100,14 +105,19 @@
       5. **Implement** — minimal code to pass tests.
       6. **Refactor** — clean up, keep tests green.
       7. **Document** — document any new or changed exports.
-      8. **Verify**: `devtools::check(error_on = "warning")`. Resolve warnings, errors, and NOTEs.
-      9. **News** — add a bullet at the top of `NEWS.md` for user-facing changes.
+      8. **Verify**: Run `devtools::test(reporter = "check")`, then `devtools::check(error_on = "warning")`. Resolve warnings, errors, and NOTEs.
+      9. **News** — add bullet at top of `NEWS.md` (under dev heading):
+         - User-facing changes only. 1 line, end with `.`
+         - Present tense, positive framing, function names (backticks + `()`) near start: `` * `fn()` now accepts ... `` not `* Fixed ...`
+         - Issue/contributor before final period: `` * `fn()` now accepts ... (@user, #N). ``
+         - Get username: `gh api user --jq .login`
       
       ---
       
       ## General
       
       - R console: use `--quiet --vanilla`.
+      - Always run `air format .` after generating R code.
       - Comments explain *why*, not *what*.
 
 # use_agent() emits an informational message after writing (#2)

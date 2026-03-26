@@ -8,7 +8,7 @@ test_that("use_agent() writes AGENTS.md and returns the path invisibly (#2)", {
   )
 })
 
-test_that("use_agent() substitutes Package and Title into the template (#2)", {
+test_that("use_agent() substitutes Package and Title into the template (#2, #59)", {
   proj_dir <- local_pkg()
   suppressMessages(use_agent(open = FALSE))
   expect_snapshot({
@@ -16,7 +16,7 @@ test_that("use_agent() substitutes Package and Title into the template (#2)", {
   })
 })
 
-test_that("use_agent() does not insert 'NA' when Description or URL is absent (#2)", {
+test_that("use_agent() does not insert 'NA' when Description or URL is absent (#2, #59)", {
   proj_dir <- local_pkg(
     DESCRIPTION = c(
       "Package: minpkg",
