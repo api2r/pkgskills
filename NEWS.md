@@ -1,7 +1,5 @@
 # pkgskills (development version)
 
-* `logo.png` interior now has a solid white background so the logo displays correctly on dark backgrounds (#53).
-
 * `tdd-workflow` skill now documents `stbl::expect_pkg_error_snapshot()` with an explicit `package` argument instead of a helper-defined version (#51).
 * Tests now use `stbl::expect_pkg_error_snapshot()` directly instead of a locally-defined wrapper; the `expect_pkg_error_snapshot()` definition has been removed from `tests/testthat/helper-expectations.R` (#50).
 * `use_skill_tdd_workflow()` no longer installs `helper-expectations.R` into the target project; `stbl::expect_pkg_error_snapshot()` is now used directly (#52).
