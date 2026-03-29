@@ -1,0 +1,27 @@
+FROM rocker/r-ver:4
+
+# System tools needed for CI (git for actions/checkout, sudo for some actions)
+RUN apt-get update \
+    && apt-get install -y --no-install-recommends \
+        pandoc \
+        git \
+        sudo \
+        curl \
+        wget \
+    && rm -rf /var/lib/apt/lists/*
+
+# actions/checkout needs this when running inside a container
+RUN git config --global --add safe.directory '*'
+
+# Install pak, then use it to install core CRAN packages.
+# pak handles system dependency installation automatically on Ubuntu.
+# These are the CRAN packages needed by copilot-setup-steps.yml plus
+# all Imports/Suggests from DESCRIPTION. GitHub-hosted packages
+# (stbl, qcthat) and local::. are left for runtime.
+RUN Rscript -e 'install.packages("pak")'
+RUN Rscript -e ' \
+  pak::pak(c( \
+    "astgrepr", "callr", "cli", "covr", "desc", "devtools", "fs", "gh", \
+    "knitr", "magick", "pkgdown", "purrr", "rcmdcheck", "rlang", \
+    "rmarkdown", "roxygen2", "stringr", "testthat", "usethis", "withr" \
+  ))'
