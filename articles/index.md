@@ -3,4 +3,4 @@
 ### All vignettes
 
 - [Using agentic AI for R package
-  development](https://api2r.github.io/pkgskills/articles/pkgskills.md):
+  development](https://pkgskills.api2r.org/articles/pkgskills.md):

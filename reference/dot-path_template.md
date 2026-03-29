@@ -13,7 +13,7 @@ Build a path to a file in `inst/templates/`
 - ...:
 
   Path components appended after `"templates"`, passed to
-  [`.path_pkg()`](https://api2r.github.io/pkgskills/reference/dot-path_pkg.md).
+  [`.path_pkg()`](https://pkgskills.api2r.org/reference/dot-path_pkg.md).
 
 ## Value
 

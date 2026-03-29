@@ -64,5 +64,5 @@ help you write a unit test, if needed).
 ## Code of Conduct
 
 Please note that the pkgskills project is released with a [Contributor
-Code of Conduct](https://api2r.github.io/pkgskills/CODE_OF_CONDUCT.md).
-By contributing to this project you agree to abide by its terms.
+Code of Conduct](https://pkgskills.api2r.org/CODE_OF_CONDUCT.md). By
+contributing to this project you agree to abide by its terms.

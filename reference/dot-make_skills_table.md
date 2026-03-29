@@ -13,7 +13,7 @@ Build the header and data rows for a Skills markdown table
 - row:
 
   (`character(1)`) A pre-built skill row, e.g. from
-  [`.make_skill_row()`](https://api2r.github.io/pkgskills/reference/dot-make_skill_row.md).
+  [`.make_skill_row()`](https://pkgskills.api2r.org/reference/dot-make_skill_row.md).
 
 ## Value
 

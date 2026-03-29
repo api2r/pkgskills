@@ -1,9 +1,8 @@
 # Set up the full AI agent suite for a project
 
 Calls
-[`use_agent()`](https://api2r.github.io/pkgskills/reference/use_agent.md)
-and
-[`use_github_copilot()`](https://api2r.github.io/pkgskills/reference/use_github_copilot.md)
+[`use_agent()`](https://pkgskills.api2r.org/reference/use_agent.md) and
+[`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)
 unconditionally, then installs each skill in `skills`. Returns a named
 list of all paths invisibly.
 
@@ -28,8 +27,8 @@ use_ai(
 
   (`character(1)`) Output path for `AGENTS.md`, relative to the project
   root. Passed to
-  [`use_agent()`](https://api2r.github.io/pkgskills/reference/use_agent.md)
-  as `save_as`.
+  [`use_agent()`](https://pkgskills.api2r.org/reference/use_agent.md) as
+  `save_as`.
 
 - target_skills_dir:
 

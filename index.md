@@ -18,8 +18,7 @@ pak::pak("api2r/pkgskills")
 pkgskills installs `AGENTS.md` and curated skill files into an R package
 project, giving AI coding agents the project-specific context they need
 to contribute effectively. The quickest way to get started is a single
-call to
-[`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md):
+call to [`use_ai()`](https://pkgskills.api2r.org/reference/use_ai.md):
 
 ``` r
 pkgskills::use_ai()
@@ -36,7 +35,7 @@ This installs:
   development, documenting functions, code search, and GitHub CLI usage.
 
 See
-[`vignette("pkgskills")`](https://api2r.github.io/pkgskills/articles/pkgskills.md)
+[`vignette("pkgskills")`](https://pkgskills.api2r.org/articles/pkgskills.md)
 for a full walkthrough.
 
 ## Code of Conduct

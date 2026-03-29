@@ -47,7 +47,7 @@ development.
 ## `use_ai()`: one call to set everything up
 
 The quickest way to get started is a single call to
-[`use_ai()`](https://api2r.github.io/pkgskills/reference/use_ai.md):
+[`use_ai()`](https://pkgskills.api2r.org/reference/use_ai.md):
 
 ``` r
 pkgskills::use_ai()
@@ -56,11 +56,11 @@ pkgskills::use_ai()
 This call installs three things:
 
 1.  **`AGENTS.md`** (via
-    [`use_agent()`](https://api2r.github.io/pkgskills/reference/use_agent.md)):
+    [`use_agent()`](https://pkgskills.api2r.org/reference/use_agent.md)):
     the top-level context file that every agent reads. It describes the
     repository layout, standard workflow, and where to find skills.
 2.  **A GitHub Copilot workflow file** (via
-    [`use_github_copilot()`](https://api2r.github.io/pkgskills/reference/use_github_copilot.md)):
+    [`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)):
     a `copilot-setup-steps.yml` workflow and its companion reusable
     `install` action, so Copilot Coding Agent can work on your
     repository.
@@ -145,7 +145,7 @@ workflow. In practice, developing an R package with AI agents looks like
 this:
 
 1.  **Write a clear issue.** Use the `create-issue` skill (installed via
-    [`use_skill_create_issue()`](https://api2r.github.io/pkgskills/reference/use_skill_create_issue.md))
+    [`use_skill_create_issue()`](https://pkgskills.api2r.org/reference/use_skill_create_issue.md))
     to produce a well-structured GitHub issue. The quality of the issue
     determines the quality of the agent’s output. A vague issue (“add a
     function that does X”) forces the agent to guess; a well-structured

@@ -2,7 +2,7 @@
 
 Reads `path` and validates inputs. Replaces the existing row for
 `save_as` if found; otherwise delegates to
-[`.agents_lines_add_skill_row()`](https://api2r.github.io/pkgskills/reference/dot-agents_lines_add_skill_row.md).
+[`.agents_lines_add_skill_row()`](https://pkgskills.api2r.org/reference/dot-agents_lines_add_skill_row.md).
 
 ## Usage
 
