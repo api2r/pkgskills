@@ -20,6 +20,7 @@ RUN apt-get update \
         libjpeg-dev \
         libpng-dev \
         libtiff-dev \
+        qpdf \
     && rm -rf /var/lib/apt/lists/*
 
 # actions/checkout needs this when running inside a container
