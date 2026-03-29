@@ -1,0 +1,66 @@
+name: Test Install Speed
+
+on:
+  workflow_dispatch:
+
+jobs:
+  baseline:
+    name: "Baseline (install/action.yml)"
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/workflows/install
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          # Unique cache key so we get a cold start on first run
+          cache-version: speed-test
+          needs: build, check, website
+          extra-packages: >-
+            any::astgrepr
+            any::cli
+            any::covr
+            any::devtools
+            any::magick
+            any::pak
+            any::pkgdown
+            any::purrr
+            any::rcmdcheck
+            any::rlang
+            any::roxygen2
+            any::testthat
+            any::usethis
+            any::withr
+            wranglezone/stbl
+            Gilead-BioStats/qcthat
+            local::.
+
+  container:
+    name: "Container (install2/action.yml)"
+    runs-on: ubuntu-latest
+    container:
+      image: ghcr.io/api2r/pkgskills-ci:latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - uses: ./.github/workflows/install2
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          extra-packages: >-
+            any::astgrepr
+            any::cli
+            any::covr
+            any::devtools
+            any::magick
+            any::pak
+            any::pkgdown
+            any::purrr
+            any::rcmdcheck
+            any::rlang
+            any::roxygen2
+            any::testthat
+            any::usethis
+            any::withr
+            wranglezone/stbl
+            Gilead-BioStats/qcthat
+            local::.
