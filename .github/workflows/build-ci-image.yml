@@ -2,6 +2,9 @@ name: Build CI Image
 
 on:
   workflow_dispatch:
+  schedule:
+    # Weekly Monday 6 AM UTC
+    - cron: '0 6 * * 1'
 
 jobs:
   build:
