@@ -8,6 +8,18 @@ RUN apt-get update \
         sudo \
         curl \
         wget \
+        rsync \
+        ssh-client \
+        libxml2-dev \
+        libcurl4-openssl-dev \
+        libssl-dev \
+        libfontconfig1-dev \
+        libfreetype6-dev \
+        libfribidi-dev \
+        libharfbuzz-dev \
+        libjpeg-dev \
+        libpng-dev \
+        libtiff-dev \
     && rm -rf /var/lib/apt/lists/*
 
 # actions/checkout needs this when running inside a container

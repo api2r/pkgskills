@@ -57,6 +57,8 @@ runs:
       env:
         GITHUB_PAT: ${{ inputs.token }}
       run: |
+        # Install local package dependencies (includes Remotes like stbl)
+        pak::pak()
         pkgs <- strsplit(trimws("${{ inputs.extra-packages }}"), "\\s+")[[1]]
         pkgs <- pkgs[nzchar(pkgs)]
         if (length(pkgs) > 0) pak::pak(pkgs)
