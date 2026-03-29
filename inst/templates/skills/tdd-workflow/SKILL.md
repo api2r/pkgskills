@@ -89,7 +89,7 @@ Snapshots are stored in `tests/testthat/_snaps/`. The filename corresponds to th
 - **Duplication over factoring:** repeat setup code rather than extracting it. Clarity beats DRY in tests.
 - **One concept per test:** a failing test should tell you exactly what broke.
 - **Minimal with few comments:** keep tests lean. Avoid over-commenting.
-- **Issue reference in description:** the `desc` of every new `test_that()` call should end with one or more parenthetical issue references for the issue(s) *verified by those tests* — typically the issue currently being solved. Never guess or invent issue numbers; if no tracked issue applies, use `#noissue`:
+- **Issue reference in description:** the `desc` of every new `test_that()` call should end with one or more parenthetical issue references for the issue(s) *verified by those tests* — typically the issue currently being solved. **Never guess or invent issue numbers.** Determine the number from the user's prompt, the branch name (`git branch --show-current`), or `gh issue list`. Before writing a number, verify you can trace it to one of these sources. If no tracked issue applies, use `#noissue`. The numbers in the examples below are illustrative placeholders — do not copy them:
   ```r
   test_that("fetch_records() returns correct columns (#1)", { ... })
   test_that("build_summary() returns correct columns (#2, #3)", { ... })
