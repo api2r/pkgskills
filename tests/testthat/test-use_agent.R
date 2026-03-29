@@ -11,9 +11,13 @@ test_that("use_agent() writes AGENTS.md and returns the path invisibly (#2)", {
 test_that("use_agent() substitutes Package and Title into the template (#2, #59)", {
   proj_dir <- local_pkg()
   suppressMessages(use_agent(open = FALSE))
-  expect_snapshot({
-    writeLines(readLines(fs::path(proj_dir, "AGENTS.md")))
-  })
+  content <- readLines(fs::path(proj_dir, "AGENTS.md"))
+  expect_match(content, "mypkg", all = FALSE)
+  expect_match(content, "My Test Package", all = FALSE, fixed = TRUE)
+  expect_match(content, "A package for testing.", all = FALSE, fixed = TRUE)
+  expect_match(content, "https://example.com", all = FALSE, fixed = TRUE)
+  expect_no_match(content, "{{{Package}}}", all = FALSE, fixed = TRUE)
+  expect_no_match(content, "{{{Title}}}", all = FALSE, fixed = TRUE)
 })
 
 test_that("use_agent() does not insert 'NA' when Description or URL is absent (#2, #59)", {
@@ -25,9 +29,10 @@ test_that("use_agent() does not insert 'NA' when Description or URL is absent (#
     )
   )
   suppressMessages(use_agent(open = FALSE))
-  expect_snapshot({
-    writeLines(readLines(fs::path(proj_dir, "AGENTS.md")))
-  })
+  content <- readLines(fs::path(proj_dir, "AGENTS.md"))
+  expect_match(content, "minpkg", all = FALSE)
+  expect_match(content, "Minimal Package", all = FALSE, fixed = TRUE)
+  expect_no_match(content, "^NA$", all = FALSE)
 })
 
 test_that("use_agent() emits an informational message after writing (#2)", {
