@@ -2,6 +2,10 @@
 
 ## pkgskills (development version)
 
+- `AGENTS.md` and `tdd-workflow` skill instructions now explicitly
+  explain how to determine the GitHub issue number and warn agents never
+  to guess or invent one ([@copilot](https://github.com/copilot),
+  [\#61](https://github.com/api2r/pkgskills/issues/61)).
 - [`use_agent()`](https://api2r.github.io/pkgskills/reference/use_agent.md)
   template is reconciled with this package’s `AGENTS.md` file
   ([\#59](https://github.com/api2r/pkgskills/issues/59)).
