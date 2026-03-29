@@ -52,11 +52,10 @@ runs:
         cache-version: ${{ inputs.cache-version }}
 
     - if: inputs.use-container == 'true'
-      name: Install or update R dependencies
-      shell: Rscript {0}
+      uses: r-lib/actions/setup-r-dependencies@v2
       env:
         GITHUB_PAT: ${{ inputs.token }}
-      run: |
-        pkgs <- strsplit(trimws("${{ inputs.extra-packages }}"), "\\s+")[[1]]
-        pkgs <- pkgs[nzchar(pkgs)]
-        if (length(pkgs) > 0) pak::pak(pkgs)
+      with:
+        needs: ${{ inputs.needs }}
+        extra-packages: ${{ inputs.extra-packages }}
+        cache-version: ${{ inputs.cache-version }}
