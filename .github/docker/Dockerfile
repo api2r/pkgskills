@@ -1,4 +1,5 @@
-FROM rocker/r-ver:4
+ARG R_VERSION=4
+FROM rocker/r-ver:${R_VERSION}
 
 # System tools needed for CI (git for actions/checkout, sudo for some actions)
 RUN apt-get update \
@@ -26,8 +27,7 @@ RUN apt-get update \
 # actions/checkout needs this when running inside a container
 RUN git config --global --add safe.directory '*'
 
-# Install pak, then use it to install core packages.
-# pak handles system dependency installation automatically.
+# Install pak, then use it to install core CRAN packages.
 RUN Rscript -e 'install.packages("pak")'
 RUN Rscript -e ' \
   pak::pak(c( \
