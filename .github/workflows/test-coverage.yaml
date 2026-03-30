@@ -12,7 +12,7 @@ jobs:
   test-coverage:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/api2r/pkgskills-ci:latest
+      image: ghcr.io/api2r/pkgskills-ci:release
     steps:
       - uses: actions/checkout@v6
 

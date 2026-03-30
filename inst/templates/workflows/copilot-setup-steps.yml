@@ -16,7 +16,7 @@ jobs:
   copilot-setup-steps:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/api2r/pkgskills-ci:latest
+      image: ghcr.io/api2r/pkgskills-ci:release
 
     permissions:
       contents: read

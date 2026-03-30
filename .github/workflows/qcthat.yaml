@@ -49,7 +49,7 @@ jobs:
   qcthat:
     runs-on: ubuntu-latest
     container:
-      image: ghcr.io/api2r/pkgskills-ci:latest
+      image: ghcr.io/api2r/pkgskills-ci:release
     if: >-
       (github.event_name == 'issues' && contains(github.event.issue.labels.*.name, 'qcthat-uat')) ||
       github.event_name != 'issues'
