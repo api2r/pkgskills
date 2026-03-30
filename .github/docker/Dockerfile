@@ -29,12 +29,31 @@ RUN git config --global --add safe.directory '*'
 # Install pak, then use it to install core CRAN packages.
 # pak handles system dependency installation automatically on Ubuntu.
 # These are the CRAN packages needed by copilot-setup-steps.yml plus
-# all Imports/Suggests from DESCRIPTION. GitHub-hosted packages
-# (stbl, qcthat) and local::. are left for runtime.
+# all Imports/Suggests from DESCRIPTION. Gilead-BioStats/qcthat and
+# local::. are left for runtime.
 RUN Rscript -e 'install.packages("pak")'
 RUN Rscript -e ' \
   pak::pak(c( \
-    "astgrepr", "callr", "cli", "covr", "desc", "devtools", "fs", "gh", \
-    "knitr", "magick", "pkgdown", "purrr", "rcmdcheck", "rlang", \
-    "rmarkdown", "roxygen2", "stringr", "testthat", "usethis", "withr" \
+    "astgrepr", \
+    "callr", \
+    "cli", \
+    "covr", \
+    "desc", \
+    "devtools", \
+    "fs", \
+    "gh", \
+    "knitr", \
+    "magick", \
+    "pkgdown", \
+    "purrr", \
+    "rcmdcheck", \
+    "rlang", \
+    "rmarkdown", \
+    "roxygen2", \
+    "wranglezone/stbl", \
+    "stringr", \
+    "testthat", \
+    "usethis", \
+    "withr", \
+    "xml2" \
   ))'

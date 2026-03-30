@@ -42,17 +42,7 @@ runs:
         http-user-agent: ${{ inputs.http-user-agent }}
         use-public-rspm: true
 
-    - if: inputs.use-container != 'true'
-      uses: r-lib/actions/setup-r-dependencies@v2
-      env:
-        GITHUB_PAT: ${{ inputs.token }}
-      with:
-        needs: ${{ inputs.needs }}
-        extra-packages: ${{ inputs.extra-packages }}
-        cache-version: ${{ inputs.cache-version }}
-
-    - if: inputs.use-container == 'true'
-      uses: r-lib/actions/setup-r-dependencies@v2
+    - uses: r-lib/actions/setup-r-dependencies@v2
       env:
         GITHUB_PAT: ${{ inputs.token }}
       with:
