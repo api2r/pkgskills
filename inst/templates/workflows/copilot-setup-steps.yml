@@ -15,8 +15,7 @@ jobs:
   # The job MUST be called `copilot-setup-steps` or it will not be picked up by Copilot.
   copilot-setup-steps:
     runs-on: ubuntu-latest
-    container:
-      image: ghcr.io/api2r/pkgskills-ci:release
+    snapshot: true
 
     permissions:
       contents: read
@@ -26,8 +25,8 @@ jobs:
 
       - uses: ./.github/workflows/install
         with:
-          use-container: "true"
           token: ${{ secrets.GITHUB_TOKEN }}
+          cache-version: copilot
           needs: build, check, website
           # Extra packages include things referenced in skills, to make sure the
           # agent has them available.
