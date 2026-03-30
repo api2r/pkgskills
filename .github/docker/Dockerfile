@@ -52,6 +52,7 @@ ENV LANG=en_US.UTF-8
 # actions/checkout needs this when running inside a container
 RUN git config --global --add safe.directory '*'
 
+
 # Install latest stable Rust toolchain (rocker images may ship an outdated version)
 RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
 ENV PATH="/root/.cargo/bin:${PATH}"
