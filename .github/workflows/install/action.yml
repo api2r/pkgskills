@@ -50,6 +50,18 @@ runs:
         http-user-agent: ${{ inputs.http-user-agent }}
         use-public-rspm: true
 
+    # In pre-warmed containers every package may already be in the system
+    # library, so nothing is ever written to R_LIBS_USER.  Ensure the
+    # directory exists with a sentinel so the actions/cache glob matches
+    # and the "Path Validation Error" warning doesn't fire at cache-save.
+    - if: inputs.use-container == 'true'
+      name: Ensure R_LIBS_USER exists
+      shell: bash
+      run: |
+        lib="$(Rscript -e 'cat(Sys.getenv("R_LIBS_USER"))')"
+        mkdir -p "$lib"
+        touch "$lib/.keep"
+
     - uses: r-lib/actions/setup-r-dependencies@v2
       env:
         GITHUB_PAT: ${{ inputs.token }}
