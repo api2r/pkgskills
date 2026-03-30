@@ -26,11 +26,8 @@ RUN apt-get update \
 # actions/checkout needs this when running inside a container
 RUN git config --global --add safe.directory '*'
 
-# Install pak, then use it to install core CRAN packages.
-# pak handles system dependency installation automatically on Ubuntu.
-# These are the CRAN packages needed by copilot-setup-steps.yml plus
-# all Imports/Suggests from DESCRIPTION. Gilead-BioStats/qcthat and
-# local::. are left for runtime.
+# Install pak, then use it to install core packages.
+# pak handles system dependency installation automatically.
 RUN Rscript -e 'install.packages("pak")'
 RUN Rscript -e ' \
   pak::pak(c( \
