@@ -23,29 +23,15 @@ pkgs <- c(
   "xml2"
 )
 
-# --- Layer 1: pre-filter by dependency resolution --------------------------
-# Use pak to resolve each package individually. This correctly checks R version
-# requirements across all sources (CRAN source, PPM binaries, GitHub, etc.),
-# unlike available.packages() which only queries the configured repo index
-# (PPM binaries in rocker images, which may not list packages needing Rust, etc.).
-
-installable <- character()
-for (pkg in pkgs) {
-  tryCatch({
-    pak::pkg_deps(pkg)
-    installable <- c(installable, pkg)
-  }, error = function(e) {
-    warning("Skipping ", pkg, " (not available for R ", getRversion(), ")", call. = FALSE)
-  })
-}
-
-# --- Layer 2: install with build-failure fallback --------------------------
+# Try installing all packages at once. If that fails (e.g. a package needs a
+# newer R or a missing system tool), fall back to one-by-one so the image still
+# gets built with everything else.
 
 tryCatch(
-  pak::pak(installable),
+  pak::pak(pkgs),
   error = function(e) {
     warning("Bulk install failed, retrying one-by-one: ", conditionMessage(e), call. = FALSE)
-    for (pkg in installable) {
+    for (pkg in pkgs) {
       tryCatch(
         pak::pak(pkg),
         error = function(e2) {
