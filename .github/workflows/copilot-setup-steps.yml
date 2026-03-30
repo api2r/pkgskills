@@ -24,6 +24,17 @@ jobs:
     steps:
       - uses: actions/checkout@v6
 
+      # Workaround: some actions (notably Copilot Coding Agent) hardcode
+      # /home/runner/work/_temp, which is the host path.  Inside a
+      # container GHA mounts the temp dir at /__w/_temp instead.
+      # See https://github.com/actions/runner/issues/2498
+      - name: Bridge host ↔ container temp paths
+        run: |
+          if [ -d "/__w/_temp" ] && [ ! -e "/home/runner/work/_temp" ]; then
+            mkdir -p /home/runner/work
+            ln -s "/__w/_temp" /home/runner/work/_temp
+          fi
+
       - uses: ./.github/workflows/install
         with:
           use-container: "true"

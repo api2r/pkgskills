@@ -64,24 +64,6 @@ RUN echo 'local({ \
     options(repos = c(repos, CRAN_SRC = "https://cloud.r-project.org")) \
 })' >> "$(R RHOME)/etc/Rprofile.site"
 
-# Mimic r-lib/actions/setup-r environment so downstream actions (especially
-# setup-r-dependencies) work without running setup-r itself.
-#
-# R_LIBS_USER is set to a fixed path so it is stable across Docker build
-# (HOME=/root) and GHA runtime (HOME=/github/home).  Without this, R
-# computes a HOME-relative path that differs between the two contexts,
-# causing the sentinel file and cache glob to miss.
-ENV TZ=UTC \
-    NOT_CRAN=true \
-    _R_CHECK_SYSTEM_CLOCK_=FALSE \
-    R_LIBS_USER=/usr/local/lib/R/user-library
-
-# Pre-create R_LIBS_USER.  The sentinel file ensures the actions/cache glob
-# `R_LIBS_USER/*` always matches, even when every package is already
-# satisfied by the system library.
-RUN mkdir -p "$R_LIBS_USER" \
-    && touch "$R_LIBS_USER/.keep"
-
 # Install pak, then R packages (filtered by compatibility with this R version)
 RUN Rscript -e 'install.packages("pak")'
 COPY install-packages.R /tmp/install-packages.R
