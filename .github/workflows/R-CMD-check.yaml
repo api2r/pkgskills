@@ -21,9 +21,9 @@ jobs:
         config:
           - {os: macos-latest,   r: 'release'}
           - {os: windows-latest, r: 'release'}
-          - {os: ubuntu-latest,  r: 'devel', http-user-agent: 'release'}
-          - {os: ubuntu-latest,  r: 'release', container: 'ghcr.io/api2r/pkgskills-ci:latest'}
-          - {os: ubuntu-latest,  r: 'oldrel-1'}
+          - {os: ubuntu-latest,  r: 'devel',    http-user-agent: 'release', container: 'ghcr.io/api2r/pkgskills-ci:devel'}
+          - {os: ubuntu-latest,  r: 'release',  container: 'ghcr.io/api2r/pkgskills-ci:release'}
+          - {os: ubuntu-latest,  r: 'oldrel-1', container: 'ghcr.io/api2r/pkgskills-ci:oldrel-1'}
 
     steps:
       - uses: actions/checkout@v6

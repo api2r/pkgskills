@@ -12,8 +12,32 @@ jobs:
     permissions:
       contents: read
       packages: write
+
+    strategy:
+      fail-fast: false
+      matrix:
+        r-alias: [devel, release, oldrel-1, oldrel-2, oldrel-3, oldrel-4]
+
     steps:
       - uses: actions/checkout@v6
+
+      - name: Resolve R version
+        id: r-version
+        run: |
+          set -euo pipefail
+          alias="${{ matrix.r-alias }}"
+          if [ "$alias" = "devel" ]; then
+            echo "rocker_tag=devel" >> "$GITHUB_OUTPUT"
+          else
+            # Convert "oldrel-1" → "oldrel/1" for the r-hub API path
+            api_path=$(echo "$alias" | sed 's/oldrel-/oldrel\//')
+            version=$(curl -fsSL "https://api.r-hub.io/rversions/r-${api_path}" | jq -er '.version')
+            if [ -z "$version" ] || [ "$version" = "null" ]; then
+              echo "Error: Failed to resolve R version for alias '$alias' from r-hub API." >&2
+              exit 1
+            fi
+            echo "rocker_tag=$version" >> "$GITHUB_OUTPUT"
+          fi
 
       - name: Log in to ghcr.io
         uses: docker/login-action@v3
@@ -26,5 +50,10 @@ jobs:
         uses: docker/build-push-action@v6
         with:
           context: .github/docker
+          build-args: R_VERSION=${{ steps.r-version.outputs.rocker_tag }}
           push: true
-          tags: ghcr.io/${{ github.repository }}-ci:latest
+          tags: >-
+            ghcr.io/${{ github.repository }}-ci:${{ matrix.r-alias }}${{
+              matrix.r-alias == 'release' &&
+              format(',ghcr.io/{0}-ci:latest', github.repository) || ''
+            }}

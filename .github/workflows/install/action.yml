@@ -20,6 +20,10 @@ inputs:
     description: "Extra packages, passed to r-lib/actions/setup-r-dependencies@v2"
     required: false
     default: any::rcmdcheck
+  optional-packages:
+    description: "Optional extra packages; installed individually, warn (not error) on failure"
+    required: false
+    default: ""
   cache-version:
     description: "Cache version for r-lib/actions/setup-r-dependencies@v2"
     required: false
@@ -35,15 +39,30 @@ runs:
     - if: inputs.use-container != 'true'
       uses: r-lib/actions/setup-pandoc@v2
 
-    - if: inputs.use-container != 'true'
-      uses: r-lib/actions/setup-r@v2
+    # Always run setup-r, even in containers.  With install-r: false it
+    # skips the R download but still sets R_LIBS_USER, TZ, NOT_CRAN, etc.
+    # in GITHUB_ENV — the official way to align the environment for
+    # setup-r-dependencies and actions/cache.
+    - uses: r-lib/actions/setup-r@v2
       with:
+        install-r: ${{ inputs.use-container != 'true' }}
         r-version: ${{ inputs.r-version }}
         http-user-agent: ${{ inputs.http-user-agent }}
         use-public-rspm: true
 
-    - if: inputs.use-container != 'true'
-      uses: r-lib/actions/setup-r-dependencies@v2
+    # In pre-warmed containers every package may already be in the system
+    # library, so nothing is ever written to R_LIBS_USER.  Ensure the
+    # directory exists with a sentinel so the actions/cache glob matches
+    # and the "Path Validation Error" warning doesn't fire at cache-save.
+    - if: inputs.use-container == 'true'
+      name: Ensure R_LIBS_USER exists
+      shell: bash
+      run: |
+        lib="$(Rscript -e 'cat(Sys.getenv("R_LIBS_USER"))')"
+        mkdir -p "$lib"
+        touch "$lib/.keep"
+
+    - uses: r-lib/actions/setup-r-dependencies@v2
       env:
         GITHUB_PAT: ${{ inputs.token }}
       with:
@@ -51,11 +70,21 @@ runs:
         extra-packages: ${{ inputs.extra-packages }}
         cache-version: ${{ inputs.cache-version }}
 
-    - if: inputs.use-container == 'true'
-      uses: r-lib/actions/setup-r-dependencies@v2
+    - if: inputs.optional-packages != ''
+      name: Install optional packages
+      shell: Rscript {0}
       env:
         GITHUB_PAT: ${{ inputs.token }}
-      with:
-        needs: ${{ inputs.needs }}
-        extra-packages: ${{ inputs.extra-packages }}
-        cache-version: ${{ inputs.cache-version }}
+      run: |
+        pkgs <- strsplit("${{ inputs.optional-packages }}", "\\s+")[[1]]
+        pkgs <- pkgs[nzchar(pkgs)]
+        for (pkg in pkgs) {
+          tryCatch(
+            pak::pak(pkg),
+            error = function(e) {
+              msg <- sprintf("Failed to install optional package %s: %s", pkg, conditionMessage(e))
+              msg <- gsub("[\r\n]+", " ", msg)
+              cat("::warning::", msg, "\n", sep = "")
+            }
+          )
+        }
