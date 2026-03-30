@@ -1,3 +1,11 @@
+# Rocker images default to PPM's Linux binary endpoint, which doesn't index
+# packages that need non-standard build tools (e.g. Rust). Add CRAN source as
+# a fallback so pak can find everything.
+repos <- getOption("repos")
+if (!"CRAN_SRC" %in% names(repos)) {
+  options(repos = c(repos, CRAN_SRC = "https://cloud.r-project.org"))
+}
+
 pkgs <- c(
   "astgrepr",
   "callr",
