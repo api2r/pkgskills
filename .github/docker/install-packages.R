@@ -23,35 +23,23 @@ pkgs <- c(
   "xml2"
 )
 
-# --- Layer 1: pre-filter by metadata compatibility -------------------------
+# --- Layer 1: pre-filter by dependency resolution --------------------------
+# Use pak to resolve each package individually. This correctly checks R version
+# requirements across all sources (CRAN source, PPM binaries, GitHub, etc.),
+# unlike available.packages() which only queries the configured repo index
+# (PPM binaries in rocker images, which may not list packages needing Rust, etc.).
 
-is_remote <- grepl("/", pkgs)
-cran_refs  <- pkgs[!is_remote]
-other_refs <- pkgs[is_remote]
-
-# available.packages() only lists packages compatible with this R version
-avail     <- rownames(available.packages())
-cran_ok   <- cran_refs[cran_refs %in% avail]
-pre_skip  <- setdiff(cran_refs, cran_ok)
-
-# For remote refs, resolve individually to check R version compatibility
-other_ok <- character()
-for (ref in other_refs) {
+installable <- character()
+for (pkg in pkgs) {
   tryCatch({
-    pak::pkg_deps(ref)
-    other_ok <- c(other_ok, ref)
+    pak::pkg_deps(pkg)
+    installable <- c(installable, pkg)
   }, error = function(e) {
-    pre_skip <<- c(pre_skip, ref)
+    warning("Skipping ", pkg, " (not available for R ", getRversion(), ")", call. = FALSE)
   })
 }
 
-for (pkg in pre_skip) {
-  warning("Skipping ", pkg, " (incompatible with R ", getRversion(), ")", call. = FALSE)
-}
-
 # --- Layer 2: install with build-failure fallback --------------------------
-
-installable <- c(cran_ok, other_ok)
 
 tryCatch(
   pak::pak(installable),
