@@ -46,7 +46,6 @@ jobs:
             any::usethis
             any::withr
             wranglezone/stbl
-            Gilead-BioStats/qcthat
             local::.
 
       - name: Install air
