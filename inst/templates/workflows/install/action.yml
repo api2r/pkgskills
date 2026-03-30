@@ -20,6 +20,10 @@ inputs:
     description: "Extra packages, passed to r-lib/actions/setup-r-dependencies@v2"
     required: false
     default: any::rcmdcheck
+  optional-packages:
+    description: "Optional extra packages; installed individually, warn (not error) on failure"
+    required: false
+    default: ""
   cache-version:
     description: "Cache version for r-lib/actions/setup-r-dependencies@v2"
     required: false
@@ -49,3 +53,21 @@ runs:
         needs: ${{ inputs.needs }}
         extra-packages: ${{ inputs.extra-packages }}
         cache-version: ${{ inputs.cache-version }}
+
+    - if: inputs.optional-packages != ''
+      name: Install optional packages
+      shell: Rscript {0}
+      env:
+        GITHUB_PAT: ${{ inputs.token }}
+      run: |
+        pkgs <- strsplit("${{ inputs.optional-packages }}", "\\s+")[[1]]
+        pkgs <- pkgs[nzchar(pkgs)]
+        for (pkg in pkgs) {
+          tryCatch(
+            pak::pak(pkg),
+            error = function(e) {
+              msg <- sprintf("Failed to install optional package %s: %s", pkg, conditionMessage(e))
+              system2("echo", shQuote(paste0("::warning::", msg)))
+            }
+          )
+        }

@@ -45,11 +45,8 @@ for (ref in other_refs) {
   })
 }
 
-if (length(pre_skip)) {
-  message(
-    "Skipping (incompatible with R ", getRversion(), "): ",
-    paste(pre_skip, collapse = ", ")
-  )
+for (pkg in pre_skip) {
+  warning("Skipping ", pkg, " (incompatible with R ", getRversion(), ")", call. = FALSE)
 }
 
 # --- Layer 2: install with build-failure fallback --------------------------
@@ -59,12 +56,12 @@ installable <- c(cran_ok, other_ok)
 tryCatch(
   pak::pak(installable),
   error = function(e) {
-    message("Bulk install failed, retrying one-by-one...\n", conditionMessage(e))
+    warning("Bulk install failed, retrying one-by-one: ", conditionMessage(e), call. = FALSE)
     for (pkg in installable) {
       tryCatch(
         pak::pak(pkg),
         error = function(e2) {
-          message("Skipping ", pkg, ": ", conditionMessage(e2))
+          warning("Skipping ", pkg, ": ", conditionMessage(e2), call. = FALSE)
         }
       )
     }
