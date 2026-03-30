@@ -27,30 +27,11 @@ RUN apt-get update \
 # actions/checkout needs this when running inside a container
 RUN git config --global --add safe.directory '*'
 
-# Install pak, then use it to install core CRAN packages.
+# Install latest stable Rust toolchain (rocker images may ship an outdated version)
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
+ENV PATH="/root/.cargo/bin:${PATH}"
+
+# Install pak, then R packages (filtered by compatibility with this R version)
 RUN Rscript -e 'install.packages("pak")'
-RUN Rscript -e ' \
-  pak::pak(c( \
-    "astgrepr", \
-    "callr", \
-    "cli", \
-    "covr", \
-    "desc", \
-    "devtools", \
-    "fs", \
-    "gh", \
-    "knitr", \
-    "magick", \
-    "pkgdown", \
-    "purrr", \
-    "rcmdcheck", \
-    "rlang", \
-    "rmarkdown", \
-    "roxygen2", \
-    "wranglezone/stbl", \
-    "stringr", \
-    "testthat", \
-    "usethis", \
-    "withr", \
-    "xml2" \
-  ))'
+COPY install-packages.R /tmp/install-packages.R
+RUN Rscript /tmp/install-packages.R && rm /tmp/install-packages.R
