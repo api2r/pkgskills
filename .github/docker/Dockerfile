@@ -64,6 +64,19 @@ RUN echo 'local({ \
     options(repos = c(repos, CRAN_SRC = "https://cloud.r-project.org")) \
 })' >> "$(R RHOME)/etc/Rprofile.site"
 
+# Mimic r-lib/actions/setup-r environment so downstream actions (especially
+# setup-r-dependencies) work without running setup-r itself.
+ENV TZ=UTC \
+    NOT_CRAN=true \
+    _R_CHECK_SYSTEM_CLOCK_=FALSE
+
+# Pre-create R_LIBS_USER (using R's own default for this platform/version).
+# A sentinel file ensures that the actions/cache glob `R_LIBS_USER/*` always
+# matches, even when every package is already satisfied by the system library.
+RUN R_USER_LIB="$(Rscript -e 'cat(Sys.getenv("R_LIBS_USER"))')" \
+    && mkdir -p "$R_USER_LIB" \
+    && touch "$R_USER_LIB/.keep"
+
 # Install pak, then R packages (filtered by compatibility with this R version)
 RUN Rscript -e 'install.packages("pak")'
 COPY install-packages.R /tmp/install-packages.R
