@@ -19,8 +19,10 @@ RUN apt-get update \
         libfribidi-dev \
         libharfbuzz-dev \
         libjpeg-dev \
+        libmagick++-dev \
         libpng-dev \
         libtiff-dev \
+        cmake \
         qpdf \
     && rm -rf /var/lib/apt/lists/*
 
