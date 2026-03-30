@@ -1,5 +1,6 @@
 # pkgskills (development version)
 
+* `copilot-setup-steps.yml` template now uses `snapshot: true` for faster Copilot startup, and matches the installed workflow (@jonthegeek, #67).
 * `AGENTS.md` and `tdd-workflow` skill instructions now explicitly explain how to determine the GitHub issue number and warn agents never to guess or invent one (@copilot, #61).
 * `use_agent()` template is reconciled with this package's `AGENTS.md` file (#59).
 * `tdd-workflow` skill now documents `stbl::expect_pkg_error_snapshot()` with an explicit `package` argument instead of a helper-defined version (#51).
