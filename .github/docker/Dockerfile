@@ -1,16 +1,35 @@
 ARG R_VERSION=4
 FROM rocker/r-ver:${R_VERSION}
 
-# System tools needed for CI (git for actions/checkout, sudo for some actions)
+# Baseline tools that GHA runners normally provide. Actions (codecov, cache,
+# upload-artifact, …) expect many of these to exist; installing them here
+# avoids "missing dependency" errors when jobs run inside this container.
 RUN apt-get update \
     && apt-get install -y --no-install-recommends \
-        pandoc \
+        # — core CI plumbing --------------------------------------------------
         git \
         sudo \
         curl \
         wget \
         rsync \
         ssh-client \
+        gnupg2 \
+        jq \
+        file \
+        locales \
+        # — archive / compression (actions/cache, upload-artifact, etc.) ------
+        tar \
+        unzip \
+        zip \
+        xz-utils \
+        zstd \
+        # — build tools -------------------------------------------------------
+        make \
+        gcc \
+        g++ \
+        pkg-config \
+        cmake \
+        # — R build system libs -----------------------------------------------
         libxml2-dev \
         libcurl4-openssl-dev \
         libssl-dev \
@@ -22,9 +41,12 @@ RUN apt-get update \
         libmagick++-dev \
         libpng-dev \
         libtiff-dev \
-        cmake \
+        # — document tooling --------------------------------------------------
+        pandoc \
         qpdf \
-    && rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/* \
+    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
+ENV LANG=en_US.UTF-8
 
 # actions/checkout needs this when running inside a container
 RUN git config --global --add safe.directory '*'
