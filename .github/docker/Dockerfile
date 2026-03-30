@@ -17,6 +17,7 @@ RUN apt-get update \
         jq \
         file \
         locales \
+        lsb-release \
         # — archive / compression (actions/cache, upload-artifact, etc.) ------
         tar \
         unzip \

@@ -24,13 +24,18 @@ jobs:
       - name: Resolve R version
         id: r-version
         run: |
+          set -euo pipefail
           alias="${{ matrix.r-alias }}"
           if [ "$alias" = "devel" ]; then
             echo "rocker_tag=devel" >> "$GITHUB_OUTPUT"
           else
             # Convert "oldrel-1" → "oldrel/1" for the r-hub API path
             api_path=$(echo "$alias" | sed 's/oldrel-/oldrel\//')
-            version=$(curl -sL "https://api.r-hub.io/rversions/r-${api_path}" | jq -r '.version')
+            version=$(curl -fsSL "https://api.r-hub.io/rversions/r-${api_path}" | jq -er '.version')
+            if [ -z "$version" ] || [ "$version" = "null" ]; then
+              echo "Error: Failed to resolve R version for alias '$alias' from r-hub API." >&2
+              exit 1
+            fi
             echo "rocker_tag=$version" >> "$GITHUB_OUTPUT"
           fi
 

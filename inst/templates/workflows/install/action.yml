@@ -67,7 +67,8 @@ runs:
             pak::pak(pkg),
             error = function(e) {
               msg <- sprintf("Failed to install optional package %s: %s", pkg, conditionMessage(e))
-              system2("echo", shQuote(paste0("::warning::", msg)))
+              msg <- gsub("[\r\n]+", " ", msg)
+              cat("::warning::", msg, "\n", sep = "")
             }
           )
         }
