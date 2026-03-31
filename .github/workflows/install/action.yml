@@ -58,11 +58,18 @@ runs:
         mkdir -p "$lib"
         touch "$lib/.keep"
 
-    # pkgdepends checks `dpkg -s cargo` (not Sys.which) to decide whether Rust
-    # needs to be installed.  Because rustup bypasses apt, dpkg has no record of
-    # it and pak always runs the rustup installer.  Add stub entries so the
-    # pre-flight check passes.  Once confirmed working, move this into the
-    # container image (Dockerfile) instead.
+    # When CI=true (always in GHA), pkgdepends fetches the live sysreqs DB from
+    # r-hub/r-system-requirements.  That DB's Rust rule has an unconditional
+    # rustup pre_install hook with an empty packages list, so the dpkg check is
+    # never reached and rustup always runs.
+    #
+    # Fix: disable the live DB download so pkgdepends falls back to its bundled
+    # DB, which uses a proper dpkg-based check (packages: ["rustc","cargo"]).
+    # Register those package names as stub dpkg entries so the check passes.
+    #
+    # Once confirmed working, move both of these into the Dockerfile:
+    #   • the printf stub → after the rustup RUN
+    #   • PKG_SYSREQS_DB_UPDATE=false → as an ENV line at the end
     - if: inputs.use-container == 'true'
       name: Register Rust with dpkg
       shell: bash
@@ -79,6 +86,7 @@ runs:
       shell: Rscript {0}
       env:
         GITHUB_PAT: ${{ inputs.token }}
+        PKG_SYSREQS_DB_UPDATE: "false"
       run: |
         # Replicate needs → Config/Needs/<field> expansion from r-lib/actions
         needs_parts <- strsplit("${{ inputs.needs }}", "[[:space:],]+")[[1]]
