@@ -70,3 +70,9 @@ RUN echo 'local({ \
 RUN Rscript -e 'install.packages("pak")'
 COPY install-packages.R /tmp/install-packages.R
 RUN Rscript /tmp/install-packages.R && rm /tmp/install-packages.R
+
+# GitHub Copilot's injected "Prepare Copilot" step uses `set -o pipefail` via
+# `shell: sh`, which dash (Debian's default /bin/sh) doesn't support.  Redirect
+# /bin/sh to bash, which is already installed and is a superset of POSIX sh.
+# Placed last so no apt postinst script can overwrite the symlink during build.
+RUN ln -sf /bin/bash /bin/sh
