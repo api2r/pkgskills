@@ -67,7 +67,7 @@ runs:
       shell: bash
       run: |
         if [ "${{ inputs.use-container }}" = "true" ]; then
-          echo "lockfile-create-lib='.Library'" >> "$GITHUB_OUTPUT"
+          echo "lockfile-create-lib=.Library" >> "$GITHUB_OUTPUT"
           echo "upgrade=TRUE" >> "$GITHUB_OUTPUT"
         else
           echo "lockfile-create-lib=NULL" >> "$GITHUB_OUTPUT"
