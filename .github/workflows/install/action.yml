@@ -58,21 +58,17 @@ runs:
         mkdir -p "$lib"
         touch "$lib/.keep"
 
-    # GHA sets HOME=/github/home but the container process runs as root
-    # (euid home = /root).  rustup-init.sh fails two checks because of this:
-    #   1. It finds cargo in PATH but looks in $HOME/.cargo (not $CARGO_HOME)
-    #      to verify the installation is rustup-managed → "cannot install" error.
-    #   2. It explicitly compares $HOME with getpwuid(euid) → "$HOME differs" error.
-    # Exporting the real paths via GITHUB_ENV lets rustup-init use CARGO_HOME /
-    # RUSTUP_HOME for detection; HOME=/root is set per-step (below) to silence
-    # the euid check.  Once confirmed, move this step into the container image.
+    # pkgdepends checks `dpkg -s cargo` (not Sys.which) to decide whether Rust
+    # needs to be installed.  Because rustup bypasses apt, dpkg has no record of
+    # it and pak always runs the rustup installer.  Add stub entries so the
+    # pre-flight check passes.  Once confirmed working, move this into the
+    # container image (Dockerfile) instead.
     - if: inputs.use-container == 'true'
-      name: Configure Rust environment for GHA container
+      name: Register Rust with dpkg
       shell: bash
       run: |
-        echo "RUSTUP_HOME=/usr/local/rustup" >> "$GITHUB_ENV"
-        echo "CARGO_HOME=/usr/local/cargo"   >> "$GITHUB_ENV"
-        echo "/usr/local/cargo/bin"          >> "$GITHUB_PATH"
+        printf '\nPackage: rustc\nStatus: install ok installed\nArchitecture: amd64\nVersion: 99.0.0\nDescription: stub; real Rust managed by rustup\n\nPackage: cargo\nStatus: install ok installed\nArchitecture: amd64\nVersion: 99.0.0\nDescription: stub; real Rust managed by rustup\n\n' \
+            >> /var/lib/dpkg/status
 
     # Container path: call pak::pak() directly so it checks .libPaths() and
     # only installs/updates packages that are genuinely missing or outdated.
@@ -83,8 +79,6 @@ runs:
       shell: Rscript {0}
       env:
         GITHUB_PAT: ${{ inputs.token }}
-        # Match HOME to the actual euid home so rustup-init.sh passes its checks.
-        HOME: /root
       run: |
         # Replicate needs → Config/Needs/<field> expansion from r-lib/actions
         needs_parts <- strsplit("${{ inputs.needs }}", "[[:space:],]+")[[1]]
