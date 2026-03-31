@@ -53,9 +53,13 @@ ENV LANG=en_US.UTF-8
 RUN git config --global --add safe.directory '*'
 
 
-# Install latest stable Rust toolchain (rocker images may ship an outdated version)
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
+# Install latest stable Rust toolchain into fixed, $HOME-independent paths so
+# that pak can find cargo regardless of the HOME GitHub Actions injects at runtime.
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y --no-modify-path
+ENV PATH="/usr/local/cargo/bin:${PATH}"
 
 # Rocker images configure repos to PPM's Linux binary endpoint, which doesn't
 # index packages needing non-standard build tools (e.g. Rust). Add CRAN source
