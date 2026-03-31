@@ -1,6 +1,5 @@
 # pkgskills (development version)
 
-* `use_github_copilot()` now installs a container-based `copilot-setup-steps.yml` for faster agent startup (#67).
 * `AGENTS.md` and `tdd-workflow` skill instructions now explicitly explain how to determine the GitHub issue number and warn agents never to guess or invent one (@copilot, #61).
 * `use_agent()` template is reconciled with this package's `AGENTS.md` file (#59).
 * `tdd-workflow` skill now documents `stbl::expect_pkg_error_snapshot()` with an explicit `package` argument instead of a helper-defined version (#51).

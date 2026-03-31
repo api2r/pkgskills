@@ -53,9 +53,20 @@ ENV LANG=en_US.UTF-8
 RUN git config --global --add safe.directory '*'
 
 
-# Install latest stable Rust toolchain (rocker images may ship an outdated version)
-RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs | sh -s -- -y
-ENV PATH="/root/.cargo/bin:${PATH}"
+# Install latest stable Rust toolchain into fixed, $HOME-independent paths so
+# that pak can find cargo regardless of the HOME GitHub Actions injects at runtime.
+ENV RUSTUP_HOME=/usr/local/rustup \
+    CARGO_HOME=/usr/local/cargo
+RUN curl --proto '=https' --tlsv1.2 -sSf https://sh.rustup.rs \
+    | sh -s -- -y --no-modify-path
+ENV PATH="/usr/local/cargo/bin:${PATH}"
+
+# Register Rust with dpkg so pkgdepends' bundled sysreqs DB treats it as
+# already installed and skips any apt/rustup install attempts at runtime.
+RUN RUSTC_VER=$(rustc --version | awk '{print $2}') \
+    && CARGO_VER=$(cargo --version | awk '{print $2}') \
+    && printf 'Package: rustc\nStatus: install ok installed\nArchitecture: amd64\nVersion: %s\nDescription: stub; real Rust managed by rustup\n\nPackage: cargo\nStatus: install ok installed\nArchitecture: amd64\nVersion: %s\nDescription: stub; real Rust managed by rustup\n\n' \
+       "$RUSTC_VER" "$CARGO_VER" >> /var/lib/dpkg/status
 
 # Rocker images configure repos to PPM's Linux binary endpoint, which doesn't
 # index packages needing non-standard build tools (e.g. Rust). Add CRAN source
@@ -70,6 +81,13 @@ RUN echo 'local({ \
 RUN Rscript -e 'install.packages("pak")'
 COPY install-packages.R /tmp/install-packages.R
 RUN Rscript /tmp/install-packages.R && rm /tmp/install-packages.R
+
+# Use pkgdepends' bundled sysreqs DB at runtime rather than downloading the
+# live r-hub DB. The live DB's Rust rule runs rustup unconditionally (empty
+# packages list bypasses the dpkg check), which fails inside GHA containers
+# where HOME is remapped. The bundled DB uses a proper dpkg-based check.
+# Rebuild the image with a newer pkgdepends to pick up bundled DB updates.
+ENV PKG_SYSREQS_DB_UPDATE=false
 
 # GitHub Copilot's injected "Prepare Copilot" step uses `set -o pipefail` via
 # `shell: sh`, which dash (Debian's default /bin/sh) doesn't support.  Redirect
