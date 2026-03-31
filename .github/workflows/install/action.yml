@@ -39,10 +39,6 @@ runs:
     - if: inputs.use-container != 'true'
       uses: r-lib/actions/setup-pandoc@v2
 
-    # Always run setup-r, even in containers.  With install-r: false it
-    # skips the R download but still sets R_LIBS_USER, TZ, NOT_CRAN, etc.
-    # in GITHUB_ENV — the official way to align the environment for
-    # setup-r-dependencies and actions/cache.
     - uses: r-lib/actions/setup-r@v2
       with:
         install-r: ${{ inputs.use-container != 'true' }}
@@ -62,6 +58,22 @@ runs:
         mkdir -p "$lib"
         touch "$lib/.keep"
 
+    # When running in a pre-warmed container, point pak at the system library
+    # so it recognises already-installed packages instead of starting from an
+    # empty slate.  upgrade: TRUE ensures any stale packages are refreshed.
+    # For bare runners keep the reproducible defaults (empty lib, no upgrade).
+    - id: rdeps-params
+      name: Compute setup-r-dependencies parameters
+      shell: bash
+      run: |
+        if [ "${{ inputs.use-container }}" = "true" ]; then
+          echo "lockfile-create-lib='.Library'" >> "$GITHUB_OUTPUT"
+          echo "upgrade=TRUE" >> "$GITHUB_OUTPUT"
+        else
+          echo "lockfile-create-lib=NULL" >> "$GITHUB_OUTPUT"
+          echo "upgrade=FALSE" >> "$GITHUB_OUTPUT"
+        fi
+
     - uses: r-lib/actions/setup-r-dependencies@v2
       env:
         GITHUB_PAT: ${{ inputs.token }}
@@ -69,6 +81,8 @@ runs:
         needs: ${{ inputs.needs }}
         extra-packages: ${{ inputs.extra-packages }}
         cache-version: ${{ inputs.cache-version }}
+        lockfile-create-lib: ${{ steps.rdeps-params.outputs.lockfile-create-lib }}
+        upgrade: ${{ steps.rdeps-params.outputs.upgrade }}
 
     - if: inputs.optional-packages != ''
       name: Install optional packages
