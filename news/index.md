@@ -2,6 +2,9 @@
 
 ## pkgskills (development version)
 
+- [`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)
+  now installs a container-based `copilot-setup-steps.yml` for faster
+  agent startup ([\#67](https://github.com/api2r/pkgskills/issues/67)).
 - `AGENTS.md` and `tdd-workflow` skill instructions now explicitly
   explain how to determine the GitHub issue number and warn agents never
   to guess or invent one ([@copilot](https://github.com/copilot),
