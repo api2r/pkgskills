@@ -58,31 +58,40 @@ runs:
         mkdir -p "$lib"
         touch "$lib/.keep"
 
-    # When running in a pre-warmed container, point pak at the system library
-    # so it recognises already-installed packages instead of starting from an
-    # empty slate.  upgrade: TRUE ensures any stale packages are refreshed.
-    # For bare runners keep the reproducible defaults (empty lib, no upgrade).
-    - id: rdeps-params
-      name: Compute setup-r-dependencies parameters
-      shell: bash
+    # Container path: call pak::pak() directly so it checks .libPaths() and
+    # only installs/updates packages that are genuinely missing or outdated.
+    # setup-r-dependencies always runs a full lockfile-create → lockfile-install
+    # cycle which reinstalls everything even when the container already has it.
+    - if: inputs.use-container == 'true'
+      name: Update R package dependencies (container)
+      shell: Rscript {0}
+      env:
+        GITHUB_PAT: ${{ inputs.token }}
       run: |
-        if [ "${{ inputs.use-container }}" = "true" ]; then
-          echo "lockfile-create-lib=.Library" >> "$GITHUB_OUTPUT"
-          echo "upgrade=TRUE" >> "$GITHUB_OUTPUT"
-        else
-          echo "lockfile-create-lib=NULL" >> "$GITHUB_OUTPUT"
-          echo "upgrade=FALSE" >> "$GITHUB_OUTPUT"
-        fi
+        # Replicate needs → Config/Needs/<field> expansion from r-lib/actions
+        needs_parts <- strsplit("${{ inputs.needs }}", "[[:space:],]+")[[1]]
+        needs_parts <- needs_parts[nzchar(needs_parts)]
+        needs <- sprintf("Config/Needs/%s", needs_parts)
 
-    - uses: r-lib/actions/setup-r-dependencies@v2
+        extra_deps <- strsplit("${{ inputs.extra-packages }}", "[[:space:],]+")[[1]]
+        extra_deps <- extra_deps[nzchar(extra_deps)]
+
+        pak::pak(
+          c("deps::.", extra_deps),
+          dependencies = c(needs, "all"),
+          upgrade = TRUE,
+          ask = FALSE
+        )
+
+    # Non-container path: standard setup-r-dependencies flow with caching.
+    - if: inputs.use-container != 'true'
+      uses: r-lib/actions/setup-r-dependencies@v2
       env:
         GITHUB_PAT: ${{ inputs.token }}
       with:
         needs: ${{ inputs.needs }}
         extra-packages: ${{ inputs.extra-packages }}
         cache-version: ${{ inputs.cache-version }}
-        lockfile-create-lib: ${{ steps.rdeps-params.outputs.lockfile-create-lib }}
-        upgrade: ${{ steps.rdeps-params.outputs.upgrade }}
 
     - if: inputs.optional-packages != ''
       name: Install optional packages
