@@ -76,6 +76,11 @@ runs:
         extra_deps <- strsplit("${{ inputs.extra-packages }}", "[[:space:],]+")[[1]]
         extra_deps <- extra_deps[nzchar(extra_deps)]
 
+        # Over-protect for strangeness in the container
+        if (!requireNamespace("pak", quietly = TRUE)) {
+          install.packages("pak")
+        }
+
         pak::pak(
           c("deps::.", extra_deps),
           dependencies = c(needs, "all"),
