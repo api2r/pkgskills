@@ -32,7 +32,7 @@ jobs:
           use-container: "true"
           token: ${{ secrets.GITHUB_TOKEN }}
           needs: website
-          extra-packages: any::pkgdown gilead-biostats/qcthat local::.
+          extra-packages: any::pkgdown gilead-biostats/qcthat local::. any::glue
 
       - name: Build site
         run: pkgdown::build_site_github_pages(new_process = FALSE, install = FALSE)
@@ -54,7 +54,7 @@ jobs:
           strOwner <- tolower(qcthat::GetGHOwner())
           strRepo <- qcthat::GetGHRepo()
           strURL <- glue::glue(
-            "https://{strOwner}.github.io/{strRepo}/pr/{intPRNumber}/dev"
+            "https://{strOwner}.github.io/{strRepo}/pr/{intPRNumber}"
           )
           print(paste("🌐 URL:", strURL))
           qcthat::CommentIssue(
