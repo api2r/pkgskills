@@ -26,6 +26,7 @@ jobs:
         with:
           use-container: "true"
           token: ${{ secrets.GITHUB_TOKEN }}
+          needs: pr-document
           extra-packages: any::roxygen2
 
       - name: Document
