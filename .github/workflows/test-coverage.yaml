@@ -20,7 +20,8 @@ jobs:
         with:
           use-container: "true"
           token: ${{ secrets.GITHUB_TOKEN }}
-          extra-packages: any::covr any::xml2 local::.
+          needs: coverage
+          extra-packages: any::covr any::xml2
 
       - name: Test coverage
         run: |
