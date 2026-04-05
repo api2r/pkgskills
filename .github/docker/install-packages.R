@@ -15,7 +15,7 @@ pkgs <- c(
   "rlang",
   "rmarkdown",
   "roxygen2",
-  "wranglezone/stbl",
+  "stbl",
   "stringr",
   "testthat",
   "usethis",
@@ -30,7 +30,11 @@ pkgs <- c(
 tryCatch(
   pak::pak(pkgs),
   error = function(e) {
-    warning("Bulk install failed, retrying one-by-one: ", conditionMessage(e), call. = FALSE)
+    warning(
+      "Bulk install failed, retrying one-by-one: ",
+      conditionMessage(e),
+      call. = FALSE
+    )
     for (pkg in pkgs) {
       tryCatch(
         pak::pak(pkg),
