@@ -28,6 +28,7 @@ use_skill_r_code <- function(
   if (!fs::file_exists(conditions_path)) {
     data <- .get_desc_fields("Package")
     .use_template("aaa-conditions.R", "R/aaa-conditions.R", data = data)
+    usethis::use_package("stbl", min_version = "0.3.0")
     cli::cli_inform(c(
       "{.file R/aaa-conditions.R} created.",
       "i" = paste(
