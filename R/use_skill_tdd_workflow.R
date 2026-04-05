@@ -21,6 +21,7 @@ use_skill_tdd_workflow <- function(
       "no_package_field"
     )
   }
+  usethis::use_package("stbl", min_version = "0.3.0")
   invisible(.use_skill(
     "tdd-workflow",
     data = list(package = pkg_name),
