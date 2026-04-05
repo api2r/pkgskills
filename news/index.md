@@ -10,18 +10,18 @@
   template is reconciled with this package’s `AGENTS.md` file
   ([\#59](https://github.com/api2r/pkgskills/issues/59)).
 - `tdd-workflow` skill now documents
-  [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
+  [`stbl::expect_pkg_error_snapshot()`](https://stbl.wrangle.zone/reference/expect_pkg_error_snapshot.html)
   with an explicit `package` argument instead of a helper-defined
   version ([\#51](https://github.com/api2r/pkgskills/issues/51)).
 - Tests now use
-  [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
+  [`stbl::expect_pkg_error_snapshot()`](https://stbl.wrangle.zone/reference/expect_pkg_error_snapshot.html)
   directly instead of a locally-defined wrapper; the
   `expect_pkg_error_snapshot()` definition has been removed from
   `tests/testthat/helper-expectations.R`
   ([\#50](https://github.com/api2r/pkgskills/issues/50)).
 - [`use_skill_tdd_workflow()`](https://pkgskills.api2r.org/reference/use_skill_tdd_workflow.md)
   no longer installs `helper-expectations.R` into the target project;
-  [`stbl::expect_pkg_error_snapshot()`](https://stbl.api2r.org/reference/expect_pkg_error_snapshot.html)
+  [`stbl::expect_pkg_error_snapshot()`](https://stbl.wrangle.zone/reference/expect_pkg_error_snapshot.html)
   is now used directly
   ([\#52](https://github.com/api2r/pkgskills/issues/52)).
 - [`use_skill_r_code()`](https://pkgskills.api2r.org/reference/use_skill_r_code.md)
@@ -30,9 +30,9 @@
   ([\#48](https://github.com/api2r/pkgskills/issues/48)).
 - Internal coercion wrappers `.to_string()` and `.to_boolean()` replaced
   with direct
-  [`stbl::to_character_scalar()`](https://stbl.api2r.org/reference/stabilize_chr.html)
+  [`stbl::to_character_scalar()`](https://stbl.wrangle.zone/reference/stabilize_chr.html)
   and
-  [`stbl::to_lgl_scalar()`](https://stbl.api2r.org/reference/stabilize_lgl.html)
+  [`stbl::to_lgl_scalar()`](https://stbl.wrangle.zone/reference/stabilize_lgl.html)
   calls; `R/utils-coerce.R` removed
   ([\#46](https://github.com/api2r/pkgskills/issues/46)).
 - [`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)
