@@ -92,3 +92,17 @@ test_that("use_agent() overwrites AGENTS.md when overwrite = TRUE (#36)", {
   content <- readLines(fs::path(proj_dir, "AGENTS.md"))
   expect_true(any(grepl("mypkg", content, fixed = TRUE)))
 })
+
+test_that("use_agent() adds AGENTS.md to .Rbuildignore (#76)", {
+  proj_dir <- local_pkg()
+  suppressMessages(use_agent(open = FALSE))
+  rbuildignore <- readLines(fs::path(proj_dir, ".Rbuildignore"))
+  expect_true(any(grepl("AGENTS", rbuildignore, fixed = TRUE)))
+})
+
+test_that("use_agent() adds custom save_as path to .Rbuildignore (#76)", {
+  proj_dir <- local_pkg()
+  suppressMessages(use_agent(save_as = "docs/AGENTS.md", open = FALSE))
+  rbuildignore <- readLines(fs::path(proj_dir, ".Rbuildignore"))
+  expect_true(any(grepl("docs/AGENTS", rbuildignore, fixed = TRUE)))
+})

@@ -19,6 +19,7 @@ use_agent <- function(
   .path_proj_save_as(save_as, overwrite)
   data <- .get_desc_fields(c("Package", "Title", "Description", "URL"))
   .use_template("AGENTS.md", save_as, data = data, open = open)
+  usethis::use_build_ignore(save_as)
   cli::cli_inform(c(
     "{.file AGENTS.md} created.",
     "i" = paste0(
