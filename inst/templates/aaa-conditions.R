@@ -7,8 +7,8 @@
 .pkg_abort <- function(
   message,
   subclass,
-  call = caller_env(),
-  message_env = caller_env(),
+  call = rlang::caller_env(),
+  message_env = rlang::caller_env(),
   ...
 ) {
   stbl::pkg_abort(
