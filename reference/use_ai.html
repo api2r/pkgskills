@@ -52,6 +52,9 @@ invisibly.</p>
 <span>  overwrite <span class="op">=</span> <span class="cn">FALSE</span>,</span>
 <span>  open <span class="op">=</span> <span class="fu">rlang</span><span class="fu">::</span><span class="fu"><a href="https://rlang.r-lib.org/reference/is_interactive.html" class="external-link">is_interactive</a></span><span class="op">(</span><span class="op">)</span>,</span>
 <span>  gh_token <span class="op">=</span> <span class="fu">gh</span><span class="fu">::</span><span class="fu"><a href="https://gh.r-lib.org/reference/gh_token.html" class="external-link">gh_token</a></span><span class="op">(</span><span class="op">)</span>,</span>
+<span>  allowlist <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"api.github.com"</span>, <span class="st">"api2r.org"</span>, <span class="st">"bioconductor.org"</span>, <span class="st">"cloud.r-project.org"</span>,</span>
+<span>    <span class="st">"CRAN.R-project.org"</span>, <span class="st">"docs.github.com"</span>, <span class="st">"r-lib.org"</span>, <span class="st">"rstudio.github.io"</span>,</span>
+<span>    <span class="st">"tidymodels.org"</span>, <span class="st">"tidyverse.org"</span>, <span class="st">"wrangle.zone"</span><span class="op">)</span>,</span>
 <span>  skills <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/c.html" class="external-link">c</a></span><span class="op">(</span><span class="st">"create-issue"</span>, <span class="st">"document"</span>, <span class="st">"github"</span>, <span class="st">"implement-issue"</span>, <span class="st">"r-code"</span>,</span>
 <span>    <span class="st">"search-code"</span>, <span class="st">"tdd-workflow"</span><span class="op">)</span></span>
 <span><span class="op">)</span></span></code></pre></div>
@@ -89,6 +92,12 @@ Defaults to <code>FALSE</code>.</p></dd>
 <dt id="arg-gh-token">gh_token<a class="anchor" aria-label="anchor" href="#arg-gh-token"></a></dt>
 <dd><p>(<code>character(1)</code>) A GitHub personal access token. Defaults to
 <code><a href="https://gh.r-lib.org/reference/gh_token.html" class="external-link">gh::gh_token()</a></code>.</p></dd>
+
+
+<dt id="arg-allowlist">allowlist<a class="anchor" aria-label="anchor" href="#arg-allowlist"></a></dt>
+<dd><p>(<code>character</code>) Hostnames to add to the GitHub Copilot coding
+agent firewall allowlist. Defaults to a curated set of R and GitHub
+domains.</p></dd>
 
 
 <dt id="arg-skills">skills<a class="anchor" aria-label="anchor" href="#arg-skills"></a></dt>

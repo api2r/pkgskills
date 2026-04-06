@@ -31,6 +31,7 @@
 <url><loc>https://pkgskills.api2r.org/reference/dot-format_now_utc.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-get_create_issue_data.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-get_desc_fields.html</loc></url>
+<url><loc>https://pkgskills.api2r.org/reference/dot-inform_copilot_allowlist.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-is_first_run.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-lines_insert_after.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-make_skill_row.html</loc></url>
@@ -43,6 +44,7 @@
 <url><loc>https://pkgskills.api2r.org/reference/dot-path_template.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-pkg_abort.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-read_skill_trigger.html</loc></url>
+<url><loc>https://pkgskills.api2r.org/reference/dot-set_copilot_allowlist.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-shared-params.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-upsert_agents_skill.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/dot-upsert_agents_skill_from_template.html</loc></url>
@@ -54,6 +56,7 @@
 <url><loc>https://pkgskills.api2r.org/reference/use_agent.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/use_ai.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/use_github_copilot.html</loc></url>
+<url><loc>https://pkgskills.api2r.org/reference/use_github_copilot_whitelist.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/use_skill_create_issue.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/use_skill_document.html</loc></url>
 <url><loc>https://pkgskills.api2r.org/reference/use_skill_github.html</loc></url>

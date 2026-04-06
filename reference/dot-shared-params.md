@@ -9,6 +9,11 @@ to make them easier to import and to find.
 
   (`character`) Lines of `AGENTS.md`.
 
+- allowlist:
+
+  (`character`) Hostnames to add to the GitHub Copilot coding agent
+  firewall allowlist. Defaults to a curated set of R and GitHub domains.
+
 - call:
 
   (`environment`) The caller environment for error messages.
