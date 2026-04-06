@@ -28,6 +28,7 @@ test_that("use_ai() returns a named list with all function names (#28)", {
 
 test_that("use_ai() installs only selected skills (#28)", {
   local_pkg()
+  local_gh_mock()
   result <- suppressMessages(use_ai(
     skills = c("r-code", "github"),
     open = FALSE
@@ -64,6 +65,7 @@ test_that("use_ai() creates AGENTS.md and copilot workflow (#28)", {
 
 test_that("use_ai() creates selected skill files (#28)", {
   proj_dir <- local_pkg()
+  local_gh_mock()
   suppressMessages(use_ai(skills = c("r-code", "tdd-workflow"), open = FALSE))
   expect_true(fs::file_exists(fs::path(
     proj_dir,
@@ -96,6 +98,7 @@ test_that("use_ai() respects save_agent_as (#28)", {
 
 test_that("use_ai() respects target_skills_dir (#28)", {
   proj_dir <- local_pkg()
+  local_gh_mock()
   suppressMessages(use_ai(
     target_skills_dir = "agent-config",
     skills = "r-code",
@@ -135,6 +138,7 @@ test_that("pkgskills::use_ai() works without library(pkgskills) (#42)", {
 
 test_that("use_ai() passes gh_token to use_skill_create_issue() (#28)", {
   local_pkg()
+  local_gh_mock()
   local_mocked_bindings(
     use_skill_create_issue = function(
       target_dir,

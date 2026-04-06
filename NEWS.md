@@ -1,7 +1,6 @@
 # pkgskills (development version)
 
-* `use_github_copilot_whitelist()` configures the Copilot coding agent firewall allowlist via the GitHub API, falling back to informing the user of the settings URL and entries when the API is unavailable (#79).
-* `use_github_copilot()` and `use_ai()` now accept an `allowlist` parameter and call `use_github_copilot_whitelist()` automatically; `use_github_copilot()` also accepts `gh_token` (#79).
+* `use_github_copilot_whitelist()` configures the Copilot coding agent firewall allowlist (#79).
 
 * `AGENTS.md` and `tdd-workflow` skill instructions now explicitly explain how to determine the GitHub issue number and warn agents never to guess or invent one (@copilot, #61).
 * `use_agent()` template is reconciled with this package's `AGENTS.md` file (#59).

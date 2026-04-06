@@ -24,9 +24,10 @@ domains.}
 }
 \description{
 Adds the given hostnames to the Copilot coding agent firewall allowlist for
-the current repository. If the GitHub API does not support this endpoint or
-the token lacks the required permissions, the user is informed of the
-settings URL and the list of hostnames so they can add them manually.
+the current repository. If the GitHub token lacks the required permissions,
+the user is informed of the settings URL and the list of hostnames so they
+can add them manually. For details, see the
+\href{https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-firewall#allowlisting-additional-hosts-in-the-agents-firewall}{Copilot firewall documentation}.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

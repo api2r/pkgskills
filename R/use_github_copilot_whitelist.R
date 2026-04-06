@@ -1,9 +1,10 @@
 #' Update the GitHub Copilot coding agent firewall allowlist
 #'
 #' Adds the given hostnames to the Copilot coding agent firewall allowlist for
-#' the current repository. If the GitHub API does not support this endpoint or
-#' the token lacks the required permissions, the user is informed of the
-#' settings URL and the list of hostnames so they can add them manually.
+#' the current repository. If the GitHub token lacks the required permissions,
+#' the user is informed of the settings URL and the list of hostnames so they
+#' can add them manually. For details, see the
+#' [Copilot firewall documentation](https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/customize-the-agent-firewall#allowlisting-additional-hosts-in-the-agents-firewall).
 #'
 #' @inheritParams .shared-params
 #' @returns `NULL`, invisibly.
@@ -31,12 +32,12 @@ use_github_copilot_whitelist <- function(
   owner <- repo_parts[["owner"]]
   repo <- repo_parts[["repo"]]
 
-  suppressWarnings(rlang::try_fetch(
+  rlang::try_fetch(
     .set_copilot_allowlist(owner, repo, allowlist, gh_token),
     error = function(cnd) {
       .inform_copilot_allowlist(owner, repo, allowlist)
     }
-  ))
+  )
 
   invisible(NULL)
 }
@@ -62,13 +63,8 @@ use_github_copilot_whitelist <- function(
 #' @returns `NULL`, invisibly.
 #' @keywords internal
 .inform_copilot_allowlist <- function(owner, repo, allowlist) {
-  url <- sprintf(
-    "https://github.com/%s/%s/settings/copilot/coding_agent/allowlist",
-    owner,
-    repo
-  )
   cli::cli_inform(c(
-    "Add the following hosts to the Copilot coding agent firewall allowlist at {.url {url}}:",
+    "Add the following hosts to the Copilot coding agent firewall allowlist at {.url https://github.com/{owner}/{repo}/settings/copilot/coding_agent/allowlist}:",
     allowlist
   ))
   invisible(NULL)
