@@ -4,6 +4,9 @@
 #' make them easier to import and to find.
 #'
 #' @param agents_lines (`character`) Lines of `AGENTS.md`.
+#' @param allowlist (`character`) Hostnames to add to the GitHub Copilot coding
+#'   agent firewall allowlist. Defaults to a curated set of R and GitHub
+#'   domains.
 #' @param call (`environment`) The caller environment for error messages.
 #' @param data (`list`) Named list of whisker template variables for rendering.
 #' @param fields (`character`) Field name(s) to read from `DESCRIPTION`.

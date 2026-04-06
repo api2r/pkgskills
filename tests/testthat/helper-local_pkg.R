@@ -6,12 +6,14 @@ local_gh_mock <- function(
   local_mocked_bindings(
     .call_gh = function(...) {
       args <- list(...)
-      if (grepl("issueTypes", args$query)) {
+      if (isTRUE(grepl("issueTypes", args$query))) {
         list(
           data = list(repository = list(issueTypes = list(nodes = issue_types)))
         )
-      } else {
+      } else if (!is.null(args$query)) {
         list(data = list(repository = list(id = repo_id)))
+      } else {
+        list()
       }
     },
     .env = .local_envir

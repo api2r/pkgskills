@@ -17,6 +17,7 @@ Imports:
     desc,
     fs,
     gh,
+    glue,
     purrr,
     rlang,
     stbl (>= 0.3.0),
