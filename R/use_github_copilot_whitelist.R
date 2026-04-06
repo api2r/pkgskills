@@ -63,8 +63,11 @@ use_github_copilot_whitelist <- function(
 #' @returns `NULL`, invisibly.
 #' @keywords internal
 .inform_copilot_allowlist <- function(owner, repo, allowlist) {
+  url <- glue::glue(
+    "https://github.com/{owner}/{repo}/settings/copilot/coding_agent/allowlist"
+  )
   cli::cli_inform(c(
-    "Add the following hosts to the Copilot coding agent firewall allowlist at {.url https://github.com/{owner}/{repo}/settings/copilot/coding_agent/allowlist}:",
+    "Add the following hosts to the Copilot coding agent firewall allowlist at {.url {url}}:",
     allowlist
   ))
   invisible(NULL)
