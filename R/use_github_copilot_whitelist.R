@@ -35,6 +35,7 @@ use_github_copilot_whitelist <- function(
   rlang::try_fetch(
     .set_copilot_allowlist(owner, repo, allowlist, gh_token),
     error = function(cnd) {
+      cli::cli_warn(rlang::cnd_message(cnd))
       .inform_copilot_allowlist(owner, repo, allowlist)
     }
   )
@@ -48,12 +49,11 @@ use_github_copilot_whitelist <- function(
 #' @returns The API response.
 #' @keywords internal
 .set_copilot_allowlist <- function(owner, repo, allowlist, gh_token) {
-  .call_gh(
-    "PUT /repos/{owner}/{repo}/copilot/coding-agent/firewall/allowlist",
-    owner = owner,
-    repo = repo,
-    allowlist = as.list(allowlist),
-    .token = gh_token
+  # Expected endpoint once GitHub exposes it:
+  # PUT /repos/{owner}/{repo}/copilot/coding-agent/firewall/allowlist
+  .pkg_abort(
+    "The allowlist cannot be updated through the api.",
+    c("bad_endpoint", "allowlist")
   )
 }
 

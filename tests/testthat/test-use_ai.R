@@ -1,7 +1,9 @@
 test_that("use_ai() returns invisibly (#28)", {
   local_pkg()
   local_gh_mock()
-  result <- withVisible(suppressMessages(use_ai(open = FALSE)))
+  result <- withVisible(suppressWarnings(suppressMessages(use_ai(
+    open = FALSE
+  ))))
   expect_false(result$visible)
   expect_type(result$value, "list")
 })
@@ -9,7 +11,7 @@ test_that("use_ai() returns invisibly (#28)", {
 test_that("use_ai() returns a named list with all function names (#28)", {
   local_pkg()
   local_gh_mock()
-  result <- suppressMessages(use_ai(open = FALSE))
+  result <- suppressWarnings(suppressMessages(use_ai(open = FALSE)))
   expect_named(
     result,
     c(
@@ -29,10 +31,10 @@ test_that("use_ai() returns a named list with all function names (#28)", {
 test_that("use_ai() installs only selected skills (#28)", {
   local_pkg()
   local_gh_mock()
-  result <- suppressMessages(use_ai(
+  result <- suppressWarnings(suppressMessages(use_ai(
     skills = c("r-code", "github"),
     open = FALSE
-  ))
+  )))
   expect_named(
     result,
     c(
@@ -55,7 +57,7 @@ test_that("use_ai() errors on invalid skill name (#28)", {
 test_that("use_ai() creates AGENTS.md and copilot workflow (#28)", {
   proj_dir <- local_pkg()
   local_gh_mock()
-  suppressMessages(use_ai(open = FALSE))
+  suppressWarnings(suppressMessages(use_ai(open = FALSE)))
   expect_true(fs::file_exists(fs::path(proj_dir, "AGENTS.md")))
   expect_true(fs::file_exists(fs::path(
     proj_dir,
@@ -66,7 +68,10 @@ test_that("use_ai() creates AGENTS.md and copilot workflow (#28)", {
 test_that("use_ai() creates selected skill files (#28)", {
   proj_dir <- local_pkg()
   local_gh_mock()
-  suppressMessages(use_ai(skills = c("r-code", "tdd-workflow"), open = FALSE))
+  suppressWarnings(suppressMessages(use_ai(
+    skills = c("r-code", "tdd-workflow"),
+    open = FALSE
+  )))
   expect_true(fs::file_exists(fs::path(
     proj_dir,
     ".github/skills/r-code/SKILL.md"
@@ -84,11 +89,11 @@ test_that("use_ai() creates selected skill files (#28)", {
 test_that("use_ai() respects save_agent_as (#28)", {
   proj_dir <- local_pkg()
   local_gh_mock()
-  result <- suppressMessages(use_ai(
+  result <- suppressWarnings(suppressMessages(use_ai(
     save_agent_as = "docs/AGENTS.md",
     skills = character(0),
     open = FALSE
-  ))
+  )))
   expect_true(fs::file_exists(fs::path(proj_dir, "docs/AGENTS.md")))
   expect_equal(
     fs::path_real(result$use_agent),
@@ -99,11 +104,11 @@ test_that("use_ai() respects save_agent_as (#28)", {
 test_that("use_ai() respects target_skills_dir (#28)", {
   proj_dir <- local_pkg()
   local_gh_mock()
-  suppressMessages(use_ai(
+  suppressWarnings(suppressMessages(use_ai(
     target_skills_dir = "agent-config",
     skills = "r-code",
     open = FALSE
-  ))
+  )))
   expect_true(fs::file_exists(fs::path(
     proj_dir,
     "agent-config/skills/r-code/SKILL.md"
@@ -128,9 +133,9 @@ test_that("pkgskills::use_ai() works without library(pkgskills) (#42)", {
       file.path(proj_dir, "DESCRIPTION")
     )
     usethis::local_project(proj_dir, quiet = TRUE)
-    suppressMessages(
+    suppressWarnings(suppressMessages(
       pkgskills::use_ai(skills = "r-code", open = FALSE)
-    )
+    ))
   })
   expect_type(result, "list")
   expect_named(result, c("use_agent", "use_github_copilot", "use_skill_r_code"))
@@ -151,9 +156,9 @@ test_that("use_ai() passes gh_token to use_skill_create_issue() (#28)", {
       invisible(usethis::proj_path(".github/skills/create-issue/SKILL.md"))
     }
   )
-  suppressMessages(use_ai(
+  suppressWarnings(suppressMessages(use_ai(
     skills = "create-issue",
     open = FALSE,
     gh_token = "test-token"
-  ))
+  )))
 })
