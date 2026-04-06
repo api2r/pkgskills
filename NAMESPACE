@@ -3,6 +3,7 @@
 export(use_agent)
 export(use_ai)
 export(use_github_copilot)
+export(use_github_copilot_whitelist)
 export(use_skill_create_issue)
 export(use_skill_document)
 export(use_skill_github)

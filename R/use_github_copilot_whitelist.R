@@ -1,0 +1,75 @@
+#' Update the GitHub Copilot coding agent firewall allowlist
+#'
+#' Adds the given hostnames to the Copilot coding agent firewall allowlist for
+#' the current repository. If the GitHub API does not support this endpoint or
+#' the token lacks the required permissions, the user is informed of the
+#' settings URL and the list of hostnames so they can add them manually.
+#'
+#' @inheritParams .shared-params
+#' @returns `NULL`, invisibly.
+#' @export
+#' @examplesIf interactive()
+#'
+#'   use_github_copilot_whitelist()
+use_github_copilot_whitelist <- function(
+  allowlist = c(
+    "api.github.com",
+    "api2r.org",
+    "bioconductor.org",
+    "cloud.r-project.org",
+    "CRAN.R-project.org",
+    "docs.github.com",
+    "r-lib.org",
+    "rstudio.github.io",
+    "tidymodels.org",
+    "tidyverse.org",
+    "wrangle.zone"
+  ),
+  gh_token = gh::gh_token()
+) {
+  repo_parts <- .extract_repo_from_desc()
+  owner <- repo_parts[["owner"]]
+  repo <- repo_parts[["repo"]]
+
+  suppressWarnings(rlang::try_fetch(
+    .set_copilot_allowlist(owner, repo, allowlist, gh_token),
+    error = function(cnd) {
+      .inform_copilot_allowlist(owner, repo, allowlist)
+    }
+  ))
+
+  invisible(NULL)
+}
+
+#' Call the GitHub API to set the Copilot allowlist
+#'
+#' @inheritParams .shared-params
+#' @returns The API response.
+#' @keywords internal
+.set_copilot_allowlist <- function(owner, repo, allowlist, gh_token) {
+  .call_gh(
+    "PUT /repos/{owner}/{repo}/copilot/coding-agent/firewall/allowlist",
+    owner = owner,
+    repo = repo,
+    allowlist = as.list(allowlist),
+    .token = gh_token
+  )
+}
+
+#' Inform the user of the Copilot allowlist URL and entries
+#'
+#' @inheritParams .shared-params
+#' @returns `NULL`, invisibly.
+#' @keywords internal
+.inform_copilot_allowlist <- function(owner, repo, allowlist) {
+  url <- sprintf(
+    "https://github.com/%s/%s/settings/copilot/coding_agent/allowlist",
+    owner,
+    repo
+  )
+  cli::cli_inform(c(
+    "Add the following hosts to the Copilot coding agent firewall allowlist at {.url {url}}:",
+    allowlist
+  ))
+  invisible(NULL)
+}

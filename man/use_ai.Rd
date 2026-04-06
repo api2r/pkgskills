@@ -11,6 +11,9 @@ use_ai(
   overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
+  allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
+    "CRAN.R-project.org", "docs.github.com", "r-lib.org", "rstudio.github.io",
+    "tidymodels.org", "tidyverse.org", "wrangle.zone"),
   skills = c("create-issue", "document", "github", "implement-issue", "r-code",
     "search-code", "tdd-workflow")
 )
@@ -33,6 +36,10 @@ Defaults to \code{FALSE}.}
 
 \item{gh_token}{(\code{character(1)}) A GitHub personal access token. Defaults to
 \code{gh::gh_token()}.}
+
+\item{allowlist}{(\code{character}) Hostnames to add to the GitHub Copilot coding
+agent firewall allowlist. Defaults to a curated set of R and GitHub
+domains.}
 
 \item{skills}{(\code{character}) Which skills to install. Defaults to all known
 skills. Pass a subset to install only specific skills, or \code{character(0)}

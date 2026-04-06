@@ -6,6 +6,10 @@
 \arguments{
 \item{agents_lines}{(\code{character}) Lines of \code{AGENTS.md}.}
 
+\item{allowlist}{(\code{character}) Hostnames to add to the GitHub Copilot coding
+agent firewall allowlist. Defaults to a curated set of R and GitHub
+domains.}
+
 \item{call}{(\code{environment}) The caller environment for error messages.}
 
 \item{data}{(\code{list}) Named list of whisker template variables for rendering.}
