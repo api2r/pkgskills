@@ -102,7 +102,7 @@ use_skill_create_issue <- function(
   gh_pattern <- "github\\.com[:/]([^/]+)/([^/.]+?)(\\.git)?$"
   url_match <- stringr::str_match(remote_url, gh_pattern)
 
-  if (nrow(url_match) == 0L || anyNA(url_match[, 2:3])) {
+  if (!nrow(url_match) || anyNA(url_match)) {
     .pkg_abort(
       c(
         "No {.field BugReports} field found in {.file DESCRIPTION}.",
