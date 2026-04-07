@@ -22,3 +22,7 @@ Fetch the GraphQL node ID for a GitHub repository
 
   (`character(1)`) A GitHub personal access token. Defaults to
   [`gh::gh_token()`](https://gh.r-lib.org/reference/gh_token.html).
+
+## Value
+
+(`character(1)`) The repository's GraphQL node ID.
