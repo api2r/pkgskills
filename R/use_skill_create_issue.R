@@ -58,14 +58,7 @@ use_skill_create_issue <- function(
   bug_reports <- .get_desc_fields("BugReports", call = call)[["BugReports"]]
 
   if (!length(bug_reports)) {
-    .pkg_abort(
-      c(
-        "No {.field BugReports} field found in {.file DESCRIPTION}.",
-        "i" = "Run {.run usethis::use_github()} to set one up."
-      ),
-      "no_bug_reports",
-      call = call
-    )
+    bug_reports <- .bug_reports_from_remote(call = call)
   }
 
   pattern <- "^https://github\\.com/([^/]+)/([^/]+)/issues"
@@ -86,7 +79,56 @@ use_skill_create_issue <- function(
   )
 }
 
-#' Fetch the GraphQL node ID for a GitHub repository
+#' Build a BugReports URL from git remotes and add it to DESCRIPTION
+#'
+#' Looks up remotes via `gert::git_remote_list()`, prefers `upstream` over
+#' `origin`, and requires the URL to be on github.com. If a suitable remote is
+#' found, the constructed URL is written to DESCRIPTION and returned so that
+#' processing can continue normally.
+#'
+#' @inheritParams .shared-params
+#' @returns (`character(1)`) The BugReports URL.
+#' @keywords internal
+.bug_reports_from_remote <- function(call = caller_env()) {
+  remotes <- tryCatch(gert::git_remote_list(), error = function(e) NULL)
+
+  remote_url <- NULL
+  if (!is.null(remotes) && nrow(remotes) > 0L) {
+    for (candidate_name in c("upstream", "origin")) {
+      idx <- match(candidate_name, remotes$name)
+      if (
+        !is.na(idx) && grepl("github.com", remotes$url[[idx]], fixed = TRUE)
+      ) {
+        remote_url <- remotes$url[[idx]]
+        break
+      }
+    }
+  }
+
+  if (is.null(remote_url)) {
+    .pkg_abort(
+      c(
+        "No {.field BugReports} field found in {.file DESCRIPTION}.",
+        "i" = "Run {.run usethis::use_github()} to set one up."
+      ),
+      "no_bug_reports",
+      call = call
+    )
+  }
+
+  gh_pattern <- "github\\.com[:/]([^/]+)/([^/.]+?)(\\.git)?$"
+  url_match <- regmatches(remote_url, regexec(gh_pattern, remote_url))[[1L]]
+  owner <- url_match[[2L]]
+  repo <- url_match[[3L]]
+  bug_reports_url <- sprintf("https://github.com/%s/%s/issues", owner, repo)
+  desc::desc_set(BugReports = bug_reports_url, normalize = TRUE)
+  cli::cli_inform(
+    "Added {.field BugReports} to {.file DESCRIPTION}: {.url {bug_reports_url}}"
+  )
+  bug_reports_url
+}
+
+
 #'
 #' @inheritParams .shared-params
 #' @returns (`character(1)`) The repository's GraphQL node ID.

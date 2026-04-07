@@ -1,5 +1,7 @@
 # pkgskills (development version)
 
+* `use_ai()` no longer fails when `DESCRIPTION` has no `BugReports` field; it now falls back to git remotes (`upstream` then `origin`) to construct the URL and writes it to `DESCRIPTION` automatically (#82).
+
 * `use_github_copilot_whitelist()` configures the Copilot coding agent firewall allowlist (#79).
 
 * `AGENTS.md` and `tdd-workflow` skill instructions now explicitly explain how to determine the GitHub issue number and warn agents never to guess or invent one (@copilot, #61).
