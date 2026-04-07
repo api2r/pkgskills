@@ -105,7 +105,12 @@ use_skill_create_issue <- function(
     }
   }
 
-  if (is.null(remote_url)) {
+  gh_pattern <- "github\\.com[:/]([^/]+)/([^/.]+?)(\\.git)?$"
+  url_match <- if (!is.null(remote_url)) {
+    regmatches(remote_url, regexec(gh_pattern, remote_url))[[1L]]
+  }
+
+  if (length(url_match) < 3L) {
     .pkg_abort(
       c(
         "No {.field BugReports} field found in {.file DESCRIPTION}.",
@@ -116,8 +121,6 @@ use_skill_create_issue <- function(
     )
   }
 
-  gh_pattern <- "github\\.com[:/]([^/]+)/([^/.]+?)(\\.git)?$"
-  url_match <- regmatches(remote_url, regexec(gh_pattern, remote_url))[[1L]]
   owner <- url_match[[2L]]
   repo <- url_match[[3L]]
   bug_reports_url <- sprintf("https://github.com/%s/%s/issues", owner, repo)
@@ -128,10 +131,9 @@ use_skill_create_issue <- function(
   bug_reports_url
 }
 
-
+#' Fetch the GraphQL node ID for a GitHub repository
 #'
 #' @inheritParams .shared-params
-#' @returns (`character(1)`) The repository's GraphQL node ID.
 #' @keywords internal
 .fetch_repo_id <- function(owner, repo, gh_token) {
   repo_result <- .call_gh(
