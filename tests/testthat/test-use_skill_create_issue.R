@@ -33,6 +33,117 @@ test_that("use_skill_create_issue() errors when BugReports is absent (#6)", {
   )
 })
 
+test_that(".bug_reports_from_remote() falls back to origin GitHub remote (#82)", {
+  proj_dir <- local_pkg(
+    DESCRIPTION = c(
+      "Package: mypkg",
+      "Title: My Package",
+      "Version: 0.1.0"
+    )
+  )
+  local_mocked_bindings(
+    git_remote_list = function(...) {
+      data.frame(
+        name = "origin",
+        url = "https://github.com/myorg/mypkg.git",
+        fetch = "+refs/heads/*:refs/remotes/origin/*",
+        push = "https://github.com/myorg/mypkg.git",
+        stringsAsFactors = FALSE
+      )
+    },
+    .package = "gert"
+  )
+  result <- suppressMessages(.extract_repo_from_desc())
+  expect_equal(result$owner, "myorg")
+  expect_equal(result$repo, "mypkg")
+  desc_content <- readLines(fs::path(proj_dir, "DESCRIPTION"))
+  expect_true(any(grepl("BugReports", desc_content)))
+})
+
+test_that(".bug_reports_from_remote() prefers upstream over origin (#82)", {
+  local_pkg(
+    DESCRIPTION = c(
+      "Package: mypkg",
+      "Title: My Package",
+      "Version: 0.1.0"
+    )
+  )
+  local_mocked_bindings(
+    git_remote_list = function(...) {
+      data.frame(
+        name = c("origin", "upstream"),
+        url = c(
+          "https://github.com/fork/mypkg.git",
+          "https://github.com/myorg/mypkg.git"
+        ),
+        fetch = c(
+          "+refs/heads/*:refs/remotes/origin/*",
+          "+refs/heads/*:refs/remotes/upstream/*"
+        ),
+        push = c(
+          "https://github.com/fork/mypkg.git",
+          "https://github.com/myorg/mypkg.git"
+        ),
+        stringsAsFactors = FALSE
+      )
+    },
+    .package = "gert"
+  )
+  result <- suppressMessages(.extract_repo_from_desc())
+  expect_equal(result$owner, "myorg")
+})
+
+test_that(".bug_reports_from_remote() ignores non-GitHub remotes (#82)", {
+  local_pkg(
+    DESCRIPTION = c(
+      "Package: mypkg",
+      "Title: My Package",
+      "Version: 0.1.0"
+    )
+  )
+  local_mocked_bindings(
+    git_remote_list = function(...) {
+      data.frame(
+        name = "origin",
+        url = "https://gitlab.com/myorg/mypkg.git",
+        fetch = "+refs/heads/*:refs/remotes/origin/*",
+        push = "https://gitlab.com/myorg/mypkg.git",
+        stringsAsFactors = FALSE
+      )
+    },
+    .package = "gert"
+  )
+  expect_error(
+    .extract_repo_from_desc(),
+    class = "pkgskills-error-no_bug_reports"
+  )
+})
+
+test_that(".bug_reports_from_remote() works with SSH remote URL (#82)", {
+  local_pkg(
+    DESCRIPTION = c(
+      "Package: mypkg",
+      "Title: My Package",
+      "Version: 0.1.0"
+    )
+  )
+  local_mocked_bindings(
+    git_remote_list = function(...) {
+      data.frame(
+        name = "origin",
+        url = "git@github.com:myorg/mypkg.git",
+        fetch = "+refs/heads/*:refs/remotes/origin/*",
+        push = "git@github.com:myorg/mypkg.git",
+        stringsAsFactors = FALSE
+      )
+    },
+    .package = "gert"
+  )
+  result <- suppressMessages(.extract_repo_from_desc())
+  expect_equal(result$owner, "myorg")
+  expect_equal(result$repo, "mypkg")
+})
+
 test_that("use_skill_create_issue() errors when BugReports is not a GitHub URL (#6)", {
   local_pkg(
     DESCRIPTION = c(

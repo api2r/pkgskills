@@ -58,14 +58,7 @@ use_skill_create_issue <- function(
   bug_reports <- .get_desc_fields("BugReports", call = call)[["BugReports"]]
 
   if (!length(bug_reports)) {
-    .pkg_abort(
-      c(
-        "No {.field BugReports} field found in {.file DESCRIPTION}.",
-        "i" = "Run {.run usethis::use_github()} to set one up."
-      ),
-      "no_bug_reports",
-      call = call
-    )
+    bug_reports <- .bug_reports_from_remote(call = call)
   }
 
   pattern <- "^https://github\\.com/([^/]+)/([^/]+)/issues"
@@ -84,6 +77,52 @@ use_skill_create_issue <- function(
     owner = url_pieces[[2L]],
     repo = url_pieces[[3L]]
   )
+}
+
+#' Update BugReports from repo info
+#'
+#' @inheritParams .shared-params
+#' @returns (`character(1)`) The BugReports URL.
+#' @keywords internal
+.bug_reports_from_remote <- function(call = caller_env()) {
+  remotes <- tryCatch(gert::git_remote_list(), error = function(e) NULL)
+
+  remote_url <- character(0)
+  if (!is.null(remotes) && nrow(remotes) > 0L) {
+    for (candidate_name in c("upstream", "origin")) {
+      idx <- match(candidate_name, remotes$name)
+      if (
+        !is.na(idx) &&
+          stringr::str_detect(remotes$url[[idx]], stringr::fixed("github.com"))
+      ) {
+        remote_url <- remotes$url[[idx]]
+        break
+      }
+    }
+  }
+
+  gh_pattern <- "github\\.com[:/]([^/]+)/([^/.]+?)(\\.git)?$"
+  url_match <- stringr::str_match(remote_url, gh_pattern)
+
+  if (!nrow(url_match) || anyNA(url_match)) {
+    .pkg_abort(
+      c(
+        "No {.field BugReports} field found in {.file DESCRIPTION}.",
+        "i" = "Run {.run usethis::use_github()} to set one up."
+      ),
+      "no_bug_reports",
+      call = call
+    )
+  }
+
+  owner <- url_match[[2L]]
+  repo <- url_match[[3L]]
+  bug_reports_url <- glue::glue("https://github.com/{owner}/{repo}/issues")
+  desc::desc_set(BugReports = bug_reports_url, normalize = TRUE)
+  cli::cli_inform(
+    "Added {.field BugReports} to {.file DESCRIPTION}: {.url {bug_reports_url}}"
+  )
+  bug_reports_url
 }
 
 #' Fetch the GraphQL node ID for a GitHub repository
