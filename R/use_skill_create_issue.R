@@ -79,6 +79,8 @@ use_skill_create_issue <- function(
   )
 }
 
+#' Update BugReports from repo info
+#'
 #' @inheritParams .shared-params
 #' @returns (`character(1)`) The BugReports URL.
 #' @keywords internal

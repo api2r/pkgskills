@@ -2,7 +2,7 @@
 % Please edit documentation in R/use_skill_create_issue.R
 \name{.bug_reports_from_remote}
 \alias{.bug_reports_from_remote}
-\title{Build a BugReports URL from git remotes and add it to DESCRIPTION}
+\title{Update BugReports from repo info}
 \usage{
 .bug_reports_from_remote(call = caller_env())
 }
@@ -13,9 +13,6 @@
 (\code{character(1)}) The BugReports URL.
 }
 \description{
-Looks up remotes via \code{gert::git_remote_list()}, prefers \code{upstream} over
-\code{origin}, and requires the URL to be on github.com. If a suitable remote is
-found, the constructed URL is written to DESCRIPTION and returned so that
-processing can continue normally.
+Update BugReports from repo info
 }
 \keyword{internal}

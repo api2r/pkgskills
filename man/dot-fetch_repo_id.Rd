@@ -14,6 +14,9 @@
 \item{gh_token}{(\code{character(1)}) A GitHub personal access token. Defaults to
 \code{gh::gh_token()}.}
 }
+\value{
+(\code{character(1)}) The repository's GraphQL node ID.
+}
 \description{
 Fetch the GraphQL node ID for a GitHub repository
 }
