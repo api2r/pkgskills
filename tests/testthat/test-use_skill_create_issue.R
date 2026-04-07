@@ -33,7 +33,7 @@ test_that("use_skill_create_issue() errors when BugReports is absent (#6)", {
   )
 })
 
-test_that(".bug_reports_from_remote() falls back to origin GitHub remote", {
+test_that(".bug_reports_from_remote() falls back to origin GitHub remote (#82)", {
   proj_dir <- local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -60,7 +60,7 @@ test_that(".bug_reports_from_remote() falls back to origin GitHub remote", {
   expect_true(any(grepl("BugReports", desc_content)))
 })
 
-test_that(".bug_reports_from_remote() prefers upstream over origin", {
+test_that(".bug_reports_from_remote() prefers upstream over origin (#82)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -93,7 +93,7 @@ test_that(".bug_reports_from_remote() prefers upstream over origin", {
   expect_equal(result$owner, "myorg")
 })
 
-test_that(".bug_reports_from_remote() ignores non-GitHub remotes", {
+test_that(".bug_reports_from_remote() ignores non-GitHub remotes (#82)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
@@ -119,7 +119,7 @@ test_that(".bug_reports_from_remote() ignores non-GitHub remotes", {
   )
 })
 
-test_that(".bug_reports_from_remote() works with SSH remote URL", {
+test_that(".bug_reports_from_remote() works with SSH remote URL (#82)", {
   local_pkg(
     DESCRIPTION = c(
       "Package: mypkg",
