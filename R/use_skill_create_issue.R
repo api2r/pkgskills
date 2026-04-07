@@ -79,13 +79,6 @@ use_skill_create_issue <- function(
   )
 }
 
-#' Build a BugReports URL from git remotes and add it to DESCRIPTION
-#'
-#' Looks up remotes via `gert::git_remote_list()`, prefers `upstream` over
-#' `origin`, and requires the URL to be on github.com. If a suitable remote is
-#' found, the constructed URL is written to DESCRIPTION and returned so that
-#' processing can continue normally.
-#'
 #' @inheritParams .shared-params
 #' @returns (`character(1)`) The BugReports URL.
 #' @keywords internal
@@ -107,10 +100,10 @@ use_skill_create_issue <- function(
 
   gh_pattern <- "github\\.com[:/]([^/]+)/([^/.]+?)(\\.git)?$"
   url_match <- if (!is.null(remote_url)) {
-    regmatches(remote_url, regexec(gh_pattern, remote_url))[[1L]]
+    stringr::str_match(remote_url, gh_pattern)
   }
 
-  if (length(url_match) < 3L) {
+  if (is.null(url_match) || is.na(url_match[[2L]])) {
     .pkg_abort(
       c(
         "No {.field BugReports} field found in {.file DESCRIPTION}.",
@@ -134,6 +127,7 @@ use_skill_create_issue <- function(
 #' Fetch the GraphQL node ID for a GitHub repository
 #'
 #' @inheritParams .shared-params
+#' @returns (`character(1)`) The repository's GraphQL node ID.
 #' @keywords internal
 .fetch_repo_id <- function(owner, repo, gh_token) {
   repo_result <- .call_gh(
