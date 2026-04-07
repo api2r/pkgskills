@@ -2,6 +2,12 @@
 
 ## pkgskills (development version)
 
+- [`use_ai()`](https://pkgskills.api2r.org/reference/use_ai.md) no
+  longer fails when `DESCRIPTION` has no `BugReports` field; it now
+  falls back to git remotes (`upstream` then `origin`) to construct the
+  URL and writes it to `DESCRIPTION` automatically
+  ([\#82](https://github.com/api2r/pkgskills/issues/82)).
+
 - [`use_github_copilot_whitelist()`](https://pkgskills.api2r.org/reference/use_github_copilot_whitelist.md)
   configures the Copilot coding agent firewall allowlist
   ([\#79](https://github.com/api2r/pkgskills/issues/79)).
