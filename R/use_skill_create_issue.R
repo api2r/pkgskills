@@ -85,12 +85,13 @@ use_skill_create_issue <- function(
 .bug_reports_from_remote <- function(call = caller_env()) {
   remotes <- tryCatch(gert::git_remote_list(), error = function(e) NULL)
 
-  remote_url <- NULL
+  remote_url <- character(0)
   if (!is.null(remotes) && nrow(remotes) > 0L) {
     for (candidate_name in c("upstream", "origin")) {
       idx <- match(candidate_name, remotes$name)
       if (
-        !is.na(idx) && grepl("github.com", remotes$url[[idx]], fixed = TRUE)
+        !is.na(idx) &&
+          stringr::str_detect(remotes$url[[idx]], stringr::fixed("github.com"))
       ) {
         remote_url <- remotes$url[[idx]]
         break
@@ -99,11 +100,9 @@ use_skill_create_issue <- function(
   }
 
   gh_pattern <- "github\\.com[:/]([^/]+)/([^/.]+?)(\\.git)?$"
-  url_match <- if (!is.null(remote_url)) {
-    stringr::str_match(remote_url, gh_pattern)
-  }
+  url_match <- stringr::str_match(remote_url, gh_pattern)
 
-  if (is.null(url_match) || is.na(url_match[[2L]])) {
+  if (nrow(url_match) == 0L || anyNA(url_match[, 2:3])) {
     .pkg_abort(
       c(
         "No {.field BugReports} field found in {.file DESCRIPTION}.",
@@ -116,7 +115,7 @@ use_skill_create_issue <- function(
 
   owner <- url_match[[2L]]
   repo <- url_match[[3L]]
-  bug_reports_url <- sprintf("https://github.com/%s/%s/issues", owner, repo)
+  bug_reports_url <- glue::glue("https://github.com/{owner}/{repo}/issues")
   desc::desc_set(BugReports = bug_reports_url, normalize = TRUE)
   cli::cli_inform(
     "Added {.field BugReports} to {.file DESCRIPTION}: {.url {bug_reports_url}}"
