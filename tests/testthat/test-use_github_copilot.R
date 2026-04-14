@@ -1,4 +1,4 @@
-test_that("use_github_copilot() installs copilot-setup-steps.yml (#25)", {
+test_that("use_github_copilot() installs copilot-setup-steps.yml (#25, #84)", {
   proj_dir <- local_pkg()
   local_gh_mock()
   suppressWarnings(suppressMessages(use_github_copilot(open = FALSE)))
@@ -34,7 +34,7 @@ test_that("use_github_copilot() errors if copilot-setup-steps.yml exists and ove
   )
 })
 
-test_that("use_github_copilot() overwrites files when overwrite = TRUE (#25)", {
+test_that("use_github_copilot() overwrites files when overwrite = TRUE (#25, #84)", {
   proj_dir <- local_pkg(
     ".github/workflows/copilot-setup-steps.yml" = "# old"
   )
