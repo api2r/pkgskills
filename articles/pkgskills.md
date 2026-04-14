@@ -61,9 +61,8 @@ This call installs three things:
     repository layout, standard workflow, and where to find skills.
 2.  **A GitHub Copilot workflow file** (via
     [`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)):
-    a `copilot-setup-steps.yml` workflow and its companion reusable
-    `install` action, so Copilot Coding Agent can work on your
-    repository.
+    a `copilot-setup-steps.yml` workflow so Copilot Coding Agent can
+    work on your repository.
 3.  **Seven skills** installed to `.github/skills/` by default:
     `create-issue`, `document`, `github`, `implement-issue`, `r-code`,
     `search-code`, and `tdd-workflow`.

@@ -2,6 +2,11 @@
 
 ## pkgskills (development version)
 
+- [`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)
+  now uses the external, stable `api2r/actions/install@v1` composite
+  workflow instead of the local `install` action
+  ([\#84](https://github.com/api2r/pkgskills/issues/84)).
+
 - [`use_ai()`](https://pkgskills.api2r.org/reference/use_ai.md) no
   longer fails when `DESCRIPTION` has no `BugReports` field; it now
   falls back to git remotes (`upstream` then `origin`) to construct the
