@@ -1,9 +1,8 @@
 #' Install GitHub Copilot setup workflow into a project
 #'
-#' Installs a `copilot-setup-steps.yml` workflow and its companion reusable
-#' `install` action into the project's `.github/workflows/` directory. Also
-#' calls [use_github_copilot_whitelist()] to configure the coding agent firewall
-#' allowlist.
+#' Installs a `copilot-setup-steps.yml` workflow into the project's
+#' `.github/workflows/` directory. Also calls [use_github_copilot_whitelist()]
+#' to configure the coding agent firewall allowlist.
 #'
 #' @param overwrite (`logical(1)`) Whether to overwrite existing files. Defaults
 #'   to `FALSE`.
@@ -39,20 +38,11 @@ use_github_copilot <- function(
     ".github/workflows/copilot-setup-steps.yml",
     overwrite
   )
-  path_install_abs <- .path_proj_save_as(
-    ".github/workflows/install/action.yml",
-    overwrite
-  )
 
   .use_template_as_is(
     "workflows/copilot-setup-steps.yml",
     ".github/workflows/copilot-setup-steps.yml",
     open = open
-  )
-  .use_template_as_is(
-    "workflows/install/action.yml",
-    ".github/workflows/install/action.yml",
-    open = FALSE
   )
 
   use_github_copilot_whitelist(allowlist = allowlist, gh_token = gh_token)

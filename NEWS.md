@@ -1,5 +1,7 @@
 # pkgskills (development version)
 
+* `use_github_copilot()` now uses the external, stable `api2r/actions/install@v1` composite workflow instead of the local `install` action (#84).
+
 * `use_ai()` no longer fails when `DESCRIPTION` has no `BugReports` field; it now falls back to git remotes (`upstream` then `origin`) to construct the URL and writes it to `DESCRIPTION` automatically (#82).
 
 * `use_github_copilot_whitelist()` configures the Copilot coding agent firewall allowlist (#79).

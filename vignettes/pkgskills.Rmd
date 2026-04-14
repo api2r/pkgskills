@@ -47,8 +47,8 @@ This call installs three things:
    agent reads. It describes the repository layout, standard workflow, and where
    to find skills.
 2. **A GitHub Copilot workflow file** (via `use_github_copilot()`): a
-   `copilot-setup-steps.yml` workflow and its companion reusable `install`
-   action, so Copilot Coding Agent can work on your repository.
+   `copilot-setup-steps.yml` workflow so Copilot Coding Agent can work on your
+   repository.
 3. **Seven skills** installed to `.github/skills/` by default:
    `create-issue`, `document`, `github`, `implement-issue`, `r-code`,
    `search-code`, and `tdd-workflow`.
