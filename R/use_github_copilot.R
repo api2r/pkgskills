@@ -14,24 +14,7 @@
 use_github_copilot <- function(
   overwrite = FALSE,
   open = rlang::is_interactive(),
-  allowlist = c(
-    "api.github.com",
-    "api2r.org",
-    "bioconductor.org",
-    "cloud.r-project.org",
-    "CRAN.R-project.org",
-    "docs.github.com",
-    "github.com",
-    "hadley.nz",
-    "r-lib.org",
-    "r-pkgs.org",
-    "r-project.org",
-    "rstudio.com",
-    "rstudio.github.io",
-    "tidymodels.org",
-    "tidyverse.org",
-    "wrangle.zone"
-  ),
+  allowlist = default_allowlist(),
   gh_token = gh::gh_token()
 ) {
   overwrite <- stbl::to_lgl_scalar(overwrite)

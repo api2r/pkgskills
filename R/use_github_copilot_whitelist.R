@@ -13,7 +13,36 @@
 #'
 #'   use_github_copilot_whitelist()
 use_github_copilot_whitelist <- function(
-  allowlist = c(
+  allowlist = default_allowlist(),
+  gh_token = gh::gh_token()
+) {
+  repo_parts <- .extract_repo_from_desc()
+  owner <- repo_parts[["owner"]]
+  repo <- repo_parts[["repo"]]
+
+  rlang::try_fetch(
+    .set_copilot_allowlist(owner, repo, allowlist, gh_token),
+    error = function(cnd) {
+      cli::cli_warn(rlang::cnd_message(cnd))
+      .inform_copilot_allowlist(owner, repo, allowlist)
+    }
+  )
+
+  invisible(NULL)
+}
+
+#' Curated R and GitHub domains
+#'
+#' A curated set of R and GitHub domains to add to the GitHub Copilot coding
+#' agent firewall allowlist, or other agent domain whitelists.
+#'
+#' @returns A character vector of suggested domains.
+#' @export
+#'
+#' @examples
+#' default_allowlist()
+default_allowlist <- function() {
+  c(
     "api.github.com",
     "api2r.org",
     "bioconductor.org",
@@ -30,22 +59,7 @@ use_github_copilot_whitelist <- function(
     "tidymodels.org",
     "tidyverse.org",
     "wrangle.zone"
-  ),
-  gh_token = gh::gh_token()
-) {
-  repo_parts <- .extract_repo_from_desc()
-  owner <- repo_parts[["owner"]]
-  repo <- repo_parts[["repo"]]
-
-  rlang::try_fetch(
-    .set_copilot_allowlist(owner, repo, allowlist, gh_token),
-    error = function(cnd) {
-      cli::cli_warn(rlang::cnd_message(cnd))
-      .inform_copilot_allowlist(owner, repo, allowlist)
-    }
   )
-
-  invisible(NULL)
 }
 
 #' Call the GitHub API to set the Copilot allowlist

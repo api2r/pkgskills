@@ -16,8 +16,8 @@
 \item{save_as}{(\code{character(1)}) Output file path, relative to the project
 root.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing files. Defaults
-to \code{FALSE}.}
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing file(s).
+Defaults to \code{FALSE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 

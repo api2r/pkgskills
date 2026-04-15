@@ -7,8 +7,8 @@
 \item{agents_lines}{(\code{character}) Lines of \code{AGENTS.md}.}
 
 \item{allowlist}{(\code{character}) Hostnames to add to the GitHub Copilot coding
-agent firewall allowlist. Defaults to a curated set of R and GitHub
-domains.}
+agent firewall allowlist. Defaults to \code{\link[=default_allowlist]{default_allowlist()}}, a curated set
+of R and GitHub domains.}
 
 \item{call}{(\code{environment}) The caller environment for error messages.}
 
@@ -26,8 +26,8 @@ domains.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing files. Defaults
-to \code{FALSE}.}
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing file(s).
+Defaults to \code{FALSE}.}
 
 \item{owner}{(\code{character(1)}) GitHub repository owner (user or organization).}
 

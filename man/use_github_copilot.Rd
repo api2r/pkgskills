@@ -7,22 +7,19 @@
 use_github_copilot(
   overwrite = FALSE,
   open = rlang::is_interactive(),
-  allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
-    "CRAN.R-project.org", "docs.github.com", "github.com", "hadley.nz", "r-lib.org",
-    "r-pkgs.org", "r-project.org", "rstudio.com", "rstudio.github.io", "tidymodels.org",
-    "tidyverse.org", "wrangle.zone"),
+  allowlist = default_allowlist(),
   gh_token = gh::gh_token()
 )
 }
 \arguments{
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing files. Defaults
-to \code{FALSE}.}
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing file(s).
+Defaults to \code{FALSE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 
 \item{allowlist}{(\code{character}) Hostnames to add to the GitHub Copilot coding
-agent firewall allowlist. Defaults to a curated set of R and GitHub
-domains.}
+agent firewall allowlist. Defaults to \code{\link[=default_allowlist]{default_allowlist()}}, a curated set
+of R and GitHub domains.}
 
 \item{gh_token}{(\code{character(1)}) A GitHub personal access token. Defaults to
 \code{gh::gh_token()}.}
