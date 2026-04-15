@@ -9,7 +9,7 @@
 \arguments{
 \item{path}{(\code{character(1)}) Absolute path to the file.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing file(s).
 Defaults to \code{FALSE}.}
 
 \item{call}{(\code{environment}) The caller environment for error messages.}

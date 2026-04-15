@@ -5,8 +5,8 @@
 #'
 #' @param agents_lines (`character`) Lines of `AGENTS.md`.
 #' @param allowlist (`character`) Hostnames to add to the GitHub Copilot coding
-#'   agent firewall allowlist. Defaults to a curated set of R and GitHub
-#'   domains.
+#'   agent firewall allowlist. Defaults to [default_allowlist()], a curated set
+#'   of R and GitHub domains.
 #' @param call (`environment`) The caller environment for error messages.
 #' @param data (`list`) Named list of whisker template variables for rendering.
 #' @param fields (`character`) Field name(s) to read from `DESCRIPTION`.
@@ -16,7 +16,7 @@
 #' @param new_row (`character(1)`) A pre-built skill row string, as produced by
 #'   `.make_skill_row()`.
 #' @param open (`logical(1)`) Whether to open the file after creation.
-#' @param overwrite (`logical(1)`) Whether to overwrite an existing file.
+#' @param overwrite (`logical(1)`) Whether to overwrite existing file(s).
 #'   Defaults to `FALSE`.
 #' @param owner (`character(1)`) GitHub repository owner (user or organization).
 #' @param repo (`character(1)`) GitHub repository name.

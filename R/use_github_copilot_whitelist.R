@@ -13,19 +13,7 @@
 #'
 #'   use_github_copilot_whitelist()
 use_github_copilot_whitelist <- function(
-  allowlist = c(
-    "api.github.com",
-    "api2r.org",
-    "bioconductor.org",
-    "cloud.r-project.org",
-    "CRAN.R-project.org",
-    "docs.github.com",
-    "r-lib.org",
-    "rstudio.github.io",
-    "tidymodels.org",
-    "tidyverse.org",
-    "wrangle.zone"
-  ),
+  allowlist = default_allowlist(),
   gh_token = gh::gh_token()
 ) {
   repo_parts <- .extract_repo_from_desc()
@@ -41,6 +29,37 @@ use_github_copilot_whitelist <- function(
   )
 
   invisible(NULL)
+}
+
+#' Curated R and GitHub domains
+#'
+#' A curated set of R and GitHub domains to add to the GitHub Copilot coding
+#' agent firewall allowlist, or other agent domain whitelists.
+#'
+#' @returns A character vector of suggested domains.
+#' @export
+#'
+#' @examples
+#' default_allowlist()
+default_allowlist <- function() {
+  c(
+    "api.github.com",
+    "api2r.org",
+    "bioconductor.org",
+    "cloud.r-project.org",
+    "CRAN.R-project.org",
+    "docs.github.com",
+    "github.com",
+    "hadley.nz",
+    "r-lib.org",
+    "r-pkgs.org",
+    "r-project.org",
+    "rstudio.com",
+    "rstudio.github.io",
+    "tidymodels.org",
+    "tidyverse.org",
+    "wrangle.zone"
+  )
 }
 
 #' Call the GitHub API to set the Copilot allowlist

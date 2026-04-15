@@ -27,19 +27,7 @@ use_ai <- function(
   overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
-  allowlist = c(
-    "api.github.com",
-    "api2r.org",
-    "bioconductor.org",
-    "cloud.r-project.org",
-    "CRAN.R-project.org",
-    "docs.github.com",
-    "r-lib.org",
-    "rstudio.github.io",
-    "tidymodels.org",
-    "tidyverse.org",
-    "wrangle.zone"
-  ),
+  allowlist = default_allowlist(),
   skills = c(
     "create-issue",
     "document",

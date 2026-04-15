@@ -11,9 +11,7 @@ use_ai(
   overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
-  allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
-    "CRAN.R-project.org", "docs.github.com", "r-lib.org", "rstudio.github.io",
-    "tidymodels.org", "tidyverse.org", "wrangle.zone"),
+  allowlist = default_allowlist(),
   skills = c("create-issue", "document", "github", "implement-issue", "r-code",
     "search-code", "tdd-workflow")
 )
@@ -29,7 +27,7 @@ installed. Passed to all \verb{use_skill_*()} functions as \code{target_dir}.}
 under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE},
 producing \code{.github/skills/{skill}/SKILL.md}.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing file(s).
 Defaults to \code{FALSE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
@@ -38,8 +36,8 @@ Defaults to \code{FALSE}.}
 \code{gh::gh_token()}.}
 
 \item{allowlist}{(\code{character}) Hostnames to add to the GitHub Copilot coding
-agent firewall allowlist. Defaults to a curated set of R and GitHub
-domains.}
+agent firewall allowlist. Defaults to \code{\link[=default_allowlist]{default_allowlist()}}, a curated set
+of R and GitHub domains.}
 
 \item{skills}{(\code{character}) Which skills to install. Defaults to all known
 skills. Pass a subset to install only specific skills, or \code{character(0)}

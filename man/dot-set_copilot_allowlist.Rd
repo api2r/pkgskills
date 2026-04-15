@@ -12,8 +12,8 @@
 \item{repo}{(\code{character(1)}) GitHub repository name.}
 
 \item{allowlist}{(\code{character}) Hostnames to add to the GitHub Copilot coding
-agent firewall allowlist. Defaults to a curated set of R and GitHub
-domains.}
+agent firewall allowlist. Defaults to \code{\link[=default_allowlist]{default_allowlist()}}, a curated set
+of R and GitHub domains.}
 
 \item{gh_token}{(\code{character(1)}) A GitHub personal access token. Defaults to
 \code{gh::gh_token()}.}
