@@ -1,0 +1,57 @@
+# Install GitHub Copilot setup workflow into a project
+
+Installs a `copilot-setup-steps.yml` workflow into the project's
+`.github/workflows/` directory, installs Copilot code review
+instructions via
+[`use_github_copilot_code_review()`](https://pkgskills.api2r.org/reference/use_github_copilot_code_review.md),
+and calls
+[`use_github_copilot_whitelist()`](https://pkgskills.api2r.org/reference/use_github_copilot_whitelist.md)
+to configure the coding agent firewall allowlist.
+
+## Usage
+
+``` r
+use_github_copilot(
+  overwrite = FALSE,
+  open = rlang::is_interactive(),
+  allowlist = default_allowlist(),
+  gh_token = gh::gh_token()
+)
+```
+
+## Arguments
+
+- overwrite:
+
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
+  `FALSE`.
+
+- open:
+
+  (`logical(1)`) Whether to open the file after creation.
+
+- allowlist:
+
+  (`character`) Hostnames to add to the GitHub Copilot coding agent
+  firewall allowlist. Defaults to
+  [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md),
+  a curated set of R and GitHub domains.
+
+- gh_token:
+
+  (`character(1)`) A GitHub personal access token. Defaults to
+  [`gh::gh_token()`](https://gh.r-lib.org/reference/gh_token.html).
+
+## Value
+
+The path to the installed `.github/workflows/copilot-setup-steps.yml`,
+invisibly.
+
+## Examples
+
+``` r
+if (FALSE) { # interactive()
+
+  use_github_copilot()
+}
+```
