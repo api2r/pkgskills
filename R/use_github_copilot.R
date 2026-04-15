@@ -1,8 +1,10 @@
 #' Install GitHub Copilot setup workflow into a project
 #'
 #' Installs a `copilot-setup-steps.yml` workflow into the project's
-#' `.github/workflows/` directory. Also calls [use_github_copilot_whitelist()]
-#' to configure the coding agent firewall allowlist.
+#' `.github/workflows/` directory, installs Copilot code review instructions via
+#' [use_github_copilot_code_review()], and calls
+#' [use_github_copilot_whitelist()] to configure the coding agent firewall
+#' allowlist.
 #'
 #' @inheritParams .shared-params
 #' @returns The path to the installed
@@ -30,6 +32,8 @@ use_github_copilot <- function(
     ".github/workflows/copilot-setup-steps.yml",
     open = open
   )
+
+  use_github_copilot_code_review(overwrite = overwrite, open = open)
 
   use_github_copilot_whitelist(allowlist = allowlist, gh_token = gh_token)
 

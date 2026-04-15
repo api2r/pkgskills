@@ -1,4 +1,4 @@
-test_that("use_github_copilot() installs copilot-setup-steps.yml (#25, #84)", {
+test_that("use_github_copilot() installs copilot-setup-steps.yml (#25, #84, #89)", {
   proj_dir <- local_pkg()
   local_gh_mock()
   suppressWarnings(suppressMessages(use_github_copilot(open = FALSE)))
@@ -7,6 +7,10 @@ test_that("use_github_copilot() installs copilot-setup-steps.yml (#25, #84)", {
       fs::path(proj_dir, ".github/workflows/copilot-setup-steps.yml")
     )
   )
+  expect_true(fs::file_exists(fs::path(
+    proj_dir,
+    ".github/copilot-instructions.md"
+  )))
 })
 
 test_that("use_github_copilot() returns path to copilot-setup-steps.yml invisibly (#25)", {
