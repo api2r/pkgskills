@@ -11,10 +11,7 @@ to configure the coding agent firewall allowlist.
 use_github_copilot(
   overwrite = FALSE,
   open = rlang::is_interactive(),
-  allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
-    "CRAN.R-project.org", "docs.github.com", "github.com", "hadley.nz", "r-lib.org",
-    "r-pkgs.org", "r-project.org", "rstudio.com", "rstudio.github.io", "tidymodels.org",
-    "tidyverse.org", "wrangle.zone"),
+  allowlist = default_allowlist(),
   gh_token = gh::gh_token()
 )
 ```
@@ -23,7 +20,7 @@ use_github_copilot(
 
 - overwrite:
 
-  (`logical(1)`) Whether to overwrite existing files. Defaults to
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
   `FALSE`.
 
 - open:
@@ -33,7 +30,9 @@ use_github_copilot(
 - allowlist:
 
   (`character`) Hostnames to add to the GitHub Copilot coding agent
-  firewall allowlist. Defaults to a curated set of R and GitHub domains.
+  firewall allowlist. Defaults to
+  [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md),
+  a curated set of R and GitHub domains.
 
 - gh_token:
 

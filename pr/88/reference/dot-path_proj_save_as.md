@@ -16,7 +16,7 @@ Build and validate a project-relative output path
 
 - overwrite:
 
-  (`logical(1)`) Whether to overwrite existing files. Defaults to
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
   `FALSE`.
 
 - call:
