@@ -1,4 +1,4 @@
-test_that("use_github_copilot_code_review() installs copilot-instructions.md (#noissue)", {
+test_that("use_github_copilot_code_review() installs copilot-instructions.md (#89)", {
   proj_dir <- local_pkg()
   suppressMessages(use_github_copilot_code_review(open = FALSE))
   expect_true(fs::file_exists(fs::path(
@@ -7,7 +7,7 @@ test_that("use_github_copilot_code_review() installs copilot-instructions.md (#n
   )))
 })
 
-test_that("use_github_copilot_code_review() returns path invisibly (#noissue)", {
+test_that("use_github_copilot_code_review() returns path invisibly (#89)", {
   proj_dir <- local_pkg()
   result <- withVisible(suppressMessages(use_github_copilot_code_review(
     open = FALSE
@@ -19,7 +19,7 @@ test_that("use_github_copilot_code_review() returns path invisibly (#noissue)", 
   )
 })
 
-test_that("use_github_copilot_code_review() errors if file exists and overwrite = FALSE (#noissue)", {
+test_that("use_github_copilot_code_review() errors if file exists and overwrite = FALSE (#89)", {
   local_pkg(".github/copilot-instructions.md" = "# existing")
   expect_error(
     suppressMessages(use_github_copilot_code_review(open = FALSE)),
@@ -27,7 +27,7 @@ test_that("use_github_copilot_code_review() errors if file exists and overwrite 
   )
 })
 
-test_that("use_github_copilot_code_review() overwrites file when overwrite = TRUE (#noissue)", {
+test_that("use_github_copilot_code_review() overwrites file when overwrite = TRUE (#89)", {
   proj_dir <- local_pkg(".github/copilot-instructions.md" = "# old")
   suppressMessages(use_github_copilot_code_review(
     overwrite = TRUE,

@@ -1,4 +1,4 @@
-test_that("use_github_copilot() installs copilot-setup-steps.yml (#25, #84)", {
+test_that("use_github_copilot() installs copilot-setup-steps.yml (#25, #84, #89)", {
   proj_dir <- local_pkg()
   local_gh_mock()
   suppressWarnings(suppressMessages(use_github_copilot(open = FALSE)))
