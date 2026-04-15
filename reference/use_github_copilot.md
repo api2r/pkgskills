@@ -1,8 +1,7 @@
 # Install GitHub Copilot setup workflow into a project
 
-Installs a `copilot-setup-steps.yml` workflow and its companion reusable
-`install` action into the project's `.github/workflows/` directory. Also
-calls
+Installs a `copilot-setup-steps.yml` workflow into the project's
+`.github/workflows/` directory. Also calls
 [`use_github_copilot_whitelist()`](https://pkgskills.api2r.org/reference/use_github_copilot_whitelist.md)
 to configure the coding agent firewall allowlist.
 
@@ -12,9 +11,7 @@ to configure the coding agent firewall allowlist.
 use_github_copilot(
   overwrite = FALSE,
   open = rlang::is_interactive(),
-  allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
-    "CRAN.R-project.org", "docs.github.com", "r-lib.org", "rstudio.github.io",
-    "tidymodels.org", "tidyverse.org", "wrangle.zone"),
+  allowlist = default_allowlist(),
   gh_token = gh::gh_token()
 )
 ```
@@ -23,7 +20,7 @@ use_github_copilot(
 
 - overwrite:
 
-  (`logical(1)`) Whether to overwrite existing files. Defaults to
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
   `FALSE`.
 
 - open:
@@ -33,7 +30,9 @@ use_github_copilot(
 - allowlist:
 
   (`character`) Hostnames to add to the GitHub Copilot coding agent
-  firewall allowlist. Defaults to a curated set of R and GitHub domains.
+  firewall allowlist. Defaults to
+  [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md),
+  a curated set of R and GitHub domains.
 
 - gh_token:
 

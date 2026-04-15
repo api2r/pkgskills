@@ -12,7 +12,9 @@ to make them easier to import and to find.
 - allowlist:
 
   (`character`) Hostnames to add to the GitHub Copilot coding agent
-  firewall allowlist. Defaults to a curated set of R and GitHub domains.
+  firewall allowlist. Defaults to
+  [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md),
+  a curated set of R and GitHub domains.
 
 - call:
 
@@ -47,7 +49,7 @@ to make them easier to import and to find.
 
 - overwrite:
 
-  (`logical(1)`) Whether to overwrite an existing file. Defaults to
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
   `FALSE`.
 
 - owner:

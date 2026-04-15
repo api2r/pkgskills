@@ -21,7 +21,9 @@ Call the GitHub API to set the Copilot allowlist
 - allowlist:
 
   (`character`) Hostnames to add to the GitHub Copilot coding agent
-  firewall allowlist. Defaults to a curated set of R and GitHub domains.
+  firewall allowlist. Defaults to
+  [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md),
+  a curated set of R and GitHub domains.
 
 - gh_token:
 

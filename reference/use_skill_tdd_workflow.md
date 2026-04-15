@@ -28,7 +28,7 @@ use_skill_tdd_workflow(
 
 - overwrite:
 
-  (`logical(1)`) Whether to overwrite an existing file. Defaults to
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
   `FALSE`.
 
 - open:

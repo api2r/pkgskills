@@ -30,7 +30,7 @@ use_skill_search_code(
 
 - overwrite:
 
-  (`logical(1)`) Whether to overwrite an existing file. Defaults to
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
   `FALSE`.
 
 - open:

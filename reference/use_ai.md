@@ -16,9 +16,7 @@ use_ai(
   overwrite = FALSE,
   open = rlang::is_interactive(),
   gh_token = gh::gh_token(),
-  allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
-    "CRAN.R-project.org", "docs.github.com", "r-lib.org", "rstudio.github.io",
-    "tidymodels.org", "tidyverse.org", "wrangle.zone"),
+  allowlist = default_allowlist(),
   skills = c("create-issue", "document", "github", "implement-issue", "r-code",
     "search-code", "tdd-workflow")
 )
@@ -46,7 +44,7 @@ use_ai(
 
 - overwrite:
 
-  (`logical(1)`) Whether to overwrite an existing file. Defaults to
+  (`logical(1)`) Whether to overwrite existing file(s). Defaults to
   `FALSE`.
 
 - open:
@@ -61,7 +59,9 @@ use_ai(
 - allowlist:
 
   (`character`) Hostnames to add to the GitHub Copilot coding agent
-  firewall allowlist. Defaults to a curated set of R and GitHub domains.
+  firewall allowlist. Defaults to
+  [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md),
+  a curated set of R and GitHub domains.
 
 - skills:
 
