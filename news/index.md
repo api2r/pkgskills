@@ -2,6 +2,12 @@
 
 ## pkgskills (development version)
 
+- [`use_github_copilot_code_review()`](https://pkgskills.api2r.org/reference/use_github_copilot_code_review.md)
+  now installs `.github/copilot-instructions.md` to skip `man/*.Rd`
+  files during Copilot code review, and
+  [`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)
+  now calls it ([\#89](https://github.com/api2r/pkgskills/issues/89)).
+
 - [`use_github_copilot()`](https://pkgskills.api2r.org/reference/use_github_copilot.md)
   now uses the external, stable `api2r/actions/install@v1` composite
   workflow instead of the local `install` action

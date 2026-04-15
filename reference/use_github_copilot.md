@@ -1,7 +1,10 @@
 # Install GitHub Copilot setup workflow into a project
 
 Installs a `copilot-setup-steps.yml` workflow into the project's
-`.github/workflows/` directory. Also calls
+`.github/workflows/` directory, installs Copilot code review
+instructions via
+[`use_github_copilot_code_review()`](https://pkgskills.api2r.org/reference/use_github_copilot_code_review.md),
+and calls
 [`use_github_copilot_whitelist()`](https://pkgskills.api2r.org/reference/use_github_copilot_whitelist.md)
 to configure the coding agent firewall allowlist.
 
