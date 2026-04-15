@@ -8,8 +8,9 @@ use_github_copilot(
   overwrite = FALSE,
   open = rlang::is_interactive(),
   allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
-    "CRAN.R-project.org", "docs.github.com", "r-lib.org", "rstudio.github.io",
-    "tidymodels.org", "tidyverse.org", "wrangle.zone"),
+    "CRAN.R-project.org", "docs.github.com", "github.com", "hadley.nz", "r-lib.org",
+    "r-pkgs.org", "r-project.org", "rstudio.com", "rstudio.github.io", "tidymodels.org",
+    "tidyverse.org", "wrangle.zone"),
   gh_token = gh::gh_token()
 )
 }
@@ -31,10 +32,9 @@ The path to the installed
 \code{.github/workflows/copilot-setup-steps.yml}, invisibly.
 }
 \description{
-Installs a \code{copilot-setup-steps.yml} workflow and its companion reusable
-\code{install} action into the project's \verb{.github/workflows/} directory. Also
-calls \code{\link[=use_github_copilot_whitelist]{use_github_copilot_whitelist()}} to configure the coding agent firewall
-allowlist.
+Installs a \code{copilot-setup-steps.yml} workflow into the project's
+\verb{.github/workflows/} directory. Also calls \code{\link[=use_github_copilot_whitelist]{use_github_copilot_whitelist()}}
+to configure the coding agent firewall allowlist.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}

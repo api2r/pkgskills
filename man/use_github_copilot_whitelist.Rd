@@ -6,8 +6,9 @@
 \usage{
 use_github_copilot_whitelist(
   allowlist = c("api.github.com", "api2r.org", "bioconductor.org", "cloud.r-project.org",
-    "CRAN.R-project.org", "docs.github.com", "r-lib.org", "rstudio.github.io",
-    "tidymodels.org", "tidyverse.org", "wrangle.zone"),
+    "CRAN.R-project.org", "docs.github.com", "github.com", "hadley.nz", "r-lib.org",
+    "r-pkgs.org", "r-project.org", "rstudio.com", "rstudio.github.io", "tidymodels.org",
+    "tidyverse.org", "wrangle.zone"),
   gh_token = gh::gh_token()
 )
 }

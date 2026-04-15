@@ -16,8 +16,8 @@
 #' @param new_row (`character(1)`) A pre-built skill row string, as produced by
 #'   `.make_skill_row()`.
 #' @param open (`logical(1)`) Whether to open the file after creation.
-#' @param overwrite (`logical(1)`) Whether to overwrite an existing file.
-#'   Defaults to `FALSE`.
+#' @param overwrite (`logical(1)`) Whether to overwrite existing files. Defaults
+#'   to `FALSE`.
 #' @param owner (`character(1)`) GitHub repository owner (user or organization).
 #' @param repo (`character(1)`) GitHub repository name.
 #' @param save_as (`character(1)`) Output file path, relative to the project

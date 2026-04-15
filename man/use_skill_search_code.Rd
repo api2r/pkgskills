@@ -19,8 +19,8 @@ installed, relative to the project root. Defaults to \code{".github"}.}
 under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE},
 producing \code{.github/skills/{skill}/SKILL.md}.}
 
-\item{overwrite}{(\code{logical(1)}) Whether to overwrite an existing file.
-Defaults to \code{FALSE}.}
+\item{overwrite}{(\code{logical(1)}) Whether to overwrite existing files. Defaults
+to \code{FALSE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 }

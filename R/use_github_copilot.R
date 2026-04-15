@@ -4,8 +4,6 @@
 #' `.github/workflows/` directory. Also calls [use_github_copilot_whitelist()]
 #' to configure the coding agent firewall allowlist.
 #'
-#' @param overwrite (`logical(1)`) Whether to overwrite existing files. Defaults
-#'   to `FALSE`.
 #' @inheritParams .shared-params
 #' @returns The path to the installed
 #'   `.github/workflows/copilot-setup-steps.yml`, invisibly.
@@ -23,7 +21,12 @@ use_github_copilot <- function(
     "cloud.r-project.org",
     "CRAN.R-project.org",
     "docs.github.com",
+    "github.com",
+    "hadley.nz",
     "r-lib.org",
+    "r-pkgs.org",
+    "r-project.org",
+    "rstudio.com",
     "rstudio.github.io",
     "tidymodels.org",
     "tidyverse.org",
