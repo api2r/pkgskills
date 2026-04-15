@@ -1,5 +1,7 @@
 # pkgskills (development version)
 
+* `use_github_copilot_code_review()` now installs `.github/copilot-instructions.md` to skip `man/*.Rd` files during Copilot code review, and `use_github_copilot()` now calls it (#noissue).
+
 * `use_github_copilot()` now uses the external, stable `api2r/actions/install@v1` composite workflow instead of the local `install` action (#84).
 
 * `use_ai()` no longer fails when `DESCRIPTION` has no `BugReports` field; it now falls back to git remotes (`upstream` then `origin`) to construct the URL and writes it to `DESCRIPTION` automatically (#82).

@@ -30,8 +30,10 @@ The path to the installed
 }
 \description{
 Installs a \code{copilot-setup-steps.yml} workflow into the project's
-\verb{.github/workflows/} directory. Also calls \code{\link[=use_github_copilot_whitelist]{use_github_copilot_whitelist()}}
-to configure the coding agent firewall allowlist.
+\verb{.github/workflows/} directory, installs Copilot code review instructions via
+\code{\link[=use_github_copilot_code_review]{use_github_copilot_code_review()}}, and calls
+\code{\link[=use_github_copilot_whitelist]{use_github_copilot_whitelist()}} to configure the coding agent firewall
+allowlist.
 }
 \examples{
 \dontshow{if (interactive()) withAutoprint(\{ # examplesIf}
