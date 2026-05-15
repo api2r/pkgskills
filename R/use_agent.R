@@ -20,13 +20,16 @@ use_agent <- function(
   data <- .get_desc_fields(c("Package", "Title", "Description", "URL"))
   .use_template("AGENTS.md", save_as, data = data, open = open)
   usethis::use_build_ignore(save_as)
-  cli::cli_inform(c(
-    "{.file AGENTS.md} created.",
-    "i" = paste0(
-      "To tailor it to your project, tell your AI agent this: ",
-      "\"Tailor @AGENTS.md to reflect this repository's actual structure. ",
-      "Focus on the **Repository overview** and the **Key files** table.\""
-    )
-  ))
+  .pkg_inform(
+    c(
+      "{.file AGENTS.md} created.",
+      "i" = paste0(
+        "To tailor it to your project, tell your AI agent this: ",
+        "\"Tailor @AGENTS.md to reflect this repository's actual structure. ",
+        "Focus on the **Repository overview** and the **Key files** table.\""
+      )
+    ),
+    c("ai_implementation", "agent")
+  )
   invisible(usethis::proj_path(save_as))
 }

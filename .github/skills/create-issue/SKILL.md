@@ -13,7 +13,7 @@ If `gh` is not authenticated, stop and ask the user to authenticate before conti
 
 ## Looking up IDs
 
-The hardcoded IDs below are correct for this repo as of 2026-03-11. If they ever change, or if you're working in a fork, re-run these queries to get fresh values:
+The hardcoded IDs below are correct for this repo as of 2026-05-15 12:52:35 UTC. If they ever change, or if you're working in a fork, re-run these queries to get fresh values:
 
 ```bash
 # Repository node ID
@@ -29,11 +29,11 @@ Choose the type that best fits the issue:
 
 | Type | ID | Use for |
 |---|---|---|
-| Feature | `IT_kwDOCPuMJs4BPtRe` | New exported functions or capabilities |
-| Bug | `IT_kwDOCPuMJs4BPtRc` | Something broken or incorrect |
-| Documentation | `IT_kwDOCPuMJs4B5OL_` | Docs-only changes |
-| Task | `IT_kwDOCPuMJs4BPtRZ` | Maintenance, refactoring, chores |
-| Infrastructure | `IT_kwDOCPuMJs4B5OMn` | CI, tooling, repo configuration |
+| Task | `IT_kwDOCPuMJs4BPtRZ` | A specific piece of work |
+| Bug | `IT_kwDOCPuMJs4BPtRc` | An unexpected problem or behavior |
+| Feature | `IT_kwDOCPuMJs4BPtRe` | A request, idea, or new functionality |
+| Documentation | `IT_kwDOCPuMJs4B5OL_` | Explanations of how or why to do things |
+| Infrastructure | `IT_kwDOCPuMJs4B5OMn` | Infrastructure of a project, like GitHub Actions |
 
 ## Issue title
 

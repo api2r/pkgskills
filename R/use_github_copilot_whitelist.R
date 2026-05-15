@@ -19,12 +19,17 @@ use_github_copilot_whitelist <- function(
   repo_parts <- .extract_repo_from_desc()
   owner <- repo_parts[["owner"]]
   repo <- repo_parts[["repo"]]
+  call <- rlang::current_env()
 
   rlang::try_fetch(
     .set_copilot_allowlist(owner, repo, allowlist, gh_token),
     error = function(cnd) {
-      cli::cli_warn(rlang::cnd_message(cnd))
-      .inform_copilot_allowlist(owner, repo, allowlist)
+      .pkg_warn(
+        rlang::cnd_message(cnd),
+        c("allowlist_api_error"),
+        call = call
+      )
+      .inform_copilot_allowlist(owner, repo, allowlist, call = call)
     }
   )
 
@@ -81,13 +86,22 @@ default_allowlist <- function() {
 #' @inheritParams .shared-params
 #' @returns `NULL`, invisibly.
 #' @keywords internal
-.inform_copilot_allowlist <- function(owner, repo, allowlist) {
+.inform_copilot_allowlist <- function(
+  owner,
+  repo,
+  allowlist,
+  call = caller_env()
+) {
   url <- glue::glue(
     "https://github.com/{owner}/{repo}/settings/copilot/coding_agent/allowlist"
   )
-  cli::cli_inform(c(
-    "Add the following hosts to the Copilot coding agent firewall allowlist at {.url {url}}:",
-    allowlist
-  ))
+  .pkg_inform(
+    c(
+      "Add the following hosts to the Copilot coding agent firewall allowlist at {.url {url}}:",
+      allowlist
+    ),
+    c("ai_implementation", "github_copilot", "whitelist"),
+    call = call
+  )
   invisible(NULL)
 }

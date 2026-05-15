@@ -29,7 +29,10 @@
     call = call
   )
   .upsert_agents_skill_from_template(skill_path_relative, save_as, call = call)
-  cli::cli_inform("Skill {.file {save_as}} installed.")
+  .pkg_inform(
+    "Skill {.file {save_as}} installed.",
+    c("ai_implementation", "skill")
+  )
   invisible(save_as_absolute)
 }
 

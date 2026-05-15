@@ -29,13 +29,16 @@ use_skill_r_code <- function(
     data <- .get_desc_fields("Package")
     .use_template("aaa-conditions.R", "R/aaa-conditions.R", data = data)
     usethis::use_package("stbl", min_version = "0.3.0")
-    cli::cli_inform(c(
-      "{.file R/aaa-conditions.R} created.",
-      "i" = paste(
-        "Use {.fn .pkg_abort} for package errors.",
-        "Add more error helpers here as your package grows."
-      )
-    ))
+    .pkg_inform(
+      c(
+        "{.file R/aaa-conditions.R} created.",
+        "i" = paste(
+          "Use {.fn .pkg_abort} for package errors.",
+          "Add more error helpers here as your package grows."
+        )
+      ),
+      c("shared_file", "conditions")
+    )
   }
 
   invisible(skill_path)

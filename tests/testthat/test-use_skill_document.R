@@ -29,9 +29,19 @@ test_that("use_skill_document() does not overwrite existing R/aaa-shared_params.
   expect_equal(content, "# custom content")
 })
 
-test_that("use_skill_document() emits message when aaa-shared_params.R is created (#9)", {
+test_that("use_skill_document() emits message when aaa-shared_params.R is created (#9, #81)", {
   local_pkg()
-  expect_snapshot(use_skill_document(open = FALSE))
+  stbl::expect_pkg_message_snapshot(
+    {
+      expect_message(
+        use_skill_document(open = FALSE),
+        class = "pkgskills-message-ai_implementation-skill"
+      )
+    },
+    "pkgskills",
+    "shared_file",
+    "params"
+  )
 })
 
 test_that("use_skill_document() does not emit shared_params message when file exists (#9)", {

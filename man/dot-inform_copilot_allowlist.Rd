@@ -4,7 +4,7 @@
 \alias{.inform_copilot_allowlist}
 \title{Inform the user of the Copilot allowlist URL and entries}
 \usage{
-.inform_copilot_allowlist(owner, repo, allowlist)
+.inform_copilot_allowlist(owner, repo, allowlist, call = caller_env())
 }
 \arguments{
 \item{owner}{(\code{character(1)}) GitHub repository owner (user or organization).}
@@ -14,6 +14,8 @@
 \item{allowlist}{(\code{character}) Hostnames to add to the GitHub Copilot coding
 agent firewall allowlist. Defaults to \code{\link[=default_allowlist]{default_allowlist()}}, a curated set
 of R and GitHub domains.}
+
+\item{call}{(\code{environment}) The caller environment for error messages.}
 }
 \value{
 \code{NULL}, invisibly.

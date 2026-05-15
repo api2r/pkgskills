@@ -100,19 +100,24 @@ test_that(".use_skill() renders template variables into skill file (#6)", {
   expect_true(any(grepl("IT_bug", content)))
 })
 
-test_that(".use_skill() emits a cli_inform message (#6)", {
+test_that(".use_skill() emits a message (#6, #81)", {
   local_pkg()
-  expect_snapshot(
-    .use_skill(
-      "create-issue",
-      data = list(
-        owner = "testowner",
-        repo = "testrepo",
-        repo_id = "R_test",
-        issue_types = list()
-      ),
-      open = FALSE
-    )
+  stbl::expect_pkg_message_snapshot(
+    {
+      .use_skill(
+        "create-issue",
+        data = list(
+          owner = "testowner",
+          repo = "testrepo",
+          repo_id = "R_test",
+          issue_types = list()
+        ),
+        open = FALSE
+      )
+    },
+    "pkgskills",
+    "ai_implementation",
+    "skill"
   )
 })
 
