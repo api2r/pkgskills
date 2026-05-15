@@ -5,7 +5,7 @@ Inform the user of the Copilot allowlist URL and entries
 ## Usage
 
 ``` r
-.inform_copilot_allowlist(owner, repo, allowlist)
+.inform_copilot_allowlist(owner, repo, allowlist, call = caller_env())
 ```
 
 ## Arguments
@@ -24,6 +24,10 @@ Inform the user of the Copilot allowlist URL and entries
   firewall allowlist. Defaults to
   [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md),
   a curated set of R and GitHub domains.
+
+- call:
+
+  (`environment`) The caller environment for error messages.
 
 ## Value
 
