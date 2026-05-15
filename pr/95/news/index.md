@@ -5,7 +5,8 @@
 - [`update_ai()`](https://pkgskills.api2r.org/reference/update_ai.md)
   now wraps
   [`use_ai()`](https://pkgskills.api2r.org/reference/use_ai.md) with
-  `overwrite = TRUE` by default (#noissue).
+  `overwrite = TRUE` by default
+  ([\#94](https://github.com/api2r/pkgskills/issues/94)).
 
 - [`use_github_copilot_code_review()`](https://pkgskills.api2r.org/reference/use_github_copilot_code_review.md)
   now installs `.github/copilot-instructions.md` to skip `man/*.Rd`
