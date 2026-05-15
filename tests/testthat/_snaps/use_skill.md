@@ -1,9 +1,13 @@
-# .use_skill() emits a cli_inform message (#6)
+# .use_skill() emits a message (#6, #81)
 
     Code
-      .use_skill("create-issue", data = list(owner = "testowner", repo = "testrepo",
-        repo_id = "R_test", issue_types = list()), open = FALSE)
-    Message
+      (expect_pkg_message_classes({
+        .use_skill("create-issue", data = list(owner = "testowner", repo = "testrepo",
+          repo_id = "R_test", issue_types = list()), open = FALSE)
+      }, "pkgskills", "ai_implementation", "skill"))
+    Output
+      <message/pkgskills-message-ai_implementation-skill>
+      Message in `.use_skill()`:
       Skill '.github/skills/create-issue/SKILL.md' installed.
 
 # .use_skill() errors when overwrite = FALSE and file exists (#6)

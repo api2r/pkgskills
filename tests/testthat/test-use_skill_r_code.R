@@ -16,9 +16,19 @@ test_that("use_skill_r_code() returns path invisibly (#19)", {
   )
 })
 
-test_that("use_skill_r_code() emits install message (#19)", {
+test_that("use_skill_r_code() emits install message (#19, #81)", {
   local_pkg()
-  expect_snapshot(use_skill_r_code(open = FALSE))
+  stbl::expect_pkg_message_snapshot(
+    {
+      expect_message(
+        use_skill_r_code(open = FALSE),
+        class = "pkgskills-message-ai_implementation-skill"
+      )
+    },
+    "pkgskills",
+    "shared_file",
+    "conditions"
+  )
 })
 
 test_that("use_skill_r_code() creates R/aaa-conditions.R when absent (#48)", {

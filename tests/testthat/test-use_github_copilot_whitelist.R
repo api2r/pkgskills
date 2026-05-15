@@ -1,11 +1,13 @@
-test_that("use_github_copilot_whitelist() warns and informs user (#79)", {
+test_that("use_github_copilot_whitelist() warns and informs user (#79, #81)", {
   local_pkg()
   expect_warning(
     expect_message(
       use_github_copilot_whitelist(gh_token = "test-token"),
-      "myorg/mypkg"
+      "myorg/mypkg",
+      class = "pkgskills-message-ai_implementation-github_copilot-whitelist"
     ),
-    "cannot be updated through the api"
+    "cannot be updated through the api",
+    class = "pkgskills-warning-allowlist_api_error"
   )
 })
 

@@ -33,6 +33,36 @@ test_that("use_skill_create_issue() errors when BugReports is absent (#6)", {
   )
 })
 
+test_that(".bug_reports_from_remote() informs about writes (#81, #82)", {
+  proj_dir <- local_pkg(
+    DESCRIPTION = c(
+      "Package: mypkg",
+      "Title: My Package",
+      "Version: 0.1.0"
+    )
+  )
+  local_mocked_bindings(
+    git_remote_list = function(...) {
+      data.frame(
+        name = "origin",
+        url = "https://github.com/myorg/mypkg.git",
+        fetch = "+refs/heads/*:refs/remotes/origin/*",
+        push = "https://github.com/myorg/mypkg.git",
+        stringsAsFactors = FALSE
+      )
+    },
+    .package = "gert"
+  )
+  stbl::expect_pkg_message_snapshot(
+    {
+      .extract_repo_from_desc()
+    },
+    "pkgskills",
+    "description_update",
+    "bugreports"
+  )
+})
+
 test_that(".bug_reports_from_remote() falls back to origin GitHub remote (#82)", {
   proj_dir <- local_pkg(
     DESCRIPTION = c(

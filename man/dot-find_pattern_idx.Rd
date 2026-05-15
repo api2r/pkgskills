@@ -9,7 +9,7 @@
 \arguments{
 \item{lines}{(\code{character}) Lines of a file, as returned by \code{\link[=readLines]{readLines()}}.}
 
-\item{pattern}{(\code{character(1)}) A regex pattern or \code{\link[stringr:modifiers]{stringr::fixed()}} string
+\item{pattern}{(\code{character(1)}) A regex pattern or \code{\link[stringr:fixed]{stringr::fixed()}} string
 to match against each line.}
 }
 \value{

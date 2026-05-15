@@ -23,7 +23,10 @@ use_github_copilot_whitelist <- function(
   rlang::try_fetch(
     .set_copilot_allowlist(owner, repo, allowlist, gh_token),
     error = function(cnd) {
-      cli::cli_warn(rlang::cnd_message(cnd))
+      .pkg_warn(
+        rlang::cnd_message(cnd),
+        c("allowlist_api_error")
+      )
       .inform_copilot_allowlist(owner, repo, allowlist)
     }
   )
@@ -85,9 +88,12 @@ default_allowlist <- function() {
   url <- glue::glue(
     "https://github.com/{owner}/{repo}/settings/copilot/coding_agent/allowlist"
   )
-  cli::cli_inform(c(
-    "Add the following hosts to the Copilot coding agent firewall allowlist at {.url {url}}:",
-    allowlist
-  ))
+  .pkg_inform(
+    c(
+      "Add the following hosts to the Copilot coding agent firewall allowlist at {.url {url}}:",
+      allowlist
+    ),
+    c("ai_implementation", "github_copilot", "whitelist")
+  )
   invisible(NULL)
 }

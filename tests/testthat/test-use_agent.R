@@ -35,11 +35,16 @@ test_that("use_agent() does not insert 'NA' when Description or URL is absent (#
   expect_no_match(content, "^NA$", all = FALSE)
 })
 
-test_that("use_agent() emits an informational message after writing (#2)", {
+test_that("use_agent() emits an informational message after writing (#2, #81)", {
   local_pkg()
-  expect_snapshot({
-    use_agent(open = FALSE)
-  })
+  stbl::expect_pkg_message_snapshot(
+    {
+      use_agent(open = FALSE)
+    },
+    "pkgskills",
+    "ai_implementation",
+    "agent"
+  )
 })
 
 test_that("use_agent() errors on non-scalar save_as (#2)", {

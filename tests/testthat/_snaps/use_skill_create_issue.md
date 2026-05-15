@@ -9,6 +9,17 @@
       ! No BugReports field found in 'DESCRIPTION'.
       i Run `usethis::use_github()` to set one up.
 
+# .bug_reports_from_remote() informs about writes (#81, #82)
+
+    Code
+      (expect_pkg_message_classes({
+        .extract_repo_from_desc()
+      }, "pkgskills", "description_update", "bugreports"))
+    Output
+      <message/pkgskills-message-description_update-bugreports>
+      Message in `.bug_reports_from_remote()`:
+      Added BugReports to 'DESCRIPTION': <https://github.com/myorg/mypkg/issues>
+
 # use_skill_create_issue() errors when BugReports is not a GitHub URL (#6)
 
     Code

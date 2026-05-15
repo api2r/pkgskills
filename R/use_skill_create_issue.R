@@ -119,8 +119,9 @@ use_skill_create_issue <- function(
   repo <- url_match[[3L]]
   bug_reports_url <- glue::glue("https://github.com/{owner}/{repo}/issues")
   desc::desc_set(BugReports = bug_reports_url, normalize = TRUE)
-  cli::cli_inform(
-    "Added {.field BugReports} to {.file DESCRIPTION}: {.url {bug_reports_url}}"
+  .pkg_inform(
+    "Added {.field BugReports} to {.file DESCRIPTION}: {.url {bug_reports_url}}",
+    c("description_update", "bugreports")
   )
   bug_reports_url
 }
