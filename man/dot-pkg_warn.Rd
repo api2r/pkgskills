@@ -32,7 +32,7 @@ evaluate variables in error messages.}
 \code{\link[rlang:abort]{rlang::warn()}}.}
 }
 \value{
-Does not return.
+\code{NULL}, invisibly (called for warning side effect).
 }
 \description{
 Signal a package-scoped warning
