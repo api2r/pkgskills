@@ -1,5 +1,7 @@
 # pkgskills (development version)
 
+* `update_ai()` now wraps `use_ai()` with `overwrite = TRUE` by default (#94).
+
 * `use_github_copilot_code_review()` now installs `.github/copilot-instructions.md` to skip `man/*.Rd` files during Copilot code review, and `use_github_copilot()` now calls it (#89).
 
 * `use_github_copilot()` now uses the external, stable `api2r/actions/install@v1` composite workflow instead of the local `install` action (#84).
