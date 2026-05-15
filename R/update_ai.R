@@ -3,6 +3,8 @@
 #' Thin wrapper around [use_ai()] with `overwrite = TRUE` by default.
 #'
 #' @inheritParams use_ai
+#' @param overwrite (`logical(1)`) Whether to overwrite existing file(s).
+#'   Defaults to `TRUE`.
 #' @returns A named list of paths returned by [use_ai()], invisibly.
 #' @export
 #' @examplesIf interactive()

@@ -28,7 +28,7 @@ under a \code{skills} subdirectory of \code{target_dir}. Defaults to \code{TRUE}
 producing \code{.github/skills/{skill}/SKILL.md}.}
 
 \item{overwrite}{(\code{logical(1)}) Whether to overwrite existing file(s).
-Defaults to \code{FALSE}.}
+Defaults to \code{TRUE}.}
 
 \item{open}{(\code{logical(1)}) Whether to open the file after creation.}
 
