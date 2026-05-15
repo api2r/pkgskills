@@ -4,6 +4,8 @@
 
 - [`default_allowlist()`](https://pkgskills.api2r.org/reference/default_allowlist.md)
   : Curated R and GitHub domains
+- [`update_ai()`](https://pkgskills.api2r.org/reference/update_ai.md) :
+  Update the full AI agent suite for a project
 - [`use_agent()`](https://pkgskills.api2r.org/reference/use_agent.md) :
   Create an AGENTS.md file for your project
 - [`use_ai()`](https://pkgskills.api2r.org/reference/use_ai.md) : Set up
