@@ -133,9 +133,6 @@ test_that("process_data() errors on empty input (#42)", {
 })
 ```
 
-Pass `transform = stbl::.transform_path(path)` to scrub volatile values (e.g. temp
-paths) from the snapshot before comparison.
-
 **Warnings thrown by this package** (via `.pkg_warn()`) should be tested with
 `stbl::expect_pkg_warning_snapshot()`:
 
