@@ -1,4 +1,4 @@
-test_that("update_ai() defaults overwrite to TRUE (#noissue)", {
+test_that("update_ai() defaults overwrite to TRUE (#94)", {
   local_pkg()
   local_gh_mock()
   local_mocked_bindings(
@@ -22,7 +22,7 @@ test_that("update_ai() defaults overwrite to TRUE (#noissue)", {
   expect_identical(result$value, "ok")
 })
 
-test_that("update_ai() still allows explicit overwrite = FALSE (#noissue)", {
+test_that("update_ai() still allows explicit overwrite = FALSE (#94)", {
   local_pkg()
   local_gh_mock()
   local_mocked_bindings(
