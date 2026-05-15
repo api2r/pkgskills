@@ -27,7 +27,7 @@
 #'
 #' @inheritParams .shared-params
 #' @inheritParams stbl::pkg_warn
-#' @returns Does not return.
+#' @returns `NULL`, invisibly (called for warning side effect).
 #' @keywords internal
 .pkg_warn <- function(
   message,
@@ -52,7 +52,7 @@
 #'
 #' @inheritParams .shared-params
 #' @inheritParams stbl::pkg_inform
-#' @returns Does not return.
+#' @returns `NULL`, invisibly (called for message side effect).
 #' @keywords internal
 .pkg_inform <- function(
   message,
