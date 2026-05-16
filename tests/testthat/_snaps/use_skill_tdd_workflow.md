@@ -1,4 +1,4 @@
-# use_skill_tdd_workflow() emits messages (#11, #52)
+# use_skill_tdd_workflow() emits messages (#11, #52, #97)
 
     Code
       (expect_pkg_message_classes({
