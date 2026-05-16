@@ -21,7 +21,9 @@ use_skill_tdd_workflow <- function(
       "no_package_field"
     )
   }
-  usethis::use_package("stbl", min_version = "0.3.0")
+  usethis::use_package("stbl", min_version = "0.3.0.9000")
+  usethis::use_testthat()
+  .use_conditions_tests(overwrite, open)
   invisible(.use_skill(
     "tdd-workflow",
     data = list(package = pkg_name),
@@ -30,4 +32,31 @@ use_skill_tdd_workflow <- function(
     overwrite = overwrite,
     open = open
   ))
+}
+
+#' Install the conditions tests template
+#'
+#' @inheritParams .shared-params
+#' @returns The path to the installed test file, invisibly.
+#' @keywords internal
+.use_conditions_tests <- function(
+  overwrite = FALSE,
+  open = rlang::is_interactive()
+) {
+  usethis::use_package("stbl", min_version = "0.3.0.9000")
+  conditions_path <- usethis::proj_path("tests/testthat/test-aaa-conditions.R")
+  if (!fs::file_exists(conditions_path) || overwrite) {
+    data <- .get_desc_fields("Package")
+    .use_template(
+      "test-aaa-conditions.R",
+      "tests/testthat/test-aaa-conditions.R",
+      data = data,
+      open = open
+    )
+    .pkg_inform(
+      "{.file tests/testthat/test-aaa-conditions.R} created or updated.",
+      c("shared_file", "test_conditions")
+    )
+  }
+  invisible(conditions_path)
 }

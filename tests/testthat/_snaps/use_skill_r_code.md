@@ -1,4 +1,4 @@
-# use_skill_r_code() emits install message (#19, #81)
+# use_skill_r_code() emits messages (#19, #81)
 
     Code
       (expect_pkg_message_classes({
@@ -6,7 +6,7 @@
       }, "pkgskills", "shared_file", "conditions"))
     Output
       <message/pkgskills-message-shared_file-conditions>
-      Message in `use_skill_r_code()`:
-      'R/aaa-conditions.R' created.
+      Message in `.use_conditions()`:
+      'R/aaa-conditions.R' created or updated.
       i Use `.pkg_abort()` for package errors. Add more error helpers here as your package grows.
 

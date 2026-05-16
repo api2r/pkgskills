@@ -34,9 +34,19 @@ test_that("use_skill_tdd_workflow() renders package name into skill file (#11)",
   expect_false(any(grepl("\\{\\{\\{package\\}\\}\\}", content)))
 })
 
-test_that("use_skill_tdd_workflow() emits inform message (#11, #52)", {
+test_that("use_skill_tdd_workflow() emits messages (#11, #52, #97)", {
   local_pkg()
-  expect_snapshot(use_skill_tdd_workflow(open = FALSE))
+  stbl::expect_pkg_message_snapshot(
+    {
+      expect_message(
+        use_skill_tdd_workflow(open = FALSE),
+        class = "pkgskills-message-ai_implementation-skill"
+      )
+    },
+    "pkgskills",
+    "shared_file",
+    "test_conditions"
+  )
 })
 
 test_that("use_skill_tdd_workflow() errors when Package field is absent (#11)", {

@@ -26,7 +26,7 @@ use_skill_document <- function(
 
   shared_params_path <- usethis::proj_path("R/aaa-shared_params.R")
   if (!fs::file_exists(shared_params_path)) {
-    .use_template("aaa-shared_params.R", "R/aaa-shared_params.R")
+    .use_template("aaa-shared_params.R", "R/aaa-shared_params.R", open = open)
     .pkg_inform(
       c(
         "{.file R/aaa-shared_params.R} created.",
