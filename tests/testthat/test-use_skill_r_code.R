@@ -16,7 +16,7 @@ test_that("use_skill_r_code() returns path invisibly (#19)", {
   )
 })
 
-test_that("use_skill_r_code() emits install message (#19, #81)", {
+test_that("use_skill_r_code() emits messages (#19, #81)", {
   local_pkg()
   stbl::expect_pkg_message_snapshot(
     {
