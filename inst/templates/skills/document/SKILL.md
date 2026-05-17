@@ -37,6 +37,8 @@ Function-specific `@param` definitions always appear *before* any `@inheritParam
 
 ### Type notation
 
+These are non-exhaustive examples. Other classes (such as `httr2_response`) are possible
+
 | Notation | Meaning |
 |----------|---------|
 | ``(`character`)`` | Character vector |
@@ -49,9 +51,12 @@ Function-specific `@param` definitions always appear *before* any `@inheritParam
 | ``(`vector`)`` | A vector of unspecified type |
 | ``(`list`)`` | List |
 | ``(`data.frame`)`` | Data frame or tibble |
+| ``(`tibble`)`` | Explicit tibble (when we KNOW the return is always a tibble) |
+| ``(`NULL`)`` | NULL only |
 | ``(`function` or `NULL`)`` | A function or NULL |
 | ``(`my_class`)`` | A class-specific type (use the actual class name) |
 | ``(`any`)`` | Any type |
+| ``(`NULL`, invisibly)`` | For returns, note `invisible()` returns with the type |
 
 ### Enumerated values
 
