@@ -45,9 +45,11 @@ RUN apt-get update \
         # — document tooling --------------------------------------------------
         pandoc \
         qpdf \
-    && rm -rf /var/lib/apt/lists/* \
-    && localedef -i en_US -c -f UTF-8 -A /usr/share/locale/locale.alias en_US.UTF-8
-ENV LANG=en_US.UTF-8
+    && printf 'en_US.UTF-8 UTF-8\n' > /etc/locale.gen \
+    && locale-gen en_US.UTF-8 \
+    && rm -rf /var/lib/apt/lists/*
+ENV LANG=en_US.UTF-8 \
+    LC_ALL=en_US.UTF-8
 
 # actions/checkout needs this when running inside a container
 RUN git config --global --add safe.directory '*'
